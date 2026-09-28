@@ -13,19 +13,20 @@ Maquette : `maquettes/png/00-connexion.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `Login_Fond` | Section Détail | 0,00 | 0,00 | 11,64 | 10,16 |
-| `Logo` | Image + étiquette | 1,06 | 0,95 | 3,47 | 0,74 |
-| `Lbl_Titre` | Étiquette | 1,06 | 2,43 | 2,91 | 0,77 |
-| `Txt_Utilisateur` | Zone de texte | 1,06 | 4,97 | 9,53 | 0,85 |
-| `Txt_MotDePasse` | Zone de texte | 1,06 | 6,77 | 9,53 | 0,85 |
-| `Btn_Connexion` | Bouton | 1,06 | 8,36 | 9,53 | 0,95 |
+| `Login_Fond` | Section Détail | 0,00 | 0,00 | 11,64 | 11,11 |
+| `Bandeau_Bleu` | Rectangle | 0,00 | 0,00 | 11,64 | 2,54 |
+| `Logo` | Image + étiquette | 1,06 | 0,90 | 6,06 | 0,74 |
+| `Lbl_Titre` | Étiquette | 1,06 | 3,28 | 2,91 | 0,77 |
+| `Txt_Utilisateur` | Zone de texte | 1,06 | 5,87 | 9,53 | 0,85 |
+| `Txt_MotDePasse` | Zone de texte | 1,06 | 7,67 | 9,53 | 0,85 |
+| `Btn_Connexion` | Bouton | 1,06 | 9,26 | 9,53 | 0,95 |
 
 ## Formulaire « Menu » (commun à tous les écrans)
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Menu_Fond` | Rectangle | 0,00 | 0,00 | 5,82 | 20,74 |
-| `Logo` | Image + étiquette | 0,53 | 0,40 | 3,41 | 0,69 |
+| `Logo` | Image + étiquette | 0,48 | 0,42 | 4,87 | 0,64 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 0,32 | 2,01 | 5,19 | 1,01 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 0,32 | 3,18 | 5,19 | 1,01 |
 | `BoutonNavigation_clients` | Bouton de navigation | 0,32 | 4,34 | 5,19 | 1,01 |
@@ -34,7 +35,7 @@ Maquette : `maquettes/png/00-connexion.png`
 | `BoutonNavigation_carburants` | Bouton de navigation | 0,32 | 7,83 | 5,19 | 1,01 |
 | `BoutonNavigation_modeles` | Bouton de navigation | 0,32 | 9,00 | 5,19 | 1,01 |
 | `Entete` | Rectangle | 5,82 | 0,00 | 35,67 | 1,48 |
-| `Titre_Page` | Étiquette | 6,46 | 0,34 | 4,42 | 0,77 |
+| `Titre_Page` | Étiquette | 6,46 | 0,32 | 4,42 | 0,77 |
 | `Date_Heure` | Zone de texte | 36,17 | 0,48 | 3,41 | 0,48 |
 | `Btn_Quitter` | Bouton | 40,01 | 0,32 | 0,85 | 0,85 |
 

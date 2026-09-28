@@ -26,6 +26,8 @@ ASSETS = DESIGN / "assets"
 SVG_DIR = ICI / "icones-svg"
 
 BLEU, BLEU_F, GRIS, GRIS_F, ROUGE = "#2563EB", "#1D4ED8", "#6B7280", "#4B5563", "#DC2626"
+MARINE, NAV_TXT = "#1E3A8A", "#AFC3F0"
+NOM_APPLI = "RENTAL GABON CAR"
 VERT, VIOLET = "#16A34A", "#7C3AED"
 W, H = 1568, 784            # zone du formulaire (sans la barre de titre)
 CW, CH = W - 220, H - 56    # zone de contenu (sous-formulaire) : 1348 x 728
@@ -85,7 +87,7 @@ def fenetre(titre_fen, largeur, hauteur, corps, boutons=("min", "max", "fermer")
 
 def page(titre, corps):
     return f"""<!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><title>{e(titre)} · Rental Car</title>
+<html lang="fr"><head><meta charset="utf-8"><title>{e(titre)} · {NOM_APPLI}</title>
 <link rel="stylesheet" href="style.css"></head>
 <body>{corps}</body></html>"""
 
@@ -110,21 +112,21 @@ def coquille(actif, titre, contenu):
         y = 76 + i * 44
         on = cle == actif
         nav += (f'<div class="nav{" actif" if on else ""}" style="top:{y}px" {acc("BoutonNavigation_" + cle, "Bouton de navigation")}>'
-                f'{svg(ico, BLEU_F if on else GRIS, 18)}{e(lib)}</div>')
+                f'{svg(ico, MARINE if on else NAV_TXT, 18)}{e(lib)}</div>')
     corps = f"""
 <div class="menu" {acc("Menu_Fond", "Rectangle")}>
-  <div class="logo" {acc("Logo", "Image + étiquette")}>{svg("car-front", BLEU, 26, 1.8)}Rental Car</div>
+  <div class="logo" {acc("Logo", "Image + étiquette")}>{svg("car-front", "#FFFFFF", 24, 1.8)}{NOM_APPLI}</div>
   {nav}
 </div>
 <div class="entete" {acc("Entete", "Rectangle")}>
   <div class="titre" {acc("Titre_Page", "Étiquette")}>{e(titre)}</div>
   <div class="date" style="right:72px" {acc("Date_Heure", "Zone de texte")}>{svg("calendar-range", GRIS, 15)}28/09/2026 20:06</div>
-  <div class="btn-ico abs" style="right:24px;top:12px;width:32px;height:32px" {acc("Btn_Quitter", "Bouton")}>{svg("power", GRIS_F, 16)}</div>
+  <div class="btn-ico abs" style="right:24px;top:12px;width:32px;height:32px" {acc("Btn_Quitter", "Bouton")}>{svg("power", MARINE, 16)}</div>
 </div>
 <div class="contenu" id="contenu">
 {contenu}
 </div>"""
-    return fenetre("Menu", W, H, corps)
+    return fenetre(NOM_APPLI, W, H, corps)
 
 
 # --------------------------------------------------------------------------
@@ -137,10 +139,10 @@ def carte(nom, titre, x, y, w, h, interieur="", actions=(), info=None):
     act = ""
     if actions:
         act = '<div class="actions">' + "".join(
-            f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], GRIS_F, 16)}</div>' for a in actions) + "</div>"
+            f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], BLEU, 16)}</div>' for a in actions) + "</div>"
     inf = f'<div class="info" style="left:{28 + int(len(titre) * 8.6)}px">{e(info)}</div>' if info else ""
     return (f'<div class="carte" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px" {acc(nom, "Rectangle")}>'
-            f'<div class="titre-c">{e(titre)}</div>{inf}{act}<div class="trait"></div>{interieur}</div>')
+            f'<div class="bande"></div><div class="titre-c">{e(titre)}</div>{inf}{act}<div class="trait"></div>{interieur}</div>')
 
 
 def fleche_bas():
@@ -164,7 +166,7 @@ def nav_enreg(x, y, texte):
     out = ""
     pos = [x, x + 34, x + 178, x + 212]
     for (n, i), px in zip(ico, pos):
-        out += f'<div class="btn-nav" style="left:{px}px;top:{y}px" {acc("Btn_" + n, "Bouton")}>{svg(i, GRIS_F, 16)}</div>'
+        out += f'<div class="btn-nav" style="left:{px}px;top:{y}px" {acc("Btn_" + n, "Bouton")}>{svg(i, BLEU, 16)}</div>'
     out += f'<div class="compteur" style="left:{x + 68}px;top:{y}px;width:106px" {acc("Txt_Compteur", "Zone de texte")}>{e(texte)}</div>'
     return out
 
@@ -222,17 +224,17 @@ def lignes_reservations():
 # Écrans
 # --------------------------------------------------------------------------
 def ecran_tableau():
-    kpis = [("CA", "Chiffre d'affaires", "104 261 200", "FCFA", "wallet", BLEU, "#EAF1FD"),
-            ("Voitures", "Voitures", "60", "", "car-front", VERT, "#E9F7EE"),
-            ("Clients", "Clients", "200", "", "users", VIOLET, "#F1ECFD")]
+    kpis = [("CA", "Chiffre d'affaires", "104 261 200", "FCFA", "wallet", "#1E40AF", "#3F5BBE"),
+            ("Voitures", "Voitures", "60", "", "car-front", "#2563EB", "#4B7FEF"),
+            ("Clients", "Clients", "200", "", "users", "#3B82F6", "#5C97F8")]
     kw = (CW - 48 - 32) // 3
     out = ""
-    for i, (n, lib, val, unit, ico, col, fond) in enumerate(kpis):
+    for i, (n, lib, val, unit, ico, fond, pastille) in enumerate(kpis):
         x = 24 + i * (kw + 16)
         u = f"<small>{unit}</small>" if unit else ""
-        out += (f'<div class="kpi" style="left:{x}px;top:24px;width:{kw}px;height:96px" {acc("Carte_" + n, "Rectangle")}>'
+        out += (f'<div class="kpi" style="left:{x}px;top:24px;width:{kw}px;height:96px;background:{fond};border-color:{fond}" {acc("Carte_" + n, "Rectangle")}>'
                 f'<div class="lib">{e(lib)}</div><div class="val" {acc("Txt_" + n, "Zone de texte")}>{val}{u}</div>'
-                f'<div class="pastille" style="background:{fond}" {acc("Pastille_" + n, "Rectangle + image")}>{svg(ico, col, 24)}</div></div>')
+                f'<div class="pastille" style="background:{pastille}" {acc("Pastille_" + n, "Rectangle + image")}>{svg(ico, "#FFFFFF", 24)}</div></div>')
 
     # réservations en cours au 28/09/2026 (DateDebut <= aujourd'hui <= DateFin)
     import datetime as dt
@@ -371,19 +373,20 @@ def ecran_modeles():
 
 
 def ecran_login():
-    lw, lh = 440, 384
+    lw, lh = 440, 420
     corps = f"""
 <div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:#FFFFFF" {acc("Login_Fond", "Section Détail")}></div>
-<div class="abs" style="left:40px;top:36px;display:flex;align-items:center;gap:10px;font-size:18.67px;font-weight:600;color:#111827" {acc("Logo", "Image + étiquette")}>{svg("car-front", BLEU, 28, 1.8)}Rental Car</div>
-<div class="abs" style="left:40px;top:92px;font-size:21.33px;font-weight:600;color:#111827" {acc("Lbl_Titre", "Étiquette")}>Connexion</div>
-<div class="abs" style="left:40px;top:124px;font-size:13.33px;color:#6B7280">Entrez vos identifiants pour continuer.</div>
-<div class="etiq" style="left:40px;top:160px">Nom d'utilisateur</div>
-<div class="champ" style="left:40px;top:188px;width:360px;height:32px;line-height:30px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
-<div class="etiq" style="left:40px;top:228px">Mot de passe</div>
-<div class="champ" style="left:40px;top:256px;width:360px;height:32px;line-height:30px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
-<div class="btn primaire" style="left:40px;top:316px;width:360px;height:36px" {acc("Btn_Connexion", "Bouton")}>Se connecter</div>
+<div class="abs" style="left:0;top:0;width:{lw}px;height:96px;background:{MARINE}" {acc("Bandeau_Bleu", "Rectangle")}></div>
+<div class="abs" style="left:40px;top:34px;display:flex;align-items:center;gap:10px;font-size:18.67px;font-weight:600;color:#FFFFFF;letter-spacing:.5px" {acc("Logo", "Image + étiquette")}>{svg("car-front", "#FFFFFF", 28, 1.8)}{NOM_APPLI}</div>
+<div class="abs" style="left:40px;top:124px;font-size:21.33px;font-weight:600;color:{MARINE}" {acc("Lbl_Titre", "Étiquette")}>Connexion</div>
+<div class="abs" style="left:40px;top:156px;font-size:13.33px;color:#6B7280">Entrez vos identifiants pour continuer.</div>
+<div class="etiq" style="left:40px;top:194px">Nom d'utilisateur</div>
+<div class="champ" style="left:40px;top:222px;width:360px;height:32px;line-height:30px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
+<div class="etiq" style="left:40px;top:262px">Mot de passe</div>
+<div class="champ" style="left:40px;top:290px;width:360px;height:32px;line-height:30px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
+<div class="btn primaire" style="left:40px;top:350px;width:360px;height:36px" {acc("Btn_Connexion", "Bouton")}>Se connecter</div>
 """
-    return fenetre("Login", lw, lh, corps, boutons=("fermer",))
+    return fenetre(NOM_APPLI + " - Connexion", lw, lh, corps, boutons=("fermer",))
 
 
 ECRANS = [
@@ -413,13 +416,13 @@ def assets_jobs(tmp):
         jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": taille, "h": taille, "transparent": True, "sel": "#a"})
 
     for _, _, ico in MENU:
-        add(f"menu-{ico}.png", 20, ico, GRIS, 18)
-        add(f"menu-{ico}-actif.png", 20, ico, BLEU_F, 18)
+        add(f"menu-{ico}.png", 20, ico, NAV_TXT, 18)
+        add(f"menu-{ico}-actif.png", 20, ico, MARINE, 18)
     for ico in list(ACTIONS.values()) + ["chevron-first", "chevron-left", "chevron-right", "chevron-last", "power"]:
-        add(f"bouton-{ico}.png", 16, ico, GRIS_F, 16)
+        add(f"bouton-{ico}.png", 16, ico, MARINE if ico == "power" else BLEU, 16)
     add("date.png", 16, "calendar-range", GRIS, 15)
-    add("logo-voiture.png", 28, "car-front", BLEU, 26, 1.8)
-    for ico, col in [("wallet", BLEU), ("car-front", VERT), ("users", VIOLET)]:
+    add("logo-voiture.png", 28, "car-front", "#FFFFFF", 24, 1.8)
+    for ico, col in [("wallet", "#FFFFFF"), ("car-front", "#FFFFFF"), ("users", "#FFFFFF")]:
         add(f"indicateur-{ico}.png", 24, ico, col, 24)
     return jobs
 

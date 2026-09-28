@@ -17,35 +17,36 @@ body { margin: 0; background: #FFFFFF; }
 .barre-titre .txt { position: absolute; left: 26px; top: 4px; }
 .barre-titre .ctrl { position: absolute; top: 0; width: 46px; height: 24px; display: flex; align-items: center; justify-content: center; }
 
-.ecran { position: relative; overflow: hidden; background: #F3F5F8; font-size: 14.67px; }
+.ecran { position: relative; overflow: hidden; background: #EEF2F9; font-size: 14.67px; }
 .abs { position: absolute; }
 
 /* ---------- Menu latéral --------------------------------------------- */
-.menu { position: absolute; left: 0; top: 0; width: 220px; height: 100%; background: #FFFFFF; border-right: 1px solid #E1E5EB; }
-.logo { position: absolute; left: 20px; top: 15px; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 18.67px; color: #111827; }
+.menu { position: absolute; left: 0; top: 0; width: 220px; height: 100%; background: #1E3A8A; }
+.logo { position: absolute; left: 18px; top: 16px; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14.67px; letter-spacing: .5px; color: #FFFFFF; white-space: nowrap; }
 .nav {
   position: absolute; left: 12px; width: 196px; height: 38px; border-radius: 4px;
   display: flex; align-items: center; gap: 12px; padding-left: 12px;
-  font-size: 14.67px; color: #4B5563;
+  font-size: 14.67px; color: #DCE6FB;
 }
-.nav.actif { background: #EAF1FD; color: #1D4ED8; font-weight: 600; }
+.nav.actif { background: #FFFFFF; color: #1E3A8A; font-weight: 600; }
 
 /* ---------- Bandeau --------------------------------------------------- */
-.entete { position: absolute; left: 220px; top: 0; right: 0; height: 56px; background: #FFFFFF; border-bottom: 1px solid #E1E5EB; }
-.entete .titre { position: absolute; left: 24px; top: 13px; font-size: 21.33px; font-weight: 600; color: #111827; }
+.entete { position: absolute; left: 220px; top: 0; right: 0; height: 56px; background: #FFFFFF; border-bottom: 2px solid #2563EB; }
+.entete .titre { position: absolute; left: 24px; top: 12px; font-size: 21.33px; font-weight: 600; color: #1E3A8A; }
 .entete .date { position: absolute; top: 18px; font-size: 13.33px; color: #6B7280; display: flex; align-items: center; gap: 6px; }
 
 /* ---------- Zone de contenu ------------------------------------------- */
-.contenu { position: absolute; left: 220px; top: 56px; right: 0; bottom: 0; background: #F3F5F8; }
+.contenu { position: absolute; left: 220px; top: 56px; right: 0; bottom: 0; background: #EEF2F9; }
 
-.carte { position: absolute; background: #FFFFFF; border: 1px solid #E1E5EB; }
-.carte .titre-c { position: absolute; left: 20px; top: 14px; font-size: 16px; font-weight: 600; color: #111827; }
+.carte { position: absolute; background: #FFFFFF; border: 1px solid #D3DDEE; }
+.carte .bande { position: absolute; left: 0; right: 0; top: 0; height: 50px; background: #F2F6FD; }
+.carte .titre-c { position: absolute; left: 20px; top: 14px; font-size: 16px; font-weight: 600; color: #1E3A8A; }
 .carte .info { position: absolute; top: 18px; font-size: 13.33px; color: #6B7280; }
-.carte .trait { position: absolute; left: 0; right: 0; top: 50px; height: 1px; background: #EDF0F4; }
+.carte .trait { position: absolute; left: 0; right: 0; top: 50px; height: 1px; background: #D3DDEE; }
 .actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 6px; }
 
 .btn-ico {
-  width: 30px; height: 30px; border: 1px solid #D5DAE1; border-radius: 4px; background: #FFFFFF;
+  width: 30px; height: 30px; border: 1px solid #C6D4EE; border-radius: 4px; background: #FFFFFF;
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -58,7 +59,7 @@ body { margin: 0; background: #FFFFFF; }
 .champ.lecture { background: #F4F5F7; border-color: #DDE1E7; color: #374151; }
 .champ.liste-der { padding-right: 26px; }
 .champ .fleche { position: absolute; right: 0; top: 0; width: 20px; height: 26px; border-left: 1px solid #DDE1E7; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
-.champ.total { font-weight: 600; font-size: 16px; }
+.champ.total { font-weight: 600; font-size: 16px; color: #1E40AF; background: #EAF1FD; border-color: #C6D4EE; }
 
 .btn {
   position: absolute; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center;
@@ -68,11 +69,11 @@ body { margin: 0; background: #FFFFFF; }
 .btn.secondaire { background: #FFFFFF; color: #374151; border: 1px solid #C9D0DA; font-weight: 400; }
 .btn.danger { background: #FFFFFF; color: #DC2626; border: 1px solid #E8A5A5; }
 
-.btn-nav { position: absolute; width: 30px; height: 28px; border: 1px solid #D5DAE1; border-radius: 4px; background: #fff; display: flex; align-items: center; justify-content: center; }
+.btn-nav { position: absolute; width: 30px; height: 28px; border: 1px solid #C6D4EE; border-radius: 4px; background: #fff; display: flex; align-items: center; justify-content: center; }
 .compteur { position: absolute; height: 28px; line-height: 28px; font-size: 13.33px; color: #6B7280; text-align: center; }
 
 /* Zone de liste telle qu'Access la dessine : en-têtes dans la même police, traits verticaux, barre de défilement Windows */
-.liste { position: absolute; background: #FFFFFF; border: 1px solid #C9D0DA; overflow: hidden; }
+.liste { position: absolute; background: #FFFFFF; border: 1px solid #B9C9E6; overflow: hidden; }
 .liste table { border-collapse: collapse; table-layout: fixed; }
 .liste th, .liste td {
   text-align: left; font-weight: 400; font-size: 13.33px; color: #1F2937; height: 20px; line-height: 20px;
@@ -86,9 +87,9 @@ body { margin: 0; background: #FFFFFF; }
 
 /* Indicateurs */
 .kpi { position: absolute; background: #FFFFFF; border: 1px solid #E1E5EB; }
-.kpi .lib { position: absolute; left: 20px; top: 18px; font-size: 14.67px; color: #6B7280; }
-.kpi .val { position: absolute; left: 20px; top: 42px; font-size: 26.67px; font-weight: 600; color: #111827; white-space: nowrap; }
-.kpi .val small { font-size: 16px; font-weight: 400; color: #6B7280; margin-left: 4px; }
+.kpi .lib { position: absolute; left: 20px; top: 18px; font-size: 14.67px; color: #DCE7FF; }
+.kpi .val { position: absolute; left: 20px; top: 42px; font-size: 26.67px; font-weight: 600; color: #FFFFFF; white-space: nowrap; }
+.kpi .val small { font-size: 16px; font-weight: 400; color: #DCE7FF; margin-left: 4px; }
 .kpi .pastille { position: absolute; right: 20px; top: 24px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
 
 .sep-v { position: absolute; width: 1px; background: #EDF0F4; }
