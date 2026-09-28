@@ -87,10 +87,24 @@ body { margin: 0; background: #FFFFFF; }
 
 /* Indicateurs */
 .kpi { position: absolute; background: #FFFFFF; border: 1px solid #E1E5EB; }
-.kpi .lib { position: absolute; left: 20px; top: 18px; font-size: 14.67px; color: #DCE7FF; }
-.kpi .val { position: absolute; left: 20px; top: 42px; font-size: 26.67px; font-weight: 600; color: #FFFFFF; white-space: nowrap; }
+.kpi .lib { position: absolute; left: 20px; top: 12px; font-size: 14.67px; color: #DCE7FF; }
+.kpi .val { position: absolute; left: 20px; top: 32px; font-size: 26.67px; font-weight: 600; color: #FFFFFF; white-space: nowrap; }
 .kpi .val small { font-size: 16px; font-weight: 400; color: #DCE7FF; margin-left: 4px; }
-.kpi .pastille { position: absolute; right: 20px; top: 24px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+.kpi .pastille { position: absolute; right: 20px; top: 26px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
 
 .sep-v { position: absolute; width: 1px; background: #EDF0F4; }
 .sep-h { position: absolute; height: 1px; background: #EDF0F4; }
+
+/* ---------- Photos, en-tête utilisateur, finitions -------------------- */
+.menu .rubrique { position: absolute; left: 24px; font-size: 12px; color: #8FA6DA; text-transform: uppercase; letter-spacing: 1px; }
+.menu .slogan { position: absolute; left: 24px; bottom: 28px; font-size: 13.33px; line-height: 18px; color: #DCE6FB; }
+.nav { z-index: 1; }
+.logo, .rubrique, .slogan { z-index: 1; }
+.avatar { position: absolute; width: 32px; height: 32px; border-radius: 50%; background: #2563EB; color: #fff; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.utilisateur { position: absolute; width: 116px; line-height: 16px; }
+.utilisateur b { display: block; font-size: 13.33px; font-weight: 600; color: #111827; }
+.utilisateur span { display: block; font-size: 12px; color: #6B7280; }
+.bandeau { position: absolute; background-size: cover; }
+.bandeau .b-titre { position: absolute; left: 32px; font-size: 26.67px; font-weight: 600; color: #FFFFFF; }
+.bandeau .b-sous { position: absolute; left: 32px; font-size: 14.67px; color: #DCE6FB; }
+.kpi .sub { position: absolute; left: 20px; top: 74px; font-size: 13.33px; color: #DCE7FF; }

@@ -1,4 +1,4 @@
-# RENTAL GABON CAR : refonte des formulaires (thème bleu)
+# RENTAL GABON CAR : refonte des formulaires (thème bleu, avec photos)
 
 Maquettes des 8 écrans de `Database20.accdb`, dessinées comme de vraies captures d'Access :
 fenêtre Windows, police Segoe UI, zones de texte, listes déroulantes et zones de liste telles qu'Access les affiche.
@@ -16,7 +16,9 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 | Modèles | [`07-modeles.png`](maquettes/png/07-modeles.png) | `Modèle` |
 
 * `COTES.md` : position et taille de chaque contrôle, en cm.
-* `assets/` : les icônes en PNG transparent (menu, boutons, indicateurs), à importer dans Access.
+* `assets/` : les icônes en PNG transparent (menu, boutons, cartes, indicateurs), à importer dans Access.
+* `assets/photos/` : les photos **déjà recadrées à la bonne taille et teintées en bleu** (bandeaux, fond du menu,
+  photo de connexion). Il suffit de les insérer, sans retouche.
 * `maquettes/*.html` : les mêmes maquettes, à ouvrir dans un navigateur (sous Windows, elles s'affichent en Segoe UI).
 
 ---
@@ -47,8 +49,9 @@ titres des cartes et icônes en bleu. Dans Access, tapez le code directement dan
 | Texte principal / étiquettes / texte secondaire | `#111827` / `#4B5563` / `#6B7280` |
 | Rouge (Supprimer) : texte / bordure | `#DC2626` / `#E8A5A5` |
 
-**Police : Segoe UI partout.** Tailles : titre de page 16 pt semi-gras, titre de carte 12 pt semi-gras,
+**Police : Segoe UI partout.** Tailles : titre du bandeau photo 20 pt semi-gras blanc, titre de carte 12 pt semi-gras,
 étiquettes et champs 11 pt, zones de liste 10 pt, chiffres des indicateurs 20 pt semi-gras.
+Les titres de carte sont précédés d'une icône bleue de 0,48 cm (`carte-….png`) et commencent à 1,27 cm du bord de la carte.
 
 **Nom de l'application : RENTAL GABON CAR.** Mettez-le aussi dans la propriété `Légende` des formulaires `Menu`
 et `Login` : c'est le texte qui s'affiche dans la barre de titre de la fenêtre (« RENTAL GABON CAR » et
@@ -102,24 +105,48 @@ Le compteur « 1 sur 25 » est une zone de texte sans bordure : `=[CurrentRecord
 Les largeurs de colonnes de la maquette sont dans `COTES.md`. Les dates et montants se formatent dans la requête :
 `Format([DateDebut];"jj/mm/aaaa")`, `Format([CA];"# ##0")`.
 
-**Indicateurs du tableau de bord** : un Rectangle plein de 11,17 × 2,54 cm (fond et bordure `#1E40AF`, `#2563EB` ou `#3B82F6`),
+**Indicateurs du tableau de bord** : un Rectangle plein de 11,17 × 2,65 cm (fond et bordure `#1E40AF`, `#2563EB` ou `#3B82F6`),
 une étiquette « Chiffre d'affaires » en 11 pt `#DCE7FF`, une zone de texte en Segoe UI Semibold 20 pt blanc (fond et
 bordure transparents), et à droite un Rectangle de 1,27 × 1,27 cm (`#3F5BBE`, `#4B7FEF` ou `#5C97F8`) avec l'icône blanche
-`indicateur-….png` centrée dessus.
+`indicateur-….png` centrée dessus. Sous le chiffre, une ligne d'info en 10 pt `#DCE7FF`
+(« sur 25 réservations », « 8 en location aujourd'hui », « Meilleur client : Cynthia Kombila »).
 
 **Formulaire Menu** (formulaire de navigation)
-* Menu à gauche : Rectangle de 5,82 cm de large sur toute la hauteur, `Couleur fond` `#1E3A8A`, sans bordure.
+* Menu à gauche : contrôle Image `photos/menu-fond.jpg` de 5,82 × 20,74 cm, sur toute la hauteur (bleu uni en haut,
+  photo de route de nuit qui apparaît en bas). Placez-le en arrière-plan (*Organiser › Mettre en arrière-plan*).
+  Au-dessus : petite étiquette « MENU PRINCIPAL » 9 pt `#8FA6DA`, et en bas « Location de véhicules à Libreville » 10 pt `#DCE6FB`.
   Logo : image `logo-voiture.png` (blanche) + étiquette « RENTAL GABON CAR » Segoe UI Semibold 11 pt blanc.
 * Boutons de navigation : forme Rectangle à coins arrondis, `Couleur fond` `#1E3A8A`, `Couleur de pointage` `#264796`,
   `Couleur si appuyé` `#FFFFFF`, `Couleur texte` `#DCE6FB`, `Couleur texte de pointage` `#FFFFFF`,
   `Couleur texte si appuyé` `#1E3A8A`, `Couleur bordure` `#1E3A8A`, Segoe UI 11 pt, `Image` `menu-….png`,
   `Disposition image légende` Gauche, hauteur 1,01 cm. L'icône bleue `menu-…-actif.png` sert pour l'onglet sélectionné.
-* Bandeau : 1,48 cm de haut, `#FFFFFF`, avec en bas un trait bleu `#2563EB` de 2 pt. Titre de page Segoe UI Semibold 16 pt `#1E3A8A`.
-  Date : zone de texte `=Maintenant()`, format `jj/mm/aaaa hh:nn`, 10 pt `#6B7280`, sans bordure.
+* En-tête : 1,48 cm de haut, `#FFFFFF`, avec en bas un trait bleu `#2563EB` de 2 pt. Il n'y a plus de titre de page
+  ici (il passe dans le bandeau photo).
+  * À gauche, la date : zone de texte `=Maintenant()`, `Format` `jjjj j mmmm aaaa - hh:nn`, 10 pt `#6B7280`, sans bordure.
+  * À droite, l'utilisateur : bouton `Forme` Ovale de 0,85 × 0,85 cm, fond `#2563EB`, texte « AD » blanc 9 pt semi-gras,
+    puis deux étiquettes « admin » (10 pt semi-gras `#111827`) et « Administrateur » (9 pt `#6B7280`), puis le bouton Quitter.
+    Pour afficher le vrai nom : `=[Forms]![Login]![Txt_Utilisateur]` ou une variable remplie à la connexion.
 
 **Formulaire Login** : `Fenêtre indépendante` Oui, `Fenêtre modale` Oui, `Boutons Min Max` Aucun, fond `#FFFFFF`,
-11,64 × 11,11 cm. En haut, un Rectangle bleu `#1E3A8A` de 2,54 cm de haut avec le logo blanc et « RENTAL GABON CAR »
-en Segoe UI Semibold 14 pt blanc. Titre « Connexion » 16 pt `#1E3A8A`. Champ mot de passe : `Masque de saisie` = Mot de passe.
+23,28 × 13,23 cm. La moitié gauche est l'image `photos/login-photo.jpg` (11,11 × 13,23 cm, SUV sur le front de mer de
+Libreville), avec par-dessus le logo et « RENTAL GABON CAR » 14 pt blanc, « Location de véhicules à Libreville » 16 pt
+blanc et « © 2026 RENTAL GABON CAR » 9 pt `#C9D6F5`. À droite, le formulaire : titre « Connexion » 20 pt `#1E3A8A`,
+champs de 9,53 cm, bouton « Se connecter » bleu sur toute la largeur. Champ mot de passe : `Masque de saisie` = Mot de passe.
+
+**Bandeaux photo (tous les écrans du menu)** : en haut de la zone de contenu, à 0,63 cm des bords, un contrôle Image
+`photos/bandeau-<écran>.jpg` de 34,40 cm de large, 3,39 cm de haut sur le tableau de bord et 2,43 cm sur les autres écrans.
+Le dégradé bleu est déjà dans l'image : le texte reste lisible à gauche. Posez dessus deux étiquettes :
+le titre (Segoe UI Semibold 20 pt blanc) et une ligne d'info (11 pt `#DCE6FB`), par exemple « 200 clients enregistrés ».
+Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("*";"Client") & " clients enregistrés"`.
+
+**Réglages des images et du texte posé dessus**
+* Contrôle Image : `Mode affichage` **Découpage** (les images ont déjà la bonne taille ; mettez Zoom si vous les redimensionnez),
+  `Type image` **Partagé** (l'image n'est stockée qu'une fois dans la base, même si elle sert sur plusieurs formulaires),
+  `Style bordure` Transparent.
+* Étiquettes sur une photo : `Style fond` **Transparent**, `Style bordure` Transparent, puis *Mettre au premier plan*.
+* Les photos ont été générées par IA pour ce projet : pas de droits d'auteur à payer. Vous pouvez les remplacer par vos
+  propres photos de la flotte (mêmes tailles en pixels : bandeaux 1300 × 128 et 1300 × 92,
+  menu 220 × 784, connexion 420 × 500).
 
 ---
 
@@ -128,8 +155,13 @@ en Segoe UI Semibold 14 pt blanc. Titre « Connexion » 16 pt `#1E3A8A`. Champ m
 * Même structure (menu à gauche, bandeau, fiche à gauche et liste à droite) : rien à réorganiser.
 * Menu bleu marine, indicateurs en bleu, fond bleu très clair, cartes blanches alignées sur une même grille (marges de 0,63 cm).
 * Libellés en minuscules plutôt qu'en majuscules, plus lisibles.
-* Tableau de bord : la liste « Voitures actuellement réservées » n'affiche plus le numéro du modèle, et la liste des
-  réservations (requête existante « Liste des réservations ») occupe le bas de l'écran.
+* Photos en rapport avec l'activité (parc de voitures, remise des clés, client, showroom, calandres, pompe, habitacle,
+  route côtière de Libreville), toujours sous un voile bleu pour garder une allure sobre et homogène.
+* Tableau de bord : un message d'accueil, la liste « Voitures actuellement réservées » (sans le numéro du modèle),
+  les 5 meilleurs clients et une nouvelle petite liste « Flotte par carburant » (Essence 31, Diesel 23, Hybride 6), avec
+  une requête de regroupement sur `Voiture` + `Carburant` : `Type` (Regroupement), `Voitures : Compte(*)`,
+  `Part : [Voitures]/CpteDom("*";"Voiture")` avec la propriété `Format` = Pourcentage, 1 décimale.
+* Boutons Enregistrer / Supprimer avec icône (`bouton-enregistrer.png`, `bouton-supprimer.png`, `Disposition image légende` Gauche).
 
 ## 5. Problèmes repérés dans la base
 

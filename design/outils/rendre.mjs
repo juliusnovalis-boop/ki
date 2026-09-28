@@ -22,7 +22,9 @@ async function rendre(j, scale = 1) {
   await page.goto(j.html, { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
   const el = await page.$(j.sel);
-  await el.screenshot({ path: j.out, omitBackground: j.transparent });
+  const opts = { path: j.out, omitBackground: j.transparent };
+  if (j.out.endsWith('.jpg')) { opts.type = 'jpeg'; opts.quality = 86; opts.omitBackground = false; }
+  await el.screenshot(opts);
 }
 
 for (const j of jobs.assets) await rendre(j);
