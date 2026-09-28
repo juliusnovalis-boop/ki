@@ -1,153 +1,95 @@
-/* ==========================================================================
-   RENTAL CAR : thème « Néon sombre »
-   Maquettes de référence à reproduire dans Microsoft Access.
-   Règle : chaque effet utilisé ici existe dans Access (couleur, bordure,
-   effet « Lumière » des boutons, images PNG). Aucun effet CSS « impossible ».
-   ========================================================================== */
+/* RENTAL CAR : thème clair
+   Maquettes à reproduire dans Microsoft Access.
+   Tailles en px à 96 ppp : 9 pt = 12 px, 10 pt = 13,33 px, 11 pt = 14,67 px, 12 pt = 16 px, 16 pt = 21,33 px.
+   Sous Windows, la police Segoe UI est utilisée. Open Sans ne sert que de secours. */
 
-/* Polices : sous Windows, Bahnschrift / Segoe UI / Consolas sont utilisées.
-   Les fichiers .woff2 ne servent que de secours hors Windows. */
-@font-face { font-family: "Titre"; font-weight: 400; src: local("Bahnschrift"), url(fonts/barlow-semi-condensed-latin-500-normal.woff2); }
-@font-face { font-family: "Titre"; font-weight: 600; src: local("Bahnschrift SemiBold"), url(fonts/barlow-semi-condensed-latin-600-normal.woff2); }
-@font-face { font-family: "Titre"; font-weight: 700; src: local("Bahnschrift Bold"), url(fonts/barlow-semi-condensed-latin-700-normal.woff2); }
-@font-face { font-family: "Texte"; font-weight: 400; src: local("Segoe UI"), url(fonts/open-sans-latin-400-normal.woff2); }
-@font-face { font-family: "Texte"; font-weight: 600; src: local("Segoe UI Semibold"), url(fonts/open-sans-latin-600-normal.woff2); }
-@font-face { font-family: "Texte"; font-weight: 700; src: local("Segoe UI Bold"), url(fonts/open-sans-latin-700-normal.woff2); }
-@font-face { font-family: "Mono"; font-weight: 400; src: local("Consolas"), url(fonts/jetbrains-mono-latin-400-normal.woff2); }
-@font-face { font-family: "Mono"; font-weight: 500; src: local("Consolas"), url(fonts/jetbrains-mono-latin-500-normal.woff2); }
-
-:root {
-  --fond:        #070B18;  /* fond général                      */
-  --fond-menu:   #050913;  /* barre latérale                    */
-  --fond-entete: #080D1C;  /* bandeau du haut                   */
-  --panneau:     #0D1530;  /* cartes / panneaux                 */
-  --champ:       #081024;  /* zones de texte                    */
-  --ligne:       #1F2C52;  /* bordures des panneaux             */
-  --ligne-champ: #2A3B6B;  /* bordures des champs               */
-  --sep:         #18234A;  /* séparateurs internes              */
-  --texte:       #E6EDFF;  /* texte principal                   */
-  --texte-2:     #8A97BC;  /* étiquettes                        */
-  --discret:     #56638A;  /* texte discret                     */
-  --cyan:        #00E5FF;
-  --violet:      #9D5CFF;
-  --magenta:     #FF2E97;
-  --vert:        #2BFFA3;
-  --ambre:       #FFC247;
-}
+@font-face { font-family: "UI"; font-weight: 400; src: local("Segoe UI"), url(fonts/open-sans-latin-400-normal.woff2); }
+@font-face { font-family: "UI"; font-weight: 600; src: local("Segoe UI Semibold"), url(fonts/open-sans-latin-600-normal.woff2); }
+@font-face { font-family: "UI"; font-weight: 700; src: local("Segoe UI Bold"), url(fonts/open-sans-latin-700-normal.woff2); }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: #03050B; }
+body { margin: 0; background: #FFFFFF; }
 
-.ecran {
-  position: relative; width: 1568px; height: 784px; overflow: hidden;
-  background: var(--fond); color: var(--texte);
-  font-family: "Texte", "Segoe UI", sans-serif; font-size: 14px;
-}
+/* ---------- Fenêtre Windows (barre de titre du formulaire indépendant) ---- */
+.fenetre { position: relative; background: #fff; font-family: "UI", "Segoe UI", sans-serif; color: #1F2937; }
+.barre-titre { position: relative; height: 24px; background: #FFFFFF; border-bottom: 1px solid #E6E6E6; font-size: 12px; color: #000; }
+.barre-titre .ico { position: absolute; left: 6px; top: 5px; width: 14px; height: 14px; }
+.barre-titre .txt { position: absolute; left: 26px; top: 4px; }
+.barre-titre .ctrl { position: absolute; top: 0; width: 46px; height: 24px; display: flex; align-items: center; justify-content: center; }
+
+.ecran { position: relative; overflow: hidden; background: #F3F5F8; font-size: 14.67px; }
 .abs { position: absolute; }
 
-/* ---------- Barre latérale (formulaire « Menu », contrôle de navigation) -- */
-.menu { position: absolute; left: 0; top: 0; width: 224px; height: 784px; background: var(--fond-menu); border-right: 1px solid #16213F; }
-.menu .rubrique { position: absolute; left: 24px; font: 600 11px "Titre"; letter-spacing: 3px; color: var(--discret); }
+/* ---------- Menu latéral --------------------------------------------- */
+.menu { position: absolute; left: 0; top: 0; width: 220px; height: 100%; background: #FFFFFF; border-right: 1px solid #E1E5EB; }
+.logo { position: absolute; left: 20px; top: 15px; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 18.67px; color: #111827; }
 .nav {
-  position: absolute; left: 12px; width: 200px; height: 44px; border-radius: 6px;
-  display: flex; align-items: center; gap: 12px; padding-left: 16px;
-  font: 600 15px "Titre"; letter-spacing: 1.5px; text-transform: uppercase; color: #7F8BB0;
+  position: absolute; left: 12px; width: 196px; height: 38px; border-radius: 4px;
+  display: flex; align-items: center; gap: 12px; padding-left: 12px;
+  font-size: 14.67px; color: #4B5563;
 }
-.nav img { width: 28px; height: 28px; margin-left: -4px; }
-.nav.actif { background: #0C1C30; color: var(--cyan); }
-.nav-barre { position: absolute; left: 12px; width: 3px; height: 44px; background: var(--cyan); }
-.etat-systeme { position: absolute; left: 12px; bottom: 16px; width: 200px; height: 78px; border: 1px solid #16213F; background: #070D1C; padding: 12px 14px; }
-.etat-systeme .l1 { font: 600 12px "Titre"; letter-spacing: 2px; color: var(--vert); display: flex; align-items: center; gap: 8px; }
-.etat-systeme .pt { width: 8px; height: 8px; border-radius: 50%; background: var(--vert); }
-.etat-systeme .l2 { font: 400 11px "Mono"; color: var(--discret); margin-top: 8px; line-height: 16px; }
+.nav.actif { background: #EAF1FD; color: #1D4ED8; font-weight: 600; }
 
-/* ---------- Bandeau du haut ------------------------------------------ */
-.entete { position: absolute; left: 224px; top: 0; width: 1344px; height: 68px; background: var(--fond-entete); }
-.entete .titre { position: absolute; left: 32px; top: 11px; font: 600 24px "Titre"; letter-spacing: 1px; color: var(--texte); }
-.entete .fil { position: absolute; left: 32px; top: 42px; font: 400 11px "Mono"; letter-spacing: 1px; color: var(--discret); }
-.entete .fil b { color: var(--cyan); font-weight: 500; }
-.date {
-  position: absolute; top: 17px; height: 34px; border: 1px solid #1E3A5A; background: #0A1426;
-  font: 500 14px "Mono"; color: var(--cyan); display: flex; align-items: center; gap: 8px; padding: 0 12px;
-}
-.utilisateur { position: absolute; top: 14px; height: 40px; display: flex; align-items: center; gap: 10px; }
-.utilisateur .nom { font: 600 14px "Texte"; color: var(--texte); line-height: 16px; }
-.utilisateur .role { font: 400 11px "Texte"; color: var(--discret); }
-.btn-rond {
-  position: absolute; width: 40px; height: 40px; border-radius: 50%;
+/* ---------- Bandeau --------------------------------------------------- */
+.entete { position: absolute; left: 220px; top: 0; right: 0; height: 56px; background: #FFFFFF; border-bottom: 1px solid #E1E5EB; }
+.entete .titre { position: absolute; left: 24px; top: 13px; font-size: 21.33px; font-weight: 600; color: #111827; }
+.entete .date { position: absolute; top: 18px; font-size: 13.33px; color: #6B7280; display: flex; align-items: center; gap: 6px; }
+
+/* ---------- Zone de contenu ------------------------------------------- */
+.contenu { position: absolute; left: 220px; top: 56px; right: 0; bottom: 0; background: #F3F5F8; }
+
+.carte { position: absolute; background: #FFFFFF; border: 1px solid #E1E5EB; }
+.carte .titre-c { position: absolute; left: 20px; top: 14px; font-size: 16px; font-weight: 600; color: #111827; }
+.carte .info { position: absolute; top: 18px; font-size: 13.33px; color: #6B7280; }
+.carte .trait { position: absolute; left: 0; right: 0; top: 50px; height: 1px; background: #EDF0F4; }
+.actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 6px; }
+
+.btn-ico {
+  width: 30px; height: 30px; border: 1px solid #D5DAE1; border-radius: 4px; background: #FFFFFF;
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ---------- Zone de contenu (sous-formulaires) ------------------------ */
-.contenu { position: absolute; left: 224px; top: 68px; width: 1344px; height: 716px; background: var(--fond) url(../assets/fonds/fond-contenu.png) no-repeat; }
-.ligne-neon { position: absolute; left: 224px; top: 67px; width: 1344px; height: 2px; }
-
-/* Panneau = Rectangle (fond + bordure) + étiquette titre + petit rectangle d'accent */
-.panneau { position: absolute; background: var(--panneau); border: 1px solid var(--ligne); }
-.panneau .tete { position: absolute; left: 0; top: 0; right: 0; height: 52px; border-bottom: 1px solid var(--sep); }
-.panneau .accent { position: absolute; left: 18px; top: 17px; width: 3px; height: 18px; background: var(--cyan); }
-.panneau .titre-p { position: absolute; left: 32px; top: 15px; font: 600 16px "Titre"; letter-spacing: 2px; text-transform: uppercase; color: var(--texte); }
-.panneau .sous-titre { position: absolute; top: 18px; font: 400 11px "Mono"; color: var(--discret); letter-spacing: 1px; }
-.actions { position: absolute; top: 9px; right: 14px; display: flex; gap: 10px; }
-.btn-icone {
-  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ligne-champ); background: #0A1226;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* Étiquettes + champs */
-.etiq { position: absolute; height: 34px; text-align: right; font: 400 14px "Texte"; line-height: 34px; color: var(--texte-2); }
+.etiq { position: absolute; height: 28px; line-height: 28px; font-size: 14.67px; color: #4B5563; white-space: nowrap; }
 .champ {
-  position: absolute; height: 34px; padding: 0 10px;
-  background: var(--champ); border: 1px solid var(--ligne-champ); color: var(--texte);
-  font: 400 14px "Texte"; line-height: 32px; white-space: nowrap; overflow: hidden;
+  position: absolute; height: 28px; padding: 0 7px; background: #FFFFFF; border: 1px solid #C9D0DA;
+  font-size: 14.67px; line-height: 26px; color: #111827; white-space: nowrap; overflow: hidden;
 }
 .champ.droite { text-align: right; }
-.champ.lecture { border-style: dashed; color: #A9B8E0; background: #0A1330; }
-.champ.liste-der { padding-right: 34px; }
-.champ .fleche { position: absolute; right: 0; top: 0; width: 28px; height: 32px; border-left: 1px solid var(--ligne-champ); display: flex; align-items: center; justify-content: center; }
-.champ.fort { font: 600 20px "Titre"; line-height: 40px; color: var(--cyan); text-align: right; height: 42px; border-color: #0E5566; background: #061A26; }
+.champ.lecture { background: #F4F5F7; border-color: #DDE1E7; color: #374151; }
+.champ.liste-der { padding-right: 26px; }
+.champ .fleche { position: absolute; right: 0; top: 0; width: 20px; height: 26px; border-left: 1px solid #DDE1E7; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+.champ.total { font-weight: 600; font-size: 16px; }
 
-/* Boutons (Bouton de commande : forme « Rectangle à coins arrondis » + effet « Lumière ») */
 .btn {
-  position: absolute; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;
-  font: 700 15px "Titre"; letter-spacing: 1.5px; text-transform: uppercase;
+  position: absolute; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-size: 14.67px; font-weight: 600; gap: 7px;
 }
-.btn.primaire { background: var(--cyan); color: #03121F; box-shadow: 0 0 14px 1px rgba(0,229,255,.55); }
-.btn.danger   { background: #1A0B1E; color: var(--magenta); border: 1px solid var(--magenta); box-shadow: 0 0 10px 0 rgba(255,46,151,.35); }
-.btn.contour  { background: #0A1226; color: var(--cyan); border: 1px solid #0E5566; }
-.btn-nav {
-  position: absolute; width: 38px; height: 34px; border-radius: 6px; border: 1px solid var(--ligne-champ); background: #0A1226;
-  display: flex; align-items: center; justify-content: center;
-}
-.compteur { position: absolute; height: 34px; font: 500 12px "Mono"; line-height: 34px; color: var(--discret); text-align: center; letter-spacing: 1px; }
+.btn.primaire { background: #2563EB; color: #FFFFFF; }
+.btn.secondaire { background: #FFFFFF; color: #374151; border: 1px solid #C9D0DA; font-weight: 400; }
+.btn.danger { background: #FFFFFF; color: #DC2626; border: 1px solid #E8A5A5; }
 
-/* Zone de liste (List Box) */
-.liste { position: absolute; background: var(--champ); border: 1px solid var(--ligne); overflow: hidden; }
-.liste table { border-collapse: collapse; table-layout: fixed; width: 100%; }
-.liste th {
-  text-align: left; font: 600 12px "Titre"; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cyan);
-  height: 32px; padding: 0 10px; border-bottom: 1px solid #1B3A55; white-space: nowrap; overflow: hidden;
+.btn-nav { position: absolute; width: 30px; height: 28px; border: 1px solid #D5DAE1; border-radius: 4px; background: #fff; display: flex; align-items: center; justify-content: center; }
+.compteur { position: absolute; height: 28px; line-height: 28px; font-size: 13.33px; color: #6B7280; text-align: center; }
+
+/* Zone de liste telle qu'Access la dessine : en-têtes dans la même police, traits verticaux, barre de défilement Windows */
+.liste { position: absolute; background: #FFFFFF; border: 1px solid #C9D0DA; overflow: hidden; }
+.liste table { border-collapse: collapse; table-layout: fixed; }
+.liste th, .liste td {
+  text-align: left; font-weight: 400; font-size: 13.33px; color: #1F2937; height: 20px; line-height: 20px;
+  padding: 0 4px; white-space: nowrap; overflow: hidden; border-right: 1px solid #D9DDE3;
 }
-.liste td { font: 400 13px "Texte"; color: #D6E2FF; height: 27px; padding: 0 10px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.liste th { border-bottom: 1px solid #C9D0DA; }
 .liste td.num, .liste th.num { text-align: right; }
-.liste td.mono { font: 400 13px "Mono"; color: #BFD0F5; }
-.liste td.cyan { color: var(--cyan); }
-.liste .defil { position: absolute; right: 3px; top: 36px; width: 5px; border-radius: 3px; background: #22325C; }
+.defil { position: absolute; top: 0; right: 0; width: 17px; height: 100%; background: #F0F0F0; border-left: 1px solid #E6E6E6; }
+.defil .pouce { position: absolute; left: 4px; width: 8px; background: #C2C2C2; border-radius: 4px; }
+.defil .fl { position: absolute; left: 0; width: 16px; height: 17px; display: flex; align-items: center; justify-content: center; }
 
-/* Cartes indicateurs (image PNG « cadre » en arrière-plan) */
-.kpi { position: absolute; width: 302px; height: 124px; background-repeat: no-repeat; }
-.kpi .lib { position: absolute; left: 24px; top: 22px; font: 600 13px "Titre"; letter-spacing: 2.5px; text-transform: uppercase; }
-.kpi .val { position: absolute; left: 24px; top: 44px; font: 600 38px "Titre"; color: #FFFFFF; letter-spacing: .5px; }
-.kpi .val small { font-size: 16px; font-weight: 600; margin-left: 6px; }
-.kpi .sub { position: absolute; left: 24px; top: 92px; font: 400 12px "Texte"; color: var(--texte-2); }
-.kpi img { position: absolute; right: 16px; top: 16px; width: 60px; height: 60px; }
+/* Indicateurs */
+.kpi { position: absolute; background: #FFFFFF; border: 1px solid #E1E5EB; }
+.kpi .lib { position: absolute; left: 20px; top: 18px; font-size: 14.67px; color: #6B7280; }
+.kpi .val { position: absolute; left: 20px; top: 42px; font-size: 26.67px; font-weight: 600; color: #111827; white-space: nowrap; }
+.kpi .val small { font-size: 16px; font-weight: 400; color: #6B7280; margin-left: 4px; }
+.kpi .pastille { position: absolute; right: 20px; top: 24px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
 
-/* Petits blocs statistiques */
-.stat { position: absolute; background: var(--champ); border: 1px solid var(--ligne); }
-.stat .l { position: absolute; left: 16px; top: 12px; font: 600 11px "Titre"; letter-spacing: 2px; color: var(--texte-2); text-transform: uppercase; }
-.stat .v { position: absolute; left: 16px; top: 32px; font: 600 26px "Titre"; }
-.stat .v small { font-size: 13px; margin-left: 4px; color: var(--texte-2); }
-
-.sep-v { position: absolute; width: 1px; background: var(--sep); }
-.sep-h { position: absolute; height: 1px; background: var(--sep); }
-.note { position: absolute; font: 400 12px "Texte"; color: var(--discret); }
+.sep-v { position: absolute; width: 1px; background: #EDF0F4; }
+.sep-h { position: absolute; height: 1px; background: #EDF0F4; }
