@@ -1,0 +1,13 @@
+{
+  "name": "rentalcar-maquettes",
+  "private": true,
+  "type": "module",
+  "description": "Outil de rendu des maquettes RENTAL CAR (non nécessaire pour Access)",
+  "scripts": {
+    "generer": "python3 generer.py"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.12.0"
+  }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Modèles · RENTAL CAR</title>
+<link rel="stylesheet" href="./style.css"></head>
+<body><div class="ecran" id="ecran">
+
+<div class="menu" data-acc="Fond_Menu" data-type="Rectangle">
+  <img class="abs" src="../assets/logo.png" style="left:18px;top:18px;width:188px;height:52px" data-acc="Logo" data-type="Image">
+  <div class="rubrique" style="top:100px">NAVIGATION</div>
+  <div class="nav" style="top:128px" data-acc="BoutonNavigation_tableau" data-type="Bouton de navigation"><img src="../assets/icones/menu-layout-dashboard-off.png">Tableau de bord</div><div class="nav" style="top:180px" data-acc="BoutonNavigation_reservations" data-type="Bouton de navigation"><img src="../assets/icones/menu-calendar-range-off.png">Réservations</div><div class="nav" style="top:232px" data-acc="BoutonNavigation_clients" data-type="Bouton de navigation"><img src="../assets/icones/menu-users-off.png">Clients</div><div class="nav" style="top:284px" data-acc="BoutonNavigation_voitures" data-type="Bouton de navigation"><img src="../assets/icones/menu-car-off.png">Voitures</div><div class="nav" style="top:336px" data-acc="BoutonNavigation_marques" data-type="Bouton de navigation"><img src="../assets/icones/menu-tag-off.png">Marques</div><div class="nav" style="top:388px" data-acc="BoutonNavigation_carburants" data-type="Bouton de navigation"><img src="../assets/icones/menu-fuel-off.png">Carburants</div><div class="nav-barre" style="top:440px" data-acc="Barre_Active" data-type="Rectangle"></div><div class="nav actif" style="top:440px" data-acc="BoutonNavigation_modeles" data-type="Bouton de navigation"><img src="../assets/icones/menu-layers-on.png">Modèles</div>
+  <div class="etat-systeme" data-acc="Etat_Systeme" data-type="Rectangle + étiquettes">
+    <div class="l1"><span class="pt"></span>SYSTÈME EN LIGNE</div>
+    <div class="l2">Database20.accdb<br>Version 2.0 · Libreville</div>
+  </div>
+</div>
+<div class="entete" data-acc="Entete" data-type="Rectangle">
+  <div class="titre" data-acc="Titre_Page" data-type="Étiquette">Modèles</div>
+  <div class="fil">RENTAL CAR &nbsp;/&nbsp; <b>RÉFÉRENTIEL DES MODÈLES</b></div>
+  <div class="date" style="left:862px;width:196px" data-acc="Date_Heure" data-type="Zone de texte"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 6v6l4 2" />
+</svg>28/09/2026 20:06</div>
+  <div class="utilisateur" style="left:1082px" data-acc="Utilisateur" data-type="Image + étiquettes">
+    <img src="../assets/icones/utilisateur.png" style="width:40px;height:40px">
+    <div><div class="nom">admin</div><div class="role">Administrateur</div></div>
+  </div>
+  <div class="btn-rond" style="left:1276px;top:14px;border:1px solid #FF2E97;background:#1A0B1E;box-shadow:0 0 12px rgba(255,46,151,.45)" data-acc="Btn_Quitter" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF2E97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M12 2v10" />
+  <path d="M18.4 6.6a9 9 0 1 1-12.77.04" />
+</svg></div>
+</div>
+<img class="ligne-neon" src="../assets/ligne-neon.png" data-acc="Ligne_Neon" data-type="Image">
+<div class="contenu" id="contenu">
+<div class="panneau" style="left:24px;top:167px;width:560px;height:382px" data-acc="Panneau_Fiche" data-type="Rectangle">
+  <div class="tete"></div><div class="accent" style="background:#00E5FF"></div>
+  <div class="titre-p">Fiche modèle</div><div class="actions"><div class="btn-icone" data-acc="Btn_Ajouter" data-type="Bouton (ovale)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB3E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M5 12h14" />
+  <path d="M12 5v14" />
+</svg></div><div class="btn-icone" data-acc="Btn_Actualiser" data-type="Bouton (ovale)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB3E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
+  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+  <path d="M8 16H3v5" />
+</svg></div><div class="btn-icone" data-acc="Btn_Rechercher" data-type="Bouton (ovale)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB3E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" />
+</svg></div><div class="btn-icone" data-acc="Btn_Imprimer" data-type="Bouton (ovale)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB3E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+  <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+  <rect x="6" y="14" width="12" height="8" rx="1" />
+</svg></div></div>
+  <div class="etiq" style="left:20px;top:80px;width:150px">Identifiant</div><div class="champ" style="left:184px;top:80px;width:120px" data-acc="Txt_IdModele" data-type="Zone de texte">1</div><div class="etiq" style="left:20px;top:132px;width:150px">Modèle</div><div class="champ" style="left:184px;top:132px;width:356px" data-acc="Txt_Modele" data-type="Zone de texte">Audi Q5</div><div class="etiq" style="left:20px;top:184px;width:150px">Marque</div><div class="champ liste-der" style="left:184px;top:184px;width:356px" data-acc="Cbo_Marque" data-type="Zone de liste déroulante">Audi<span class="fleche"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7F8BB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="btn-nav" style="left:142px;top:244px" data-acc="Btn_Premier" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="m17 18-6-6 6-6" />
+  <path d="M7 6v12" />
+</svg></div><div class="btn-nav" style="left:188px;top:244px" data-acc="Btn_Precedent" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="m15 18-6-6 6-6" />
+</svg></div><div class="compteur" style="left:234px;top:244px;width:92px" data-acc="Compteur" data-type="Zone de texte">1 / 60</div><div class="btn-nav" style="left:326px;top:244px" data-acc="Btn_Suivant" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="m9 18 6-6-6-6" />
+</svg></div><div class="btn-nav" style="left:372px;top:244px" data-acc="Btn_Dernier" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="m7 18 6-6-6-6" />
+  <path d="M17 6v12" />
+</svg></div><div class="sep-h" style="left:0;top:302px;width:558px"></div><div class="btn primaire" style="left:122px;top:318px;width:150px" data-acc="Btn_Enregistrer" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#03121F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+  <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+  <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+</svg>Enregistrer</div><div class="btn danger" style="left:288px;top:318px;width:150px" data-acc="Btn_Supprimer" data-type="Bouton"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF2E97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M10 11v6" />
+  <path d="M14 11v6" />
+  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+  <path d="M3 6h18" />
+  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+</svg>Supprimer</div>
+</div><div class="panneau" style="left:600px;top:167px;width:720px;height:382px" data-acc="Panneau_Liste" data-type="Rectangle">
+  <div class="tete"></div><div class="accent" style="background:#9D5CFF"></div>
+  <div class="titre-p">Liste des modèles</div><div class="sous-titre" style="left:233px">60 MODÈLES</div><div class="actions"><div class="btn-icone" data-acc="Btn_Imprimer" data-type="Bouton (ovale)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB3E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+  <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+  <rect x="6" y="14" width="12" height="8" rx="1" />
+</svg></div></div>
+  <div class="liste" style="left:20px;top:68px;width:678px;height:294px" data-acc="Liste_Modeles" data-type="Zone de liste"><table><colgroup><col style="width:80px"><col style="width:260px"><col style="width:200px"></colgroup><thead><tr><th class="cyan">ID</th><th class="">Modèle</th><th class="">Marque</th></tr></thead><tbody><tr><td class="cyan">1</td><td class="">Audi Q5</td><td class="">Audi</td></tr><tr><td class="cyan">2</td><td class="">Audi Q6</td><td class="">Audi</td></tr><tr><td class="cyan">3</td><td class="">Audi A3</td><td class="">Audi</td></tr><tr><td class="cyan">4</td><td class="">Audi A4</td><td class="">Audi</td></tr><tr><td class="cyan">5</td><td class="">Audi A6</td><td class="">Audi</td></tr><tr><td class="cyan">6</td><td class="">Audi Q3</td><td class="">Audi</td></tr><tr><td class="cyan">7</td><td class="">Audi Q7</td><td class="">Audi</td></tr><tr><td class="cyan">8</td><td class="">Audi A5</td><td class="">Audi</td></tr><tr><td class="cyan">9</td><td class="">Audi A7</td><td class="">Audi</td></tr><tr><td class="cyan">10</td><td class="">Audi Q8</td><td class="">Audi</td></tr><tr><td class="cyan">11</td><td class="">Audi A1</td><td class="">Audi</td></tr><tr><td class="cyan">12</td><td class="">Audi Q4</td><td class="">Audi</td></tr><tr><td class="cyan">13</td><td class="">BMW X1</td><td class="">BMW</td></tr><tr><td class="cyan">14</td><td class="">BMW X3</td><td class="">BMW</td></tr><tr><td class="cyan">15</td><td class="">BMW X5</td><td class="">BMW</td></tr><tr><td class="cyan">16</td><td class="">BMW X6</td><td class="">BMW</td></tr></tbody></table><div class="defil" style="height:140px"></div></div>
+</div>
+</div>
+</div></body></html>
