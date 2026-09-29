@@ -137,8 +137,8 @@ BANDEAUX = {  # clé : (photo source, position de l'image, hauteur)
     "tableau": ("tableau-flotte.jpg", "center 62%", 128),
     "reservations": ("reservations-cles.jpg", "center 45%", 92),
     "clients": ("clients-accueil.jpg", "center 12%", 92),
-    "voitures": ("voitures-showroom.jpg", "center 72%", 92),
-    "marques": ("marques-calandres.jpg", "center 55%", 92),
+    "voitures": ("tableau-flotte.jpg", "center 68%", 92),
+    "marques": ("voitures-showroom.jpg", "center 72%", 92),
     "carburants": ("carburants-pompe.jpg", "center 40%", 92),
     "modeles": ("modeles-interieur.jpg", "center 55%", 92),
 }
@@ -484,7 +484,7 @@ def assets_jobs(tmp):
     for ico in ["user", "car", "calendar-range", "list", "trophy", "clipboard-list", "tag", "fuel", "layers"]:
         add(f"carte-{ico}.png", 18, ico, BLEU, 18)
 
-    # Photos : recadrées à la taille exacte et assombries en bleu, prêtes pour Access
+    # Huit photos de référence fournies : recadrées à la taille exacte et teintées en bleu pour Access
     def photo(out, w, h, src, pos, voile):
         p = tmp / (out.replace("/", "_") + ".html")
         p.write_text(f'<!doctype html><html><head><style>html,body{{margin:0}}#a{{position:relative;width:{w}px;height:{h}px;'
@@ -497,9 +497,9 @@ def assets_jobs(tmp):
                "rgba(30,58,138,.18) 100%)")
     for cle, (src, pos, h) in BANDEAUX.items():
         photo(f"photos/bandeau-{cle}.jpg", BW, h, src, pos, voile_b)
-    photo("photos/menu-fond.jpg", 220, H, "menu-route-nuit.jpg", "center 70%",
+    photo("photos/menu-fond.jpg", 220, H, "menu-route.jpg", "center 70%",
           f"linear-gradient(180deg, {MARINE} 0%, {MARINE} 55%, rgba(30,58,138,.55) 70%, rgba(30,58,138,.25) 86%, rgba(30,58,138,.60) 100%)")
-    photo("photos/login-photo.jpg", 420, 500, "login-route-cotiere.jpg", "62% center",
+    photo("photos/login-photo.jpg", 420, 500, "login-route.jpg", "62% center",
           "linear-gradient(180deg, rgba(30,58,138,.88) 0%, rgba(30,58,138,.35) 38%, rgba(30,58,138,.25) 62%, rgba(30,58,138,.92) 100%)")
     return jobs
 

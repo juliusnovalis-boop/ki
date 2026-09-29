@@ -17,9 +17,11 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 
 * `COTES.md` : position et taille de chaque contrôle, en cm.
 * [`COULEURS.md`](COULEURS.md) : palette hexadécimale pour reprendre les couleurs dans Access.
+* `outils/photos/` : les 8 photos originales fournies pour le projet : `carburants-pompe.jpg`, `clients-accueil.jpg`,
+  `login-route.jpg`, `menu-route.jpg`, `modeles-interieur.jpg`, `reservations-cles.jpg`, `tableau-flotte.jpg` et
+  `voitures-showroom.jpg`. Aucune autre photo source n'est utilisée.
 * `assets/` : les icônes en PNG transparent (menu, boutons, cartes, indicateurs), à importer dans Access.
-* `assets/photos/` : les photos **déjà recadrées à la bonne taille et teintées en bleu** (bandeaux, fond du menu,
-  photo de connexion). Il suffit de les insérer, sans retouche.
+* `assets/photos/` : les recadrages teintés en bleu, générés à partir de ces 8 originaux pour les bandeaux, le menu et la connexion.
 * `maquettes/*.html` : les mêmes maquettes, à ouvrir dans un navigateur (sous Windows, elles s'affichent en Segoe UI).
 
 ---
@@ -129,8 +131,8 @@ bordure transparents), et à droite un Rectangle de 1,27 × 1,27 cm (`#3F5BBE`, 
     Pour afficher le vrai nom : `=[Forms]![Login]![Txt_Utilisateur]` ou une variable remplie à la connexion.
 
 **Formulaire Login** : `Fenêtre indépendante` Oui, `Fenêtre modale` Oui, `Boutons Min Max` Aucun, fond `#FFFFFF`,
-23,28 × 13,23 cm. La moitié gauche est l'image `photos/login-photo.jpg` (11,11 × 13,23 cm, SUV sur le front de mer de
-Libreville), avec par-dessus le logo et « RENTAL GABON CAR » 14 pt blanc, « Location de véhicules à Libreville » 16 pt
+23,28 × 13,23 cm. La moitié gauche est l'image `photos/login-photo.jpg` (11,11 × 13,23 cm, Ferrari bleue sur une route
+côtière), avec par-dessus le logo et « RENTAL GABON CAR » 14 pt blanc, « Location de véhicules à Libreville » 16 pt
 blanc et « © 2026 RENTAL GABON CAR » 9 pt `#C9D6F5`. À droite, le formulaire : titre « Connexion » 20 pt `#1E3A8A`,
 champs de 9,53 cm, bouton « Se connecter » bleu sur toute la largeur. Champ mot de passe : `Masque de saisie` = Mot de passe.
 
@@ -145,9 +147,11 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
   `Type image` **Partagé** (l'image n'est stockée qu'une fois dans la base, même si elle sert sur plusieurs formulaires),
   `Style bordure` Transparent.
 * Étiquettes sur une photo : `Style fond` **Transparent**, `Style bordure` Transparent, puis *Mettre au premier plan*.
-* Les photos sont des visuels générés pour ces maquettes. Pour une diffusion commerciale, vérifiez les conditions
-  applicables à votre outil de génération et remplacez-les si nécessaire par des photos autorisées de votre flotte.
-  Formats attendus : bandeaux 1300 × 128 et 1300 × 92, menu 220 × 784, connexion 420 × 500.
+* Les huit photos originales sont conservées dans `outils/photos/` ; les fichiers de `assets/photos/` sont leurs
+  recadrages teintés en bleu. `tableau-flotte.jpg` sert au tableau de bord et à l'écran Voitures ; `voitures-showroom.jpg`
+  sert à l'écran Marques. Le menu et la connexion utilisent `menu-route.jpg` et `login-route.jpg`.
+  Vérifiez les droits d'utilisation avant toute diffusion commerciale. Formats générés : bandeaux 1300 × 128 et 1300 × 92,
+  menu 220 × 784, connexion 420 × 500.
 
 ---
 
@@ -156,9 +160,8 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
 * Même structure (menu à gauche, bandeau, fiche à gauche et liste à droite) : rien à réorganiser.
 * Menu bleu marine, indicateurs en bleu, fond bleu très clair, cartes blanches alignées sur une même grille (marges de 0,63 cm).
 * Libellés en minuscules plutôt qu'en majuscules, plus lisibles.
-* Photos premium en rapport avec l'activité : flotte de berlines et SUV haut de gamme, remise des clés, clientèle,
-  showroom, détails de carrosserie, pompe, habitacle et route côtière de Libreville. Elles restent sous un voile bleu
-  discret, pour garder un rendu sobre et homogène.
+* Huit photos de référence fournies pour le projet : flotte premium, remise des clés, clientèle, showroom, pompe,
+  habitacle, route côtière et menu de nuit. Elles restent sous un voile bleu discret, pour garder un rendu sobre et homogène.
 * Catalogue de démonstration : Ferrari, Lamborghini, Bentley, Bugatti et Rolls-Royce ; l'écran Voitures affiche désormais
   aussi les colonnes Modèle et Marque, afin que le niveau de gamme soit visible dans la liste.
 * Tableau de bord : un message d'accueil, la liste « Voitures actuellement réservées » (sans le numéro du modèle),
