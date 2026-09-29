@@ -471,12 +471,12 @@ def assets_jobs(tmp):
         jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": taille, "h": taille, "transparent": True, "sel": "#a"})
 
     for _, _, ico in MENU:
-        add(f"menu-{ico}.png", 20, ico, NAV_TXT, 18)
-        add(f"menu-{ico}-actif.png", 20, ico, MARINE, 18)
+        add(f"menu-{ico}.png", 18, ico, NAV_TXT, 18)
+        add(f"menu-{ico}-actif.png", 18, ico, MARINE, 18)
     for ico in list(ACTIONS.values()) + ["chevron-first", "chevron-left", "chevron-right", "chevron-last", "power"]:
         add(f"bouton-{ico}.png", 16, ico, MARINE if ico == "power" else BLEU, 16)
-    add("date.png", 16, "calendar-range", GRIS, 15)
-    add("logo-voiture.png", 28, "car-front", "#FFFFFF", 24, 1.8)
+    add("date.png", 15, "calendar-range", GRIS, 15)
+    add("logo-voiture.png", 24, "car-front", "#FFFFFF", 24, 1.8)
     for ico, col in [("wallet", "#FFFFFF"), ("car-front", "#FFFFFF"), ("users", "#FFFFFF")]:
         add(f"indicateur-{ico}.png", 24, ico, col, 24)
     add("bouton-enregistrer.png", 16, "save", "#FFFFFF", 16)
