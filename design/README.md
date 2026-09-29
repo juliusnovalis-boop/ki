@@ -144,9 +144,9 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
   `Type image` **Partagé** (l'image n'est stockée qu'une fois dans la base, même si elle sert sur plusieurs formulaires),
   `Style bordure` Transparent.
 * Étiquettes sur une photo : `Style fond` **Transparent**, `Style bordure` Transparent, puis *Mettre au premier plan*.
-* Les photos ont été générées par IA pour ce projet : pas de droits d'auteur à payer. Vous pouvez les remplacer par vos
-  propres photos de la flotte (mêmes tailles en pixels : bandeaux 1300 × 128 et 1300 × 92,
-  menu 220 × 784, connexion 420 × 500).
+* Les photos sont des visuels générés pour ces maquettes. Pour une diffusion commerciale, vérifiez les conditions
+  applicables à votre outil de génération et remplacez-les si nécessaire par des photos autorisées de votre flotte.
+  Formats attendus : bandeaux 1300 × 128 et 1300 × 92, menu 220 × 784, connexion 420 × 500.
 
 ---
 
@@ -155,8 +155,11 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
 * Même structure (menu à gauche, bandeau, fiche à gauche et liste à droite) : rien à réorganiser.
 * Menu bleu marine, indicateurs en bleu, fond bleu très clair, cartes blanches alignées sur une même grille (marges de 0,63 cm).
 * Libellés en minuscules plutôt qu'en majuscules, plus lisibles.
-* Photos en rapport avec l'activité (parc de voitures, remise des clés, client, showroom, calandres, pompe, habitacle,
-  route côtière de Libreville), toujours sous un voile bleu pour garder une allure sobre et homogène.
+* Photos premium en rapport avec l'activité : flotte de berlines et SUV haut de gamme, remise des clés, clientèle,
+  showroom, détails de carrosserie, pompe, habitacle et route côtière de Libreville. Elles restent sous un voile bleu
+  discret, pour garder un rendu sobre et homogène.
+* Catalogue de démonstration : Ferrari, Lamborghini, Bentley, Bugatti et Rolls-Royce ; l'écran Voitures affiche désormais
+  aussi les colonnes Modèle et Marque, afin que le niveau de gamme soit visible dans la liste.
 * Tableau de bord : un message d'accueil, la liste « Voitures actuellement réservées » (sans le numéro du modèle),
   les 5 meilleurs clients et une nouvelle petite liste « Flotte par carburant » (Essence 31, Diesel 23, Hybride 6), avec
   une requête de regroupement sur `Voiture` + `Carburant` : `Type` (Regroupement), `Voitures : Compte(*)`,
@@ -173,6 +176,32 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
 4. La table `Users` stocke les mots de passe en clair.
 
 ---
+
+## 6. Catalogue automobile premium
+
+La maquette et `design/outils/donnees.json` utilisent un catalogue de démonstration de 5 marques et 60 modèles :
+**Ferrari, Lamborghini, Bentley, Bugatti et Rolls-Royce**. L'écran Voitures affiche aussi Modèle et Marque dans la liste.
+Les identifiants existants sont conservés pour ne pas casser les relations Voiture → Modèle ni les réservations.
+
+Pour appliquer ce catalogue à `Database20.accdb` sur Windows :
+
+1. Faites une copie de la base et **fermez Access**.
+2. Depuis le dossier du projet, ouvrez l'invite de commandes et lancez :
+
+   ```bat
+   cscript //nologo design\outils\appliquer-parc-premium.vbs
+   ```
+
+   Vous pouvez aussi passer le chemin complet de la base en argument. Le script exige Access ou l'Access Database Engine ;
+   il crée une sauvegarde horodatée à côté du fichier, effectue les changements dans une transaction et annule tout si un
+   identifiant attendu manque.
+3. Rouvrez la base et vérifiez les tables `Marque` et `Modele`.
+
+**Important :** le fichier `Database20.accdb` du dépôt n'est pas modifié par cette session, car Access n'est pas disponible
+sous Linux. Le script `.vbs` est fourni pour effectuer la mise à jour dans Access ; il n'a pas été exécuté ici.
+Il met à jour les noms des marques/modèles et leur liaison, mais laisse volontairement inchangés les prix journaliers,
+les clients, les réservations et les carburants. Les tarifs du formulaire restent donc ceux de votre base ; il vaut mieux
+les valider séparément avant de les augmenter pour une flotte premium.
 
 ## Régénérer les maquettes (facultatif)
 

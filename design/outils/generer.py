@@ -235,8 +235,15 @@ def liste(nom, cols, lignes, x, y, w, h, total=None):
 # --------------------------------------------------------------------------
 # Données communes
 # --------------------------------------------------------------------------
-MODELE_RES = {1: ("Audi Q6", "Audi"), 2: ("Audi A6", "Audi"), 3: ("Audi A7", "Audi"), 4: ("Audi Q3", "Audi"),
-              5: ("BMW X1", "BMW"), 6: ("BMW X5", "BMW"), 7: ("Audi Q4", "Audi")}
+MODELE_RES = {
+    1: ("Ferrari 296 GTB", "Ferrari"),
+    2: ("Lamborghini Urus SE", "Lamborghini"),
+    3: ("Bentley Continental GT", "Bentley"),
+    4: ("Bugatti Chiron", "Bugatti"),
+    5: ("Rolls-Royce Phantom", "Rolls-Royce"),
+    6: ("Ferrari 296 GTS", "Ferrari"),
+    7: ("Lamborghini Revuelto", "Lamborghini"),
+}
 
 
 def lignes_reservations():
@@ -301,8 +308,8 @@ def ecran_reservations():
            + champ("Txt_Email", "Email", "jean.mboumba1@example.com", 20, 136, lw, iw, "lecture"))
     p1 = carte("Carte_Client", "Client", 24, 132, cw, 180, cli, icone="user")
     voi = (champ("Cbo_Voiture", "Voiture", "AB-3988-AA", 20, 64, lw, iw, "liste")
-           + champ("Txt_Modele", "Modèle", "Audi Q6", 20, 100, lw, iw, "lecture")
-           + champ("Txt_Marque", "Marque", "Audi", 20, 136, lw, iw, "lecture"))
+           + champ("Txt_Modele", "Modèle", "Ferrari 296 GTB", 20, 100, lw, iw, "lecture")
+           + champ("Txt_Marque", "Marque", "Ferrari", 20, 136, lw, iw, "lecture"))
     p2 = carte("Carte_Voiture", "Voiture", 24 + cw + 16, 132, cw, 180, voi, icone="car")
 
     res = (champ("Txt_Code", "Code", "1", 20, 64, 104, 80, droite=True)
@@ -365,25 +372,34 @@ def ecran_clients():
 
 
 def ecran_voitures():
-    champs = [("Txt_Matricule", "Matricule", "AB-2344-AA", "texte", 140), ("Txt_Annee", "Année", "2026", "texte", 80),
-              ("Txt_Couleur", "Couleur", "Gris", "texte"), ("Txt_Puissance", "Puissance", "15 CV", "texte", 80),
-              ("Txt_CoutJour", "Coût par jour", "95 000 FCFA", "texte", 140), ("Cbo_Modele", "Modèle", "Audi Q5", "liste"),
-              ("Cbo_Carburant", "Carburant", "Diesel", "liste"), ("Cbo_Marque", "Marque", "Audi", "liste")]
-    v = [("AB-2344-AA", "2026", "Gris", "15CV", "95 000"), ("LB-8235-AA", "2024", "Bleu", "11CV", "42 000"),
-         ("RT-7002-AA", "2025", "Blanc", "13CV", "46 000"), ("CD-2481-AA", "2022", "Bleu", "7CV", "27 500"),
-         ("DF-1111-AA", "2022", "Noir", "7CV", "27 500"), ("EF-4262-AA", "2025", "Gris", "13CV", "60 000"),
-         ("FG-2892-AA", "2025", "Jaune", "13CV", "48 000"), ("FJ-4673-AA", "2023", "Argent", "9CV", "65 000"),
-         ("GA-5495-AA", "2024", "Rouge", "11CV", "40 000"), ("KL-8098-AA", "2023", "Gris", "9CV", "33 000"),
-         ("MN-6728-AA", "2023", "Jaune", "9CV", "35 000"), ("QS-6865-AA", "2024", "Noir", "11CV", "40 000")]
-    cols = [("Matricule", 120), ("Année", 70), ("Couleur", 100), ("Puissance", 90), ("Coût par jour", 120, "num")]
-    return ecran_fiche("voitures", "Voitures", "60 véhicules · 5 marques · 3 types de carburant", "Fiche voiture", "car",
-                       champs, "Liste des voitures", cols, [list(x) for x in v], 12, "1 sur 60", "60 voitures")
+    champs = [("Txt_Matricule", "Matricule", "AB-2344-AA", "texte", 140), ("Txt_Annee", "Année", "2025", "texte", 80),
+              ("Txt_Couleur", "Couleur", "Rouge rubis", "texte"), ("Txt_Puissance", "Puissance", "612 CV", "texte", 80),
+              ("Txt_CoutJour", "Coût par jour", "95 000 FCFA", "texte", 140), ("Cbo_Modele", "Modèle", "Ferrari Roma", "liste"),
+              ("Cbo_Carburant", "Carburant", "Essence", "liste"), ("Cbo_Marque", "Marque", "Ferrari", "liste")]
+    voitures = [
+        ("AB-2344-AA", "Ferrari Roma", "Ferrari", "2025", "Rouge", "612 CV", "95 000"),
+        ("LB-8235-AA", "Lamborghini Urus SE", "Lamborghini", "2025", "Noir", "800 CV", "42 000"),
+        ("RT-7002-AA", "Bentley Continental GT", "Bentley", "2024", "Blanc", "550 CV", "46 000"),
+        ("CD-2481-AA", "Bugatti Chiron", "Bugatti", "2022", "Bleu nuit", "1 500 CV", "27 500"),
+        ("DF-1111-AA", "Rolls-Royce Phantom", "Rolls-Royce", "2023", "Noir", "563 CV", "27 500"),
+        ("EF-4262-AA", "Ferrari 296 GTB", "Ferrari", "2025", "Gris", "830 CV", "60 000"),
+        ("FG-2892-AA", "Lamborghini Revuelto", "Lamborghini", "2025", "Jaune", "1 001 CV", "48 000"),
+        ("FJ-4673-AA", "Bentley Continental GTC", "Bentley", "2023", "Argent", "550 CV", "65 000"),
+        ("GA-5495-AA", "Bugatti Chiron Sport", "Bugatti", "2024", "Rouge", "1 500 CV", "40 000"),
+        ("KL-8098-AA", "Rolls-Royce Ghost", "Rolls-Royce", "2023", "Gris", "563 CV", "33 000"),
+        ("MN-6728-AA", "Ferrari 296 GTS", "Ferrari", "2024", "Jaune", "830 CV", "35 000"),
+        ("QS-6865-AA", "Lamborghini Temerario", "Lamborghini", "2024", "Noir", "920 CV", "40 000"),
+    ]
+    cols = [("Matricule", 98), ("Modèle", 200), ("Marque", 85), ("Année", 56),
+            ("Couleur", 68), ("Puissance", 75), ("Coût/jour", 110, "num")]
+    return ecran_fiche("voitures", "Voitures", "60 véhicules · 5 marques haut de gamme · 3 carburants", "Fiche voiture", "car",
+                       champs, "Parc de véhicules", cols, [list(x) for x in voitures], 60, "1 sur 60", "60 véhicules")
 
 
 def ecran_marques():
-    champs = [("Txt_IdMarque", "Identifiant", "1", "texte", 80), ("Txt_Marque", "Marque", "Audi", "texte")]
+    champs = [("Txt_IdMarque", "Identifiant", "1", "texte", 80), ("Txt_Marque", "Marque", "Ferrari", "texte")]
     lignes = [[m["IdMarque"], m["Marque"]] for m in DONNEES["Marque"]]
-    return ecran_fiche("marques", "Marques", "5 marques · 60 modèles", "Fiche marque", "tag", champs, "Liste des marques",
+    return ecran_fiche("marques", "Marques", "5 marques premium · 60 modèles", "Fiche marque", "tag", champs, "Marques du parc premium",
                        [("Identifiant", 90), ("Marque", 200)], lignes, None, "1 sur 5", "5 marques", grande_liste=False)
 
 
@@ -397,11 +413,13 @@ def ecran_carburants():
 
 def ecran_modeles():
     marques = {m["IdMarque"]: m["Marque"] for m in DONNEES["Marque"]}
-    champs = [("Txt_IdModele", "Identifiant", "1", "texte", 80), ("Txt_Modele", "Modèle", "Audi Q5", "texte"),
-              ("Cbo_Marque", "Marque", "Audi", "liste")]
+    premier = DONNEES["Modele"][0]
+    champs = [("Txt_IdModele", "Identifiant", str(premier["IdModele"]), "texte", 80),
+              ("Txt_Modele", "Modèle", premier["Modele"], "texte"),
+              ("Cbo_Marque", "Marque", marques[premier["Marque"]], "liste")]
     lignes = [[m["IdModele"], m["Modele"], marques[m["Marque"]]] for m in DONNEES["Modele"][:30]]
-    return ecran_fiche("modeles", "Modèles", "60 modèles répartis sur 5 marques", "Fiche modèle", "layers", champs,
-                       "Liste des modèles", [("Identifiant", 90), ("Modèle", 180), ("Marque", 140)], lignes, 60,
+    return ecran_fiche("modeles", "Modèles", "60 modèles haut de gamme répartis sur 5 marques", "Fiche modèle", "layers", champs,
+                       "Catalogue premium", [("Identifiant", 90), ("Modèle", 180), ("Marque", 140)], lignes, 60,
                        "1 sur 60", "60 modèles")
 
 

@@ -3,6 +3,9 @@
 // Dépendances (hors dépôt) : npm i puppeteer-core @sparticuz/chromium
 //   ou définir CHROME_PATH vers un Chrome/Chromium installé.
 import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 
 const jobs = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
@@ -10,9 +13,24 @@ const jobs = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 let executablePath = process.env.CHROME_PATH;
 let args = ["--no-sandbox", "--allow-file-access-from-files", "--font-render-hinting=none"];
 if (!executablePath) {
-  const chromium = (await import("@sparticuz/chromium")).default;
+  const chromiumModule = await import("@sparticuz/chromium");
+  const chromium = chromiumModule.default;
   executablePath = await chromium.executablePath();
   args = [...chromium.args, ...args];
+
+  // The bundled browser uses NSS/NSPR on Linux. On Debian-based workspaces,
+  // unpack the compatibility libraries shipped with @sparticuz/chromium.
+  if (process.platform === "linux") {
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const compatLib = path.join(os.tmpdir(), "al2023", "lib");
+    const bundledLibs = path.join(here, "node_modules", "@sparticuz", "chromium", "bin", "al2023.tar.br");
+    if (!fs.existsSync(path.join(compatLib, "libnspr4.so")) && fs.existsSync(bundledLibs)) {
+      await chromiumModule.inflate(bundledLibs);
+    }
+    if (fs.existsSync(path.join(compatLib, "libnspr4.so"))) {
+      process.env.LD_LIBRARY_PATH = [compatLib, process.env.LD_LIBRARY_PATH].filter(Boolean).join(path.delimiter);
+    }
+  }
 }
 const browser = await puppeteer.launch({ executablePath, args, headless: true });
 const page = await browser.newPage();

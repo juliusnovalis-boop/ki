@@ -149,7 +149,7 @@ Maquette : `maquettes/png/04-voitures.png`
 |---|---|---:|---:|---:|---:|
 | `Bandeau` | Image (bandeau-voitures.jpg) | 0,64 | 0,64 | 34,40 | 2,43 |
 | `Bandeau_Titre` | Étiquette | 1,48 | 1,08 | 2,86 | 0,98 |
-| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 8,49 | 0,53 |
+| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 10,00 | 0,53 |
 | `Carte_Fiche` | Rectangle | 0,64 | 3,49 | 13,76 | 13,49 |
 | `Btn_Ajouter` | Bouton | 10,40 | 3,78 | 0,79 | 0,79 |
 | `Btn_Actualiser` | Bouton | 11,35 | 3,78 | 0,79 | 0,79 |
@@ -182,7 +182,7 @@ Maquette : `maquettes/png/05-marques.png`
 |---|---|---:|---:|---:|---:|
 | `Bandeau` | Image (bandeau-marques.jpg) | 0,64 | 0,64 | 34,40 | 2,43 |
 | `Bandeau_Titre` | Étiquette | 1,48 | 1,08 | 2,99 | 0,98 |
-| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 4,34 | 0,53 |
+| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 6,09 | 0,53 |
 | `Carte_Fiche` | Rectangle | 0,64 | 3,49 | 13,76 | 7,14 |
 | `Btn_Ajouter` | Bouton | 10,40 | 3,78 | 0,79 | 0,79 |
 | `Btn_Actualiser` | Bouton | 11,35 | 3,78 | 0,79 | 0,79 |
@@ -236,7 +236,7 @@ Maquette : `maquettes/png/07-modeles.png`
 |---|---|---:|---:|---:|---:|
 | `Bandeau` | Image (bandeau-modeles.jpg) | 0,64 | 0,64 | 34,40 | 2,43 |
 | `Bandeau_Titre` | Étiquette | 1,48 | 1,08 | 2,88 | 0,98 |
-| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 6,32 | 0,53 |
+| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 9,26 | 0,53 |
 | `Carte_Fiche` | Rectangle | 0,64 | 3,49 | 13,76 | 8,20 |
 | `Btn_Ajouter` | Bouton | 10,40 | 3,78 | 0,79 | 0,79 |
 | `Btn_Actualiser` | Bouton | 11,35 | 3,78 | 0,79 | 0,79 |
