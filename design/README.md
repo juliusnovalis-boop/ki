@@ -17,6 +17,7 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 
 * `COTES.md` : position et taille de chaque contrôle, en cm.
 * [`COULEURS.md`](COULEURS.md) : palette hexadécimale pour reprendre les couleurs dans Access.
+* [`ICONES_LOGO.md`](ICONES_LOGO.md) : formats et usages des icônes et logos exportables.
 * `outils/photos/` : les 8 photos originales fournies pour le projet : `carburants-pompe.jpg`, `clients-accueil.jpg`,
   `login-route.jpg`, `menu-route.jpg`, `modeles-interieur.jpg`, `reservations-cles.jpg`, `tableau-flotte.jpg` et
   `voitures-showroom.jpg`. Aucune autre photo source n'est utilisée.
@@ -119,6 +120,7 @@ bordure transparents), et à droite un Rectangle de 1,27 × 1,27 cm (`#3F5BBE`, 
   photo de route de nuit qui apparaît en bas). Placez-le en arrière-plan (*Organiser › Mettre en arrière-plan*).
   Au-dessus : petite étiquette « MENU PRINCIPAL » 9 pt `#8FA6DA`, et en bas « Location de véhicules à Libreville » 10 pt `#DCE6FB`.
   Logo : image `logo-voiture.png` (blanche) + étiquette « RENTAL GABON CAR » Segoe UI Semibold 11 pt blanc.
+  Pour importer le logo d'un seul bloc, utilisez `assets/logo-rental-gabon-car-blanc.png` sur fond sombre ou sa version `-bleu.png` sur fond clair.
 * Boutons de navigation : forme Rectangle à coins arrondis, `Couleur fond` `#1E3A8A`, `Couleur de pointage` `#264796`,
   `Couleur si appuyé` `#FFFFFF`, `Couleur texte` `#DCE6FB`, `Couleur texte de pointage` `#FFFFFF`,
   `Couleur texte si appuyé` `#1E3A8A`, `Couleur bordure` `#1E3A8A`, Segoe UI 11 pt, `Image` `menu-….png`,
