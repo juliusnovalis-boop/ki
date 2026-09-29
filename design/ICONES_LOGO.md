@@ -4,7 +4,8 @@
 
 Deux versions horizontales avec fond transparent sont fournies :
 
-- `assets/logo-rental-gabon-car-blanc.svg` / `.png` : logo blanc, à placer sur un fond sombre comme le menu bleu marine (`#1E3A8A`).
+- `assets/logo-menu-blanc.svg` / `.png` : version compacte aux proportions du menu. Le PNG mesure 368 × 56 px et doit être affiché à **184 × 28 px** (4,87 × 0,74 cm) sur le fond bleu marine.
+- `assets/logo-rental-gabon-car-blanc.svg` / `.png` : logo blanc horizontal plus grand, à placer sur un fond sombre comme le menu bleu marine (`#1E3A8A`).
 - `assets/logo-rental-gabon-car-bleu.svg` / `.png` : voiture bleue (`#2563EB`) et nom bleu marine (`#1E3A8A`), à placer sur un fond clair.
 - `assets/logo-voiture.png` : pictogramme blanc seul, également utilisé dans les maquettes.
 
