@@ -1,0 +1,25 @@
+{
+  "name": "ki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliusnovalis-boop/ki.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliusnovalis-boop/ki/issues"
+  },
+  "homepage": "https://github.com/juliusnovalis-boop/ki#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
