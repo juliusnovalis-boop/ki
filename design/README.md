@@ -16,6 +16,7 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 | Modèles | [`07-modeles.png`](maquettes/png/07-modeles.png) | `Modèle` |
 
 * `COTES.md` : position et taille de chaque contrôle, en cm.
+* [`COULEURS.md`](COULEURS.md) : palette hexadécimale pour reprendre les couleurs dans Access.
 * `assets/` : les icônes en PNG transparent (menu, boutons, cartes, indicateurs), à importer dans Access.
 * `assets/photos/` : les photos **déjà recadrées à la bonne taille et teintées en bleu** (bandeaux, fond du menu,
   photo de connexion). Il suffit de les insérer, sans retouche.
