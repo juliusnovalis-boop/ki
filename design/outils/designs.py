@@ -677,8 +677,8 @@ def fn(nom):
 
 # Position (object-position) des photos propres à chaque projet : design -> page -> position
 POS_PROPRES = {
-    "a": {"tableau": "center 64%", "reservations": "center 42%", "clients": "center 58%", "voitures": "center 62%",
-          "marques": "center 40%", "carburants": "center 74%", "modeles": "center 50%", "connexion": "40% center"},
+    "a": {"tableau": "center 78%", "reservations": "center 50%", "clients": "center 62%", "voitures": "center 58%",
+          "marques": "center 50%", "carburants": "center 72%", "modeles": "center 55%", "connexion": "40% center"},
     "b": {"tableau": "center 78%", "reservations": "center 60%", "clients": "center 55%", "voitures": "center 60%",
           "marques": "center 50%", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 60%"},
     "c": {"tableau": "center 60%", "reservations": "center 55%", "clients": "center 55%", "voitures": "center 60%",
