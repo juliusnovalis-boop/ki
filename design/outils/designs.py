@@ -684,7 +684,7 @@ POS_PROPRES = {
     "c": {"tableau": "center 60%", "reservations": "center 55%", "clients": "center 55%", "voitures": "center 60%",
           "marques": "15% center", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 62%"},
     "d": {"tableau": "center center", "reservations": "center center", "clients": "center center", "voitures": "center center",
-          "marques": "center center", "carburants": "center center", "modeles": "center center", "connexion": "70% center"},
+          "marques": "center center", "carburants": "center center", "modeles": "center center", "connexion": "100% center"},
 }
 
 
