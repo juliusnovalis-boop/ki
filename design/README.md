@@ -20,6 +20,10 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 * `assets/photos/` : les photos **déjà recadrées à la bonne taille et teintées en bleu** (bandeaux, fond du menu,
   photo de connexion). Il suffit de les insérer, sans retouche.
 * `maquettes/*.html` : les mêmes maquettes, à ouvrir dans un navigateur (sous Windows, elles s'affichent en Segoe UI).
+* **`styles/` : 4 autres styles de couleurs** (noir et blanc, rose et blanc, vert jade et blanc, argenté et noir), avec
+  la même disposition. Voir [`styles/README.md`](styles/README.md) et l'aperçu [`styles/apercu-4-styles.png`](styles/apercu-4-styles.png).
+* **Parc haut de gamme** : les maquettes montrent 5 marques de prestige (Bugatti, Ferrari, Lamborghini, Rolls-Royce,
+  Bentley), 12 modèles chacune, avec des tarifs journaliers adaptés. Voir la section 6.
 
 ---
 
@@ -158,7 +162,7 @@ Pour que les chiffres restent à jour, utilisez des zones de texte : `=CpteDom("
 * Photos en rapport avec l'activité (parc de voitures, remise des clés, client, showroom, calandres, pompe, habitacle,
   route côtière de Libreville), toujours sous un voile bleu pour garder une allure sobre et homogène.
 * Tableau de bord : un message d'accueil, la liste « Voitures actuellement réservées » (sans le numéro du modèle),
-  les 5 meilleurs clients et une nouvelle petite liste « Flotte par carburant » (Essence 31, Diesel 23, Hybride 6), avec
+  les 5 meilleurs clients et une nouvelle petite liste « Flotte par carburant » (Essence 47, Hybride 12, Électrique 1), avec
   une requête de regroupement sur `Voiture` + `Carburant` : `Type` (Regroupement), `Voitures : Compte(*)`,
   `Part : [Voitures]/CpteDom("*";"Voiture")` avec la propriété `Format` = Pourcentage, 1 décimale.
 * Boutons Enregistrer / Supprimer avec icône (`bouton-enregistrer.png`, `bouton-supprimer.png`, `Disposition image légende` Gauche).
@@ -182,3 +186,79 @@ npm install          # Chromium sans interface pour le rendu
 python3 generer.py   # recrée maquettes/, assets/ et COTES.md
 ```
 Icônes : [Lucide](https://lucide.dev), licence ISC.
+
+
+## 6. Données haut de gamme utilisées dans les maquettes
+
+Pour que l'application colle aux photos, les maquettes utilisent un parc de prestige. Pour obtenir les mêmes écrans,
+remplacez le contenu de vos tables (ou gardez vos données : la mise en page ne change pas).
+
+* **Table `Marque`** : 1 Bugatti, 2 Ferrari, 3 Lamborghini, 4 Rolls-Royce, 5 Bentley.
+* **Table `Carburant`** : 1 Essence, 2 Hybride, 3 Électrique (les supercars ne roulent pas au diesel).
+* **Champ `Puissance`** de `Voiture` : en chevaux (`1 500 ch`) plutôt qu'en chevaux fiscaux.
+* Chiffres obtenus avec les 25 réservations existantes : **CA 2 309 850 000 FCFA**, meilleur client Cynthia Kombila
+  (288 900 000 FCFA). La réservation n° 1 (Rolls-Royce Cullinan, 31 jours) fait 55 800 000 FCFA.
+* Le fichier complet (60 voitures, matricules, années, couleurs, tarifs) est dans `outils/donnees.json`.
+
+| Id | Modèle | Coût par jour (FCFA) | Puissance | Carburant |
+|---:|---|---:|---:|---|
+| 1 | Bugatti Chiron | 7 500 000 | 1 500 ch | Essence |
+| 2 | Bugatti Chiron Sport | 7 900 000 | 1 500 ch | Essence |
+| 3 | Bugatti Chiron Pur Sport | 8 500 000 | 1 500 ch | Essence |
+| 4 | Bugatti Chiron Super Sport | 9 200 000 | 1 600 ch | Essence |
+| 5 | Bugatti Chiron Profilée | 9 500 000 | 1 500 ch | Essence |
+| 6 | Bugatti Divo | 9 800 000 | 1 500 ch | Essence |
+| 7 | Bugatti Centodieci | 9 900 000 | 1 600 ch | Essence |
+| 8 | Bugatti Mistral | 9 600 000 | 1 600 ch | Essence |
+| 9 | Bugatti Bolide | 9 900 000 | 1 850 ch | Essence |
+| 10 | Bugatti Tourbillon | 9 900 000 | 1 800 ch | Hybride |
+| 11 | Bugatti Veyron Grand Sport Vitesse | 5 900 000 | 1 200 ch | Essence |
+| 12 | Bugatti Veyron Super Sport | 6 200 000 | 1 200 ch | Essence |
+| 13 | Ferrari SF90 Stradale | 2 400 000 | 1 000 ch | Hybride |
+| 14 | Ferrari SF90 Spider | 2 600 000 | 1 000 ch | Hybride |
+| 15 | Ferrari 296 GTB | 1 650 000 | 830 ch | Hybride |
+| 16 | Ferrari 296 GTS | 1 750 000 | 830 ch | Hybride |
+| 17 | Ferrari Roma | 1 250 000 | 620 ch | Essence |
+| 18 | Ferrari Roma Spider | 1 350 000 | 620 ch | Essence |
+| 19 | Ferrari Purosangue | 2 200 000 | 725 ch | Essence |
+| 20 | Ferrari 812 Superfast | 2 300 000 | 800 ch | Essence |
+| 21 | Ferrari 812 Competizione | 2 900 000 | 830 ch | Essence |
+| 22 | Ferrari 12Cilindri | 2 500 000 | 830 ch | Essence |
+| 23 | Ferrari F8 Tributo | 1 500 000 | 720 ch | Essence |
+| 24 | Ferrari LaFerrari | 4 500 000 | 963 ch | Hybride |
+| 25 | Lamborghini Revuelto | 2 900 000 | 1 015 ch | Hybride |
+| 26 | Lamborghini Temerario | 2 300 000 | 920 ch | Hybride |
+| 27 | Lamborghini Huracán EVO | 1 450 000 | 640 ch | Essence |
+| 28 | Lamborghini Huracán STO | 1 900 000 | 640 ch | Essence |
+| 29 | Lamborghini Huracán Tecnica | 1 700 000 | 640 ch | Essence |
+| 30 | Lamborghini Huracán Sterrato | 1 750 000 | 610 ch | Essence |
+| 31 | Lamborghini Urus S | 1 150 000 | 666 ch | Essence |
+| 32 | Lamborghini Urus Performante | 1 300 000 | 666 ch | Essence |
+| 33 | Lamborghini Urus SE | 1 400 000 | 800 ch | Hybride |
+| 34 | Lamborghini Aventador SVJ | 2 700 000 | 770 ch | Essence |
+| 35 | Lamborghini Aventador Ultimae | 2 500 000 | 780 ch | Essence |
+| 36 | Lamborghini Countach LPI 800-4 | 4 200 000 | 814 ch | Hybride |
+| 37 | Rolls-Royce Phantom | 2 000 000 | 571 ch | Essence |
+| 38 | Rolls-Royce Phantom EWB | 2 300 000 | 571 ch | Essence |
+| 39 | Rolls-Royce Ghost | 1 500 000 | 571 ch | Essence |
+| 40 | Rolls-Royce Ghost Black Badge | 1 700 000 | 600 ch | Essence |
+| 41 | Rolls-Royce Cullinan | 1 800 000 | 571 ch | Essence |
+| 42 | Rolls-Royce Cullinan Black Badge | 2 000 000 | 600 ch | Essence |
+| 43 | Rolls-Royce Spectre | 1 900 000 | 585 ch | Électrique |
+| 44 | Rolls-Royce Wraith | 1 350 000 | 632 ch | Essence |
+| 45 | Rolls-Royce Dawn | 1 400 000 | 571 ch | Essence |
+| 46 | Rolls-Royce Wraith Black Badge | 1 500 000 | 632 ch | Essence |
+| 47 | Rolls-Royce Dawn Black Badge | 1 550 000 | 600 ch | Essence |
+| 48 | Rolls-Royce Phantom Drophead | 2 100 000 | 460 ch | Essence |
+| 49 | Bentley Continental GT | 950 000 | 550 ch | Essence |
+| 50 | Bentley Continental GT Speed | 1 150 000 | 782 ch | Hybride |
+| 51 | Bentley Continental GTC | 1 000 000 | 550 ch | Essence |
+| 52 | Bentley Flying Spur | 900 000 | 550 ch | Essence |
+| 53 | Bentley Flying Spur Speed | 1 100 000 | 782 ch | Hybride |
+| 54 | Bentley Bentayga | 850 000 | 550 ch | Essence |
+| 55 | Bentley Bentayga EWB | 950 000 | 550 ch | Essence |
+| 56 | Bentley Bentayga S | 900 000 | 550 ch | Essence |
+| 57 | Bentley Bacalar | 3 200 000 | 659 ch | Essence |
+| 58 | Bentley Batur | 3 500 000 | 750 ch | Essence |
+| 59 | Bentley Mulsanne | 1 000 000 | 537 ch | Essence |
+| 60 | Bentley Mulliner Blower | 2 800 000 | 240 ch | Essence |

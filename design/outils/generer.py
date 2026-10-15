@@ -25,14 +25,33 @@ MAQ = DESIGN / "maquettes"
 ASSETS = DESIGN / "assets"
 SVG_DIR = ICI / "icones-svg"
 
-BLEU, BLEU_F, GRIS, GRIS_F, ROUGE = "#2563EB", "#1D4ED8", "#6B7280", "#4B5563", "#DC2626"
-MARINE, NAV_TXT = "#1E3A8A", "#AFC3F0"
+from themes import THEMES
+
+T = THEMES[0]                # thème courant (changé par appliquer_theme)
+ASSET_URL = "../assets"      # chemin des images vu depuis les fichiers HTML
 NOM_APPLI = "RENTAL GABON CAR"
-VERT, VIOLET = "#16A34A", "#7C3AED"
 W, H = 1568, 784            # zone du formulaire (sans la barre de titre)
 CW, CH = W - 220, H - 56    # zone de contenu (sous-formulaire) : 1348 x 728
 DONNEES = json.loads((ICI / "donnees.json").read_text())
 CLIENTS = {c["CIN"]: c for c in DONNEES["Client"]}
+MARQUES = {m["IdMarque"]: m["Marque"] for m in DONNEES["Marque"]}
+CARBURANTS = {c["IdType"]: c["Type"] for c in DONNEES["Carburant"]}
+MODELES = {m["IdModele"]: m for m in DONNEES["Modele"]}
+VOITURES = {v["Matricule"]: v for v in DONNEES["Voiture"]}
+
+
+def modele_de(mat):
+    m = MODELES[VOITURES[mat]["Modele"]]
+    return m["Modele"], MARQUES[m["Marque"]]
+
+
+def duree(r):
+    import datetime as dt
+    return (dt.date.fromisoformat(r["DateFin"][:10]) - dt.date.fromisoformat(r["DateDebut"][:10])).days
+
+
+def montant(r):
+    return duree(r) * VOITURES[r["Voiture"]]["CoutParJour"]
 
 
 # --------------------------------------------------------------------------
@@ -72,9 +91,9 @@ ICONE_FORM = ('<svg class="ico" viewBox="0 0 14 14"><rect x=".5" y="1.5" width="
 def fenetre(titre_fen, largeur, hauteur, corps, boutons=("min", "max", "fermer")):
     ctrl = ""
     glyphes = {
-        "min": '<svg width="10" height="10"><path d="M0 5.5h10" stroke="#000" stroke-width="1"/></svg>',
-        "max": '<svg width="10" height="10"><rect x="2.5" y=".5" width="7" height="7" fill="none" stroke="#000"/><path d="M.5 2.5v7h7" fill="none" stroke="#000"/></svg>',
-        "fermer": '<svg width="10" height="10"><path d="M0 0l10 10M10 0L0 10" stroke="#000" stroke-width="1"/></svg>',
+        "min": '<svg width="10" height="10"><path d="M0 5.5h10" stroke="currentColor" stroke-width="1"/></svg>',
+        "max": '<svg width="10" height="10"><rect x="2.5" y=".5" width="7" height="7" fill="none" stroke="currentColor"/><path d="M.5 2.5v7h7" fill="none" stroke="currentColor"/></svg>',
+        "fermer": '<svg width="10" height="10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"/></svg>',
     }
     for i, b in enumerate(reversed(boutons)):
         ctrl += f'<div class="ctrl" style="right:{i * 46}px">{glyphes[b]}</div>'
@@ -88,7 +107,7 @@ def fenetre(titre_fen, largeur, hauteur, corps, boutons=("min", "max", "fermer")
 def page(titre, corps):
     return f"""<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><title>{e(titre)} · {NOM_APPLI}</title>
-<link rel="stylesheet" href="style.css"></head>
+<link rel="stylesheet" href="style.css"><meta name="theme" content="{T['cle']}"></head>
 <body>{corps}</body></html>"""
 
 
@@ -112,20 +131,20 @@ def coquille(actif, titre, contenu):
         y = 110 + i * 44
         on = cle == actif
         nav += (f'<div class="nav{" actif" if on else ""}" style="top:{y}px" {acc("BoutonNavigation_" + cle, "Bouton de navigation")}>'
-                f'{svg(ico, MARINE if on else NAV_TXT, 18)}{e(lib)}</div>')
+                f'{svg(ico, T["nav_ico_actif"] if on else T["nav_ico"], 18)}{e(lib)}</div>')
     corps = f"""
 <div class="menu" {acc("Menu_Fond", "Image (menu-fond.jpg)")}>
-  <img class="abs" src="../assets/photos/menu-fond.jpg" style="left:0;top:0;width:220px;height:{H}px">
-  <div class="logo" {acc("Logo", "Image + étiquette")}>{svg("car-front", "#FFFFFF", 24, 1.8)}{NOM_APPLI}</div>
+  <img class="abs" src="{ASSET_URL}/photos/menu-fond.jpg" style="left:0;top:0;width:220px;height:{H}px">
+  <div class="logo" {acc("Logo", "Image + étiquette")}>{svg("car-front", T["logo"], 24, 1.8)}{NOM_APPLI}</div>
   <div class="rubrique" style="top:84px">Menu principal</div>
   {nav}
   <div class="slogan" {acc("Slogan", "Étiquette")}>Location de véhicules<br>à Libreville</div>
 </div>
 <div class="entete" {acc("Entete", "Rectangle")}>
-  <div class="date" style="left:24px" {acc("Date_Heure", "Zone de texte")}>{svg("calendar-range", GRIS, 15)}lundi 28 septembre 2026 · 20:06</div>
+  <div class="date" style="left:24px" {acc("Date_Heure", "Zone de texte")}>{svg("calendar-range", T["gris"], 15)}lundi 28 septembre 2026 · 20:06</div>
   <div class="avatar" style="right:196px;top:12px" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
   <div class="utilisateur" style="right:72px;top:11px" {acc("Utilisateur", "Étiquettes")}><b>admin</b><span>Administrateur</span></div>
-  <div class="btn-ico abs" style="right:24px;top:12px;width:32px;height:32px" {acc("Btn_Quitter", "Bouton")}>{svg("power", MARINE, 16)}</div>
+  <div class="btn-ico abs" style="right:24px;top:12px;width:32px;height:32px" {acc("Btn_Quitter", "Bouton")}>{svg("power", T["icone_titre"], 16)}</div>
 </div>
 <div class="contenu" id="contenu">
 {contenu}
@@ -134,12 +153,12 @@ def coquille(actif, titre, contenu):
 
 
 BANDEAUX = {  # clé : (photo source, position de l'image, hauteur)
-    "tableau": ("tableau-flotte.jpg", "center 62%", 128),
-    "reservations": ("reservations-cles.jpg", "center 45%", 92),
-    "clients": ("clients-accueil.jpg", "center 12%", 92),
-    "voitures": ("voitures-showroom.jpg", "center 72%", 92),
-    "marques": ("marques-calandres.jpg", "center 55%", 92),
-    "carburants": ("carburants-pompe.jpg", "center 40%", 92),
+    "tableau": ("tableau-flotte.jpg", "center 70%", 128),
+    "reservations": ("reservations-cles.jpg", "center 52%", 92),
+    "clients": ("clients-accueil.jpg", "center 30%", 92),
+    "voitures": ("voitures-showroom.jpg", "center 66%", 92),
+    "marques": ("marques-calandres.jpg", "center 46%", 92),
+    "carburants": ("carburants-pompe.jpg", "center 48%", 92),
     "modeles": ("modeles-interieur.jpg", "center 55%", 92),
 }
 BW = CW - 48  # largeur des bandeaux : 1300 px
@@ -149,7 +168,7 @@ def bandeau(cle, titre, sous_titre):
     h = BANDEAUX[cle][2]
     ty = (h - 58) // 2
     return (f'<div class="bandeau" style="left:24px;top:24px;width:{BW}px;height:{h}px;'
-            f'background-image:url(../assets/photos/bandeau-{cle}.jpg)" {acc("Bandeau", "Image (bandeau-" + cle + ".jpg)")}>'
+            f'background-image:url({ASSET_URL}/photos/bandeau-{cle}.jpg)" {acc("Bandeau", "Image (bandeau-" + cle + ".jpg)")}>'
             f'<div class="b-titre" style="top:{ty}px" {acc("Bandeau_Titre", "Étiquette")}>{e(titre)}</div>'
             f'<div class="b-sous" style="top:{ty + 34}px" {acc("Bandeau_SousTitre", "Étiquette")}>{e(sous_titre)}</div></div>')
 
@@ -164,9 +183,9 @@ def carte(nom, titre, x, y, w, h, interieur="", actions=(), info=None, icone=Non
     act = ""
     if actions:
         act = '<div class="actions">' + "".join(
-            f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], BLEU, 16)}</div>' for a in actions) + "</div>"
+            f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], T["icone"], 16)}</div>' for a in actions) + "</div>"
     tx = 48 if icone else 20
-    ico = f'<div class="abs" style="left:20px;top:16px">{svg(icone, BLEU, 18)}</div>' if icone else ""
+    ico = f'<div class="abs" style="left:20px;top:16px">{svg(icone, T["icone"], 18)}</div>' if icone else ""
     inf = f'<div class="info" style="left:{tx + 10 + int(len(titre) * 8.6)}px">{e(info)}</div>' if info else ""
     return (f'<div class="carte" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px" {acc(nom, "Rectangle")}>'
             f'<div class="bande"></div>{ico}<div class="titre-c" style="left:{tx}px">{e(titre)}</div>{inf}{act}'
@@ -174,7 +193,7 @@ def carte(nom, titre, x, y, w, h, interieur="", actions=(), info=None, icone=Non
 
 
 def fleche_bas():
-    return ('<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2.5" '
+    return (f'<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="{T["etiq"]}" stroke-width="2.5" '
             'stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="m6 9 6 6 6-6"/></svg>')
 
 
@@ -194,14 +213,14 @@ def nav_enreg(x, y, texte):
     out = ""
     pos = [x, x + 34, x + 178, x + 212]
     for (n, i), px in zip(ico, pos):
-        out += f'<div class="btn-nav" style="left:{px}px;top:{y}px" {acc("Btn_" + n, "Bouton")}>{svg(i, BLEU, 16)}</div>'
+        out += f'<div class="btn-nav" style="left:{px}px;top:{y}px" {acc("Btn_" + n, "Bouton")}>{svg(i, T["icone"], 16)}</div>'
     out += f'<div class="compteur" style="left:{x + 68}px;top:{y}px;width:106px" {acc("Txt_Compteur", "Zone de texte")}>{e(texte)}</div>'
     return out
 
 
 def boutons_crud(x, y, w=130):
-    return (f'<div class="btn primaire" style="left:{x}px;top:{y}px;width:{w}px" {acc("Btn_Enregistrer", "Bouton")}>{svg("save", "#FFFFFF", 16)}Enregistrer</div>'
-            f'<div class="btn danger" style="left:{x + w + 10}px;top:{y}px;width:{w}px" {acc("Btn_Supprimer", "Bouton")}>{svg("trash-2", ROUGE, 16)}Supprimer</div>')
+    return (f'<div class="btn primaire" style="left:{x}px;top:{y}px;width:{w}px" {acc("Btn_Enregistrer", "Bouton")}>{svg("save", T["accent_txt"], 16)}Enregistrer</div>'
+            f'<div class="btn danger" style="left:{x + w + 10}px;top:{y}px;width:{w}px" {acc("Btn_Supprimer", "Bouton")}>{svg("trash-2", T["danger"], 16)}Supprimer</div>')
 
 
 def liste(nom, cols, lignes, x, y, w, h, total=None):
@@ -235,15 +254,12 @@ def liste(nom, cols, lignes, x, y, w, h, total=None):
 # --------------------------------------------------------------------------
 # Données communes
 # --------------------------------------------------------------------------
-MODELE_RES = {1: ("Audi Q6", "Audi"), 2: ("Audi A6", "Audi"), 3: ("Audi A7", "Audi"), 4: ("Audi Q3", "Audi"),
-              5: ("BMW X1", "BMW"), 6: ("BMW X5", "BMW"), 7: ("Audi Q4", "Audi")}
-
 
 def lignes_reservations():
     out = []
     for r in DONNEES["Reservation"][:7]:
         c = CLIENTS[r["Client"]]
-        mo, ma = MODELE_RES[r["IdReservation"]]
+        mo, ma = modele_de(r["Voiture"])
         out.append([r["IdReservation"], fdate(r["DateDebut"]), fdate(r["DateFin"]), c["Prénom"], c["Nom"], r["Voiture"], mo, ma])
     return out
 
@@ -251,10 +267,24 @@ def lignes_reservations():
 # --------------------------------------------------------------------------
 # Écrans
 # --------------------------------------------------------------------------
+def stats():
+    """Chiffres calculés comme les requêtes de la base : CA = Somme((DateFin-DateDebut)*CoutParJour)."""
+    from collections import defaultdict
+    ca = sum(montant(r) for r in DONNEES["Reservation"])
+    par_client = defaultdict(int)
+    for r in DONNEES["Reservation"]:
+        par_client[r["Client"]] += montant(r)
+    top = sorted(par_client.items(), key=lambda kv: -kv[1])[:5]
+    top = [(CLIENTS[c]["Prénom"], CLIENTS[c]["Nom"], v) for c, v in top]
+    return ca, top
+
+
 def ecran_tableau():
-    kpis = [("CA", "Chiffre d'affaires", "104 261 200", "FCFA", "sur 25 réservations", "wallet", "#1E40AF", "#3F5BBE"),
-            ("Voitures", "Voitures", "60", "", "8 en location aujourd'hui", "car-front", "#2563EB", "#4B7FEF"),
-            ("Clients", "Clients", "200", "", "Meilleur client : Cynthia Kombila", "users", "#3B82F6", "#5C97F8")]
+    ca, top = stats()
+    (k1, p1), (k2, p2), (k3, p3) = T["kpi"]
+    kpis = [("CA", "Chiffre d'affaires", fcfa(ca), "FCFA", "sur 25 réservations", "wallet", k1, p1),
+            ("Voitures", "Voitures", "60", "", "8 en location aujourd'hui", "car-front", k2, p2),
+            ("Clients", "Clients", "200", "", f"Meilleur client : {top[0][0]} {top[0][1]}", "users", k3, p3)]
     kw = (CW - 48 - 32) // 3
     out = bandeau("tableau", "Bonjour, admin", "Voici l'activité de RENTAL GABON CAR au 28 septembre 2026.")
     for i, (n, lib, val, unit, sub, ico, fond, pastille) in enumerate(kpis):
@@ -263,7 +293,7 @@ def ecran_tableau():
         out += (f'<div class="kpi" style="left:{x}px;top:168px;width:{kw}px;height:100px;background:{fond};border-color:{fond}" {acc("Carte_" + n, "Rectangle")}>'
                 f'<div class="lib">{e(lib)}</div><div class="val" {acc("Txt_" + n, "Zone de texte")}>{val}{u}</div>'
                 f'<div class="sub">{e(sub)}</div>'
-                f'<div class="pastille" style="background:{pastille}" {acc("Pastille_" + n, "Rectangle + image")}>{svg(ico, "#FFFFFF", 24)}</div></div>')
+                f'<div class="pastille" style="background:{pastille}" {acc("Pastille_" + n, "Rectangle + image")}>{svg(ico, T["kpi_ico"], 24)}</div></div>')
 
     import datetime as dt
     auj = dt.date(2026, 9, 28)
@@ -272,37 +302,43 @@ def ecran_tableau():
         d0, d1 = dt.date.fromisoformat(r["DateDebut"][:10]), dt.date.fromisoformat(r["DateFin"][:10])
         if d0 <= auj <= d1:
             c = CLIENTS[r["Client"]]
-            res.append([r["Voiture"], fdate(r["DateDebut"]), fdate(r["DateFin"]), c["Prénom"], c["Nom"]])
+            res.append([r["Voiture"], modele_de(r["Voiture"])[0], fdate(r["DateDebut"]), fdate(r["DateFin"]), c["Prénom"], c["Nom"]])
     lw1 = 836
     l1 = liste("Liste_Voitures_Reservees",
-               [("Matricule", 130), ("Date de début", 140), ("Date de fin", 140), ("Prénom", 180), ("Nom", 180)],
+               [("Matricule", 110), ("Modèle", 220), ("Date de début", 110), ("Date de fin", 110), ("Prénom", 110), ("Nom", 110)],
                res, 20, 66, lw1 - 42, 334)
     p1 = carte("Carte_Reservees", "Voitures actuellement réservées", 24, 284, lw1, 420, l1, actions=["Imprimer"],
                info="8 en cours", icone="clipboard-list")
 
     lw2 = CW - 48 - 16 - lw1
-    top = [("Cynthia", "Kombila", 18457500), ("Junior", "Ondo", 11097500), ("Léa", "Eyang", 10413000),
-           ("Cédric", "Nkoghe", 8021250), ("Noëlle", "Mba", 7416000)]
     l2 = liste("Liste_Top5", [("Prénom", 120), ("Nom", 120), ("CA (FCFA)", 150, "num")],
                [[a, b, fcfa(c)] for a, b, c in top], 20, 64, lw2 - 40, 124)
     p2 = carte("Carte_Top5", "5 meilleurs clients", 24 + lw1 + 16, 284, lw2, 202, l2, icone="trophy")
     l3 = liste("Liste_Carburants", [("Type", 150), ("Voitures", 110, "num"), ("Part", 130, "num")],
-               [["Essence", 31, "51,7 %"], ["Diesel", 23, "38,3 %"], ["Hybride", 6, "10,0 %"]], 20, 64, lw2 - 40, 124)
+               flotte_carburant(), 20, 64, lw2 - 40, 124)
     p3 = carte("Carte_Carburants", "Flotte par carburant", 24 + lw1 + 16, 502, lw2, 202, l3, icone="fuel")
     return coquille("tableau", "Tableau de bord", out + p1 + p2 + p3)
+
+
+def flotte_carburant():
+    from collections import Counter
+    n = Counter(v["Carburant"] for v in DONNEES["Voiture"])
+    return [[CARBURANTS[k], c, f"{c * 100 / 60:.1f} %".replace(".", ",")] for k, c in n.most_common()]
 
 
 def ecran_reservations():
     lw, iw = 104, 470
     cw = (CW - 48 - 16) // 2
+    r1 = DONNEES["Reservation"][0]
+    R1_MOD, R1_MAR = modele_de(r1["Voiture"])
     b = bandeau("reservations", "Réservations", "25 réservations · 8 en cours aujourd'hui")
     cli = (champ("Cbo_Client", "Client", "Jean Mboumba", 20, 64, lw, iw, "liste")
            + champ("Txt_Telephone", "Téléphone", "(+241) 62 54 85 85", 20, 100, lw, iw, "lecture")
            + champ("Txt_Email", "Email", "jean.mboumba1@example.com", 20, 136, lw, iw, "lecture"))
     p1 = carte("Carte_Client", "Client", 24, 132, cw, 180, cli, icone="user")
     voi = (champ("Cbo_Voiture", "Voiture", "AB-3988-AA", 20, 64, lw, iw, "liste")
-           + champ("Txt_Modele", "Modèle", "Audi Q6", 20, 100, lw, iw, "lecture")
-           + champ("Txt_Marque", "Marque", "Audi", 20, 136, lw, iw, "lecture"))
+           + champ("Txt_Modele", "Modèle", R1_MOD, 20, 100, lw, iw, "lecture")
+           + champ("Txt_Marque", "Marque", R1_MAR, 20, 136, lw, iw, "lecture"))
     p2 = carte("Carte_Voiture", "Voiture", 24 + cw + 16, 132, cw, 180, voi, icone="car")
 
     res = (champ("Txt_Code", "Code", "1", 20, 64, 104, 80, droite=True)
@@ -311,8 +347,8 @@ def ecran_reservations():
            + f'<div class="btn secondaire" style="left:494px;top:98px;width:60px" {acc("Btn_OK", "Bouton")}>OK</div>'
            + nav_enreg(124, 138, "1 sur 25")
            + '<div class="sep-v" style="left:640px;top:51px;height:127px"></div>'
-           + champ("Txt_Duree", "Durée", "31 jour(s)", 664, 64, 90, 200, "lecture", droite=True)
-           + champ("Txt_Montant", "Montant", "1 023 000 FCFA", 664, 100, 90, 200, "lecture", droite=True, total=True)
+           + champ("Txt_Duree", "Durée", f"{duree(r1)} jour(s)", 664, 64, 90, 200, "lecture", droite=True)
+           + champ("Txt_Montant", "Montant", f"{fcfa(montant(r1))} FCFA", 664, 100, 90, 200, "lecture", droite=True, total=True)
            + boutons_crud(CW - 48 - 20 - 270, 136))
     p3 = carte("Carte_Reservation", "Réservation", 24, 328, CW - 48, 180, res,
                actions=["Ajouter", "Actualiser", "Rechercher", "Imprimer"], icone="calendar-range")
@@ -365,30 +401,29 @@ def ecran_clients():
 
 
 def ecran_voitures():
-    champs = [("Txt_Matricule", "Matricule", "AB-2344-AA", "texte", 140), ("Txt_Annee", "Année", "2026", "texte", 80),
-              ("Txt_Couleur", "Couleur", "Gris", "texte"), ("Txt_Puissance", "Puissance", "15 CV", "texte", 80),
-              ("Txt_CoutJour", "Coût par jour", "95 000 FCFA", "texte", 140), ("Cbo_Modele", "Modèle", "Audi Q5", "liste"),
-              ("Cbo_Carburant", "Carburant", "Diesel", "liste"), ("Cbo_Marque", "Marque", "Audi", "liste")]
-    v = [("AB-2344-AA", "2026", "Gris", "15CV", "95 000"), ("LB-8235-AA", "2024", "Bleu", "11CV", "42 000"),
-         ("RT-7002-AA", "2025", "Blanc", "13CV", "46 000"), ("CD-2481-AA", "2022", "Bleu", "7CV", "27 500"),
-         ("DF-1111-AA", "2022", "Noir", "7CV", "27 500"), ("EF-4262-AA", "2025", "Gris", "13CV", "60 000"),
-         ("FG-2892-AA", "2025", "Jaune", "13CV", "48 000"), ("FJ-4673-AA", "2023", "Argent", "9CV", "65 000"),
-         ("GA-5495-AA", "2024", "Rouge", "11CV", "40 000"), ("KL-8098-AA", "2023", "Gris", "9CV", "33 000"),
-         ("MN-6728-AA", "2023", "Jaune", "9CV", "35 000"), ("QS-6865-AA", "2024", "Noir", "11CV", "40 000")]
-    cols = [("Matricule", 120), ("Année", 70), ("Couleur", 100), ("Puissance", 90), ("Coût par jour", 120, "num")]
-    return ecran_fiche("voitures", "Voitures", "60 véhicules · 5 marques · 3 types de carburant", "Fiche voiture", "car",
-                       champs, "Liste des voitures", cols, [list(x) for x in v], 12, "1 sur 60", "60 voitures")
+    vs = DONNEES["Voiture"]
+    v0 = vs[0]
+    mo, ma = modele_de(v0["Matricule"])
+    champs = [("Txt_Matricule", "Matricule", v0["Matricule"], "texte", 140), ("Txt_Annee", "Année", v0["Annee"], "texte", 80),
+              ("Txt_Couleur", "Couleur", v0["Couleur"], "texte"), ("Txt_Puissance", "Puissance", f"{fcfa(v0['Puissance'])} ch", "texte", 100),
+              ("Txt_CoutJour", "Coût par jour", f"{fcfa(v0['CoutParJour'])} FCFA", "texte", 160), ("Cbo_Modele", "Modèle", mo, "liste"),
+              ("Cbo_Carburant", "Carburant", CARBURANTS[v0["Carburant"]], "liste"), ("Cbo_Marque", "Marque", ma, "liste")]
+    lignes = [[v["Matricule"], modele_de(v["Matricule"])[0], v["Annee"], v["Couleur"], f"{fcfa(v['Puissance'])} ch",
+               fcfa(v["CoutParJour"])] for v in vs[:30]]
+    cols = [("Matricule", 100), ("Modèle", 210), ("Année", 56), ("Couleur", 70), ("Puissance", 80), ("Coût par jour", 110, "num")]
+    return ecran_fiche("voitures", "Voitures", "60 véhicules de prestige · 5 marques · 3 types de carburant", "Fiche voiture", "car",
+                       champs, "Liste des voitures", cols, lignes, 60, "1 sur 60", "60 voitures")
 
 
 def ecran_marques():
-    champs = [("Txt_IdMarque", "Identifiant", "1", "texte", 80), ("Txt_Marque", "Marque", "Audi", "texte")]
+    champs = [("Txt_IdMarque", "Identifiant", "1", "texte", 80), ("Txt_Marque", "Marque", MARQUES[1], "texte")]
     lignes = [[m["IdMarque"], m["Marque"]] for m in DONNEES["Marque"]]
     return ecran_fiche("marques", "Marques", "5 marques · 60 modèles", "Fiche marque", "tag", champs, "Liste des marques",
                        [("Identifiant", 90), ("Marque", 200)], lignes, None, "1 sur 5", "5 marques", grande_liste=False)
 
 
 def ecran_carburants():
-    champs = [("Txt_IdType", "Identifiant", "1", "texte", 80), ("Txt_Type", "Type", "Diesel", "texte")]
+    champs = [("Txt_IdType", "Identifiant", "1", "texte", 80), ("Txt_Type", "Type", CARBURANTS[1], "texte")]
     lignes = [[c["IdType"], c["Type"]] for c in DONNEES["Carburant"]]
     return ecran_fiche("carburants", "Carburants", "3 types de carburant", "Fiche carburant", "fuel", champs,
                        "Types de carburant", [("Identifiant", 90), ("Type", 200)], lignes, None, "1 sur 3", "3 types",
@@ -397,11 +432,11 @@ def ecran_carburants():
 
 def ecran_modeles():
     marques = {m["IdMarque"]: m["Marque"] for m in DONNEES["Marque"]}
-    champs = [("Txt_IdModele", "Identifiant", "1", "texte", 80), ("Txt_Modele", "Modèle", "Audi Q5", "texte"),
-              ("Cbo_Marque", "Marque", "Audi", "liste")]
+    champs = [("Txt_IdModele", "Identifiant", "1", "texte", 80), ("Txt_Modele", "Modèle", MODELES[1]["Modele"], "texte"),
+              ("Cbo_Marque", "Marque", MARQUES[1], "liste")]
     lignes = [[m["IdModele"], m["Modele"], marques[m["Marque"]]] for m in DONNEES["Modele"][:30]]
     return ecran_fiche("modeles", "Modèles", "60 modèles répartis sur 5 marques", "Fiche modèle", "layers", champs,
-                       "Liste des modèles", [("Identifiant", 90), ("Modèle", 180), ("Marque", 140)], lignes, 60,
+                       "Liste des modèles", [("Identifiant", 90), ("Modèle", 260), ("Marque", 140)], lignes, 60,
                        "1 sur 60", "60 modèles")
 
 
@@ -409,19 +444,19 @@ def ecran_login():
     lw, lh = 880, 500
     fx = 470
     corps = f"""
-<div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:#FFFFFF" {acc("Login_Fond", "Section Détail")}></div>
-<img class="abs" src="../assets/photos/login-photo.jpg" style="left:0;top:0;width:420px;height:{lh}px" {acc("Login_Photo", "Image (login-photo.jpg)")}>
+<div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:var(--surface)" {acc("Login_Fond", "Section Détail")}></div>
+<img class="abs" src="{ASSET_URL}/photos/login-photo.jpg" style="left:0;top:0;width:420px;height:{lh}px" {acc("Login_Photo", "Image (login-photo.jpg)")}>
 <div class="abs" style="left:36px;top:36px;display:flex;align-items:center;gap:10px;font-size:18.67px;font-weight:600;color:#FFFFFF;letter-spacing:.5px" {acc("Logo", "Image + étiquette")}>{svg("car-front", "#FFFFFF", 28, 1.8)}{NOM_APPLI}</div>
 <div class="abs" style="left:36px;top:388px;width:350px;font-size:21.33px;font-weight:600;color:#FFFFFF;line-height:28px" {acc("Login_Slogan", "Étiquette")}>Location de véhicules<br>à Libreville</div>
-<div class="abs" style="left:36px;top:454px;font-size:12px;color:#C9D6F5" {acc("Login_Copyright", "Étiquette")}>© 2026 RENTAL GABON CAR</div>
-<div class="abs" style="left:{fx}px;top:84px;font-size:26.67px;font-weight:600;color:{MARINE}" {acc("Lbl_Titre", "Étiquette")}>Connexion</div>
-<div class="abs" style="left:{fx}px;top:126px;font-size:14.67px;color:#6B7280">Entrez vos identifiants pour accéder à l'application.</div>
+<div class="abs" style="left:36px;top:454px;font-size:12px;color:rgba(255,255,255,.75)" {acc("Login_Copyright", "Étiquette")}>© 2026 RENTAL GABON CAR</div>
+<div class="abs" style="left:{fx}px;top:84px;font-size:26.67px;font-weight:600;color:var(--titre)" {acc("Lbl_Titre", "Étiquette")}>Connexion</div>
+<div class="abs" style="left:{fx}px;top:126px;font-size:14.67px;color:var(--gris)">Entrez vos identifiants pour accéder à l'application.</div>
 <div class="etiq" style="left:{fx}px;top:172px">Nom d'utilisateur</div>
 <div class="champ" style="left:{fx}px;top:200px;width:360px;height:34px;line-height:32px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
 <div class="etiq" style="left:{fx}px;top:244px">Mot de passe</div>
 <div class="champ" style="left:{fx}px;top:272px;width:360px;height:34px;line-height:32px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
 <div class="btn primaire" style="left:{fx}px;top:334px;width:360px;height:38px" {acc("Btn_Connexion", "Bouton")}>Se connecter</div>
-<div class="abs" style="left:{fx}px;top:392px;width:360px;font-size:12px;color:#6B7280;text-align:center">Mot de passe oublié ? Contactez l'administrateur.</div>
+<div class="abs" style="left:{fx}px;top:392px;width:360px;font-size:12px;color:var(--gris);text-align:center">Mot de passe oublié ? Contactez l'administrateur.</div>
 """
     return fenetre(NOM_APPLI + " - Connexion", lw, lh, corps, boutons=("fermer",))
 
@@ -453,36 +488,41 @@ def assets_jobs(tmp):
         jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": taille, "h": taille, "transparent": True, "sel": "#a"})
 
     for _, _, ico in MENU:
-        add(f"menu-{ico}.png", 20, ico, NAV_TXT, 18)
-        add(f"menu-{ico}-actif.png", 20, ico, MARINE, 18)
+        add(f"menu-{ico}.png", 20, ico, T["nav_ico"], 18)
+        add(f"menu-{ico}-actif.png", 20, ico, T["nav_ico_actif"], 18)
     for ico in list(ACTIONS.values()) + ["chevron-first", "chevron-left", "chevron-right", "chevron-last", "power"]:
-        add(f"bouton-{ico}.png", 16, ico, MARINE if ico == "power" else BLEU, 16)
-    add("date.png", 16, "calendar-range", GRIS, 15)
-    add("logo-voiture.png", 28, "car-front", "#FFFFFF", 24, 1.8)
-    for ico, col in [("wallet", "#FFFFFF"), ("car-front", "#FFFFFF"), ("users", "#FFFFFF")]:
+        add(f"bouton-{ico}.png", 16, ico, T["icone_titre"] if ico == "power" else T["icone"], 16)
+    add("date.png", 16, "calendar-range", T["gris"], 15)
+    add("logo-voiture.png", 28, "car-front", T["logo"], 24, 1.8)
+    for ico, col in [("wallet", T["kpi_ico"]), ("car-front", T["kpi_ico"]), ("users", T["kpi_ico"])]:
         add(f"indicateur-{ico}.png", 24, ico, col, 24)
-    add("bouton-enregistrer.png", 16, "save", "#FFFFFF", 16)
-    add("bouton-supprimer.png", 16, "trash-2", ROUGE, 16)
+    add("bouton-enregistrer.png", 16, "save", T["accent_txt"], 16)
+    add("bouton-supprimer.png", 16, "trash-2", T["danger"], 16)
     for ico in ["user", "car", "calendar-range", "list", "trophy", "clipboard-list", "tag", "fuel", "layers"]:
-        add(f"carte-{ico}.png", 18, ico, BLEU, 18)
+        add(f"carte-{ico}.png", 18, ico, T["icone"], 18)
 
     # Photos : recadrées à la taille exacte et assombries en bleu, prêtes pour Access
-    def photo(out, w, h, src, pos, voile):
+    def photo(out, w, h, src, pos, voile, filtre="none"):
         p = tmp / (out.replace("/", "_") + ".html")
         p.write_text(f'<!doctype html><html><head><style>html,body{{margin:0}}#a{{position:relative;width:{w}px;height:{h}px;'
-                     f'overflow:hidden;background:{MARINE}}}#a img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
-                     f'object-position:{pos}}}#a .v{{position:absolute;inset:0;background:{voile}}}</style></head>'
+                     f'overflow:hidden;background:{T["menu"]}}}#a img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
+                     f'object-position:{pos};filter:{filtre}}}#a .v{{position:absolute;inset:0;background:{voile}}}</style></head>'
                      f'<body><div id="a"><img src="{(ICI / "photos" / src).as_uri()}"><div class="v"></div></div></body></html>')
         jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": w, "h": h, "transparent": False, "sel": "#a"})
 
-    voile_b = ("linear-gradient(90deg, rgba(30,58,138,.97) 0%, rgba(30,58,138,.92) 30%, rgba(30,58,138,.55) 58%, "
-               "rgba(30,58,138,.18) 100%)")
+    v = T["voile"]  # couleur du voile posé sur les photos (r, g, b)
+    sat = T.get("photo_filtre", "none")
+
+    def rgba(al):
+        return f"rgba({v[0]},{v[1]},{v[2]},{al})"
+
+    voile_b = f"linear-gradient(90deg, {rgba(.97)} 0%, {rgba(.92)} 30%, {rgba(.55)} 58%, {rgba(.18)} 100%)"
     for cle, (src, pos, h) in BANDEAUX.items():
-        photo(f"photos/bandeau-{cle}.jpg", BW, h, src, pos, voile_b)
+        photo(f"photos/bandeau-{cle}.jpg", BW, h, src, pos, voile_b, sat)
     photo("photos/menu-fond.jpg", 220, H, "menu-route-nuit.jpg", "center 70%",
-          f"linear-gradient(180deg, {MARINE} 0%, {MARINE} 55%, rgba(30,58,138,.55) 70%, rgba(30,58,138,.25) 86%, rgba(30,58,138,.60) 100%)")
-    photo("photos/login-photo.jpg", 420, 500, "login-route-cotiere.jpg", "62% center",
-          "linear-gradient(180deg, rgba(30,58,138,.88) 0%, rgba(30,58,138,.35) 38%, rgba(30,58,138,.25) 62%, rgba(30,58,138,.92) 100%)")
+          f"linear-gradient(180deg, {T['menu']} 0%, {T['menu']} 55%, {rgba(.55)} 70%, {rgba(.25)} 86%, {rgba(.60)} 100%)", sat)
+    photo("photos/login-photo.jpg", 420, 500, "login-route-cotiere.jpg", "80% center",
+          f"linear-gradient(180deg, {rgba(.88)} 0%, {rgba(.35)} 38%, {rgba(.25)} 62%, {rgba(.92)} 100%)", sat)
     return jobs
 
 
@@ -520,23 +560,45 @@ def ecrire_cotes(cotes):
     (DESIGN / "COTES.md").write_text("\n".join(L))
 
 
-def main():
+def appliquer_theme(t):
+    """Choisit le style courant : couleurs, dossiers de sortie et chemin des images."""
+    global T, MAQ, ASSETS, ASSET_URL
+    T = t
+    if t["dossier"] == "maquettes":          # style bleu : emplacements historiques
+        MAQ, ASSETS, ASSET_URL, fonts = DESIGN / "maquettes", DESIGN / "assets", "../assets", "fonts/"
+    else:                                     # autres styles : design/styles/<style>/
+        MAQ = DESIGN / t["dossier"]
+        ASSETS, ASSET_URL, fonts = MAQ / "assets", "assets", "../../maquettes/fonts/"
     (MAQ / "png").mkdir(parents=True, exist_ok=True)
     (ASSETS / "photos").mkdir(parents=True, exist_ok=True)
+    racine = ":root {\n" + "".join(f"  --{k}: {v};\n" for k, v in t["css"].items()) + "}\n\n"
+    base = (ICI / "style-base.css").read_text().replace("url(fonts/", f"url({fonts}")
+    (MAQ / "style.css").write_text(f"/* Style : {t['nom']} */\n" + racine + base)
+
+
+def main():
+    choix = sys.argv[1:]                     # ex. : python3 generer.py rose-blanc
     tmp = Path(tempfile.mkdtemp(prefix="rentalcar-"))
-    jobs = assets_jobs(tmp)
-    ecr = []
-    for fic, titre, fn in ECRANS:
-        (MAQ / f"{fic}.html").write_text(page(titre, fn()))
-        ecr.append({"html": (MAQ / f"{fic}.html").as_uri(), "out": str(MAQ / "png" / f"{fic}.png"),
-                    "w": 1600, "h": 820, "transparent": False, "sel": "#fenetre", "cotes": fic})
+    jobs, ecr = [], []
+    for t in THEMES:
+        if choix and t["cle"] not in choix:
+            continue
+        appliquer_theme(t)
+        jobs += assets_jobs(tmp / t["cle"]) if (tmp / t["cle"]).mkdir() is None else []
+        for fic, titre, fn in ECRANS:
+            (MAQ / f"{fic}.html").write_text(page(titre, fn()))
+            ecr.append({"html": (MAQ / f"{fic}.html").as_uri(), "out": str(MAQ / "png" / f"{fic}.png"),
+                        "w": 1600, "h": 820, "transparent": False, "sel": "#fenetre",
+                        "cotes": fic if t["cle"] == "bleu" else f"{t['cle']}/{fic}"})
     jf = tmp / "jobs.json"
     cf = tmp / "cotes.json"
     jf.write_text(json.dumps({"assets": jobs, "ecrans": ecr, "cotes": str(cf)}))
     r = subprocess.run(["node", str(ICI / "rendre.mjs"), str(jf)], cwd=ICI)
     if r.returncode:
         sys.exit(r.returncode)
-    ecrire_cotes(json.loads(cf.read_text()))
+    cotes = json.loads(cf.read_text())
+    if "01-tableau-de-bord" in cotes:        # les cotes sont les mêmes pour tous les styles
+        ecrire_cotes(cotes)
 
 
 if __name__ == "__main__":

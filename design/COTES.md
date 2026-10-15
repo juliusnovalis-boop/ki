@@ -53,7 +53,7 @@ Maquette : `maquettes/png/01-tableau-de-bord.png`
 | `Bandeau_Titre` | Étiquette | 1,48 | 1,56 | 5,27 | 0,98 |
 | `Bandeau_SousTitre` | Étiquette | 1,48 | 2,46 | 11,03 | 0,53 |
 | `Carte_CA` | Rectangle | 0,64 | 4,45 | 11,17 | 2,65 |
-| `Txt_CA` | Zone de texte | 1,19 | 5,32 | 5,08 | 0,98 |
+| `Txt_CA` | Zone de texte | 1,19 | 5,32 | 5,66 | 0,98 |
 | `Pastille_CA` | Rectangle + image | 9,97 | 5,16 | 1,27 | 1,27 |
 | `Carte_Voitures` | Rectangle | 12,22 | 4,45 | 11,17 | 2,65 |
 | `Txt_Voitures` | Zone de texte | 12,78 | 5,32 | 0,79 | 0,98 |
@@ -149,7 +149,7 @@ Maquette : `maquettes/png/04-voitures.png`
 |---|---|---:|---:|---:|---:|
 | `Bandeau` | Image (bandeau-voitures.jpg) | 0,64 | 0,64 | 34,40 | 2,43 |
 | `Bandeau_Titre` | Étiquette | 1,48 | 1,08 | 2,86 | 0,98 |
-| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 8,49 | 0,53 |
+| `Bandeau_SousTitre` | Étiquette | 1,48 | 1,98 | 10,61 | 0,53 |
 | `Carte_Fiche` | Rectangle | 0,64 | 3,49 | 13,76 | 13,49 |
 | `Btn_Ajouter` | Bouton | 10,40 | 3,78 | 0,79 | 0,79 |
 | `Btn_Actualiser` | Bouton | 11,35 | 3,78 | 0,79 | 0,79 |
@@ -158,8 +158,8 @@ Maquette : `maquettes/png/04-voitures.png`
 | `Txt_Matricule` | Zone de texte | 4,63 | 5,37 | 3,70 | 0,74 |
 | `Txt_Annee` | Zone de texte | 4,63 | 6,43 | 2,12 | 0,74 |
 | `Txt_Couleur` | Zone de texte | 4,63 | 7,49 | 9,26 | 0,74 |
-| `Txt_Puissance` | Zone de texte | 4,63 | 8,55 | 2,12 | 0,74 |
-| `Txt_CoutJour` | Zone de texte | 4,63 | 9,60 | 3,70 | 0,74 |
+| `Txt_Puissance` | Zone de texte | 4,63 | 8,55 | 2,65 | 0,74 |
+| `Txt_CoutJour` | Zone de texte | 4,63 | 9,60 | 4,23 | 0,74 |
 | `Cbo_Modele` | Zone de liste déroulante | 4,63 | 10,66 | 9,26 | 0,74 |
 | `Cbo_Carburant` | Zone de liste déroulante | 4,63 | 11,72 | 9,26 | 0,74 |
 | `Cbo_Marque` | Zone de liste déroulante | 4,63 | 12,78 | 9,26 | 0,74 |
