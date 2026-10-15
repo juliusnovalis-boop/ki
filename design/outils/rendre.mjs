@@ -38,7 +38,7 @@ for (const j of jobs.ecrans) {
     const cr = contenu ? contenu.getBoundingClientRect() : null;
     return [...document.querySelectorAll("[data-acc]")].map((el) => {
       const r = el.getBoundingClientRect();
-      const dans = cr && contenu.contains(el);
+      const dans = cr && contenu.contains(el) && el !== contenu;
       const o = dans ? cr : ecran;
       return {
         nom: el.dataset.acc, type: el.dataset.type, zone: dans ? "contenu" : "ecran",

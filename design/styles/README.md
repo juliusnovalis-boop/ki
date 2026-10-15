@@ -1,39 +1,89 @@
-# Les 4 styles de couleurs
+# Les 4 designs « camarades »
 
-Même disposition, mêmes cotes (`../COTES.md`) et même mode d'emploi que le style bleu (`../README.md`) :
-seules les couleurs et les images changent.
+Quatre maquettes **réellement différentes**, une par camarade. Chacune a sa navigation, sa disposition, ses cartes,
+son écran de connexion et sa façon d'utiliser les photos, en plus de sa palette de couleurs. Les données (parc haut de
+gamme) et le mode d'emploi général (`../README.md`) restent communs.
 
-![Aperçu des 4 styles](apercu-4-styles.png)
+![Aperçu des 4 designs](apercu-4-styles.png)
 
-| Style | Dossier | Esprit |
-|---|---|---|
-| 1. Noir et blanc | [`noir-blanc/`](noir-blanc/png/) | Sobre et intemporel, photos en noir et blanc |
-| 2. Rose et blanc | [`rose-blanc/`](rose-blanc/png/) | Framboise profond et rose vif, photos teintées |
-| 3. Vert jade et blanc | [`vert-jade-blanc/`](vert-jade-blanc/png/) | Vert jade et vert forêt, élégant et frais |
-| 4. Argenté et noir | [`argente-noir/`](argente-noir/png/) | Thème sombre, boutons et indicateurs argentés, très « prestige » |
+![Les 4 écrans de connexion](apercu-connexions.png)
 
-Chaque dossier contient :
-* `png/` : les 8 écrans (connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles) ;
-* `assets/` : les icônes PNG **dans les couleurs du style** et `assets/photos/` : les photos déjà teintées et recadrées ;
-* les maquettes HTML et leur `style.css`.
+| | Design | Couleurs | Dossier |
+|---|---|---|---|
+| 1 | **Éditorial** | Noir et blanc | [`noir-blanc/`](noir-blanc/png/) |
+| 2 | **Rail d'icônes** | Rose et blanc | [`rose-blanc/`](rose-blanc/png/) |
+| 3 | **Menu photo à droite** | Vert jade et blanc | [`vert-jade-blanc/`](vert-jade-blanc/png/) |
+| 4 | **Cockpit** | Argenté et noir | [`argente-noir/`](argente-noir/png/) |
 
-Pour changer de style dans Access : importez les images du dossier choisi (mêmes noms de fichiers que le style bleu),
-puis remplacez les couleurs dans la feuille de propriétés avec le tableau ci-dessous.
+Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles de **ce** design, en cm),
+`assets/` (icônes dans les couleurs du style) et `assets/photos/` (photos déjà recadrées et teintées).
+
+## Ce qui distingue les 4 designs
+
+| | 1. Éditorial | 2. Rail d'icônes | 3. Menu photo à droite | 4. Cockpit |
+|---|---|---|---|---|
+| Navigation | Barre noire **en haut**, libellés en majuscules soulignés | **Rail étroit à gauche** : icône + petit libellé | **Menu à droite** sur une photo, carte utilisateur en bas | **Pastilles** centrées en haut, sur la photo |
+| En-tête | Intégré à la barre de navigation | Titre de page + date, avatar à droite | Aucun : titre directement dans la page | Titre blanc posé sur la photo |
+| Photos | Grand **bandeau** noir et blanc sur toute la largeur | **Panneau vertical** à droite avec un grand chiffre | Photo **du menu**, différente sur chaque page | Photo **plein écran** derrière toute l'application |
+| Indicateurs | Une seule bande, chiffres en Georgia séparés par des traits | 3 cartes blanches avec pastille ronde | 3 blocs pleins, icône en haut à droite | 3 blocs argentés **empilés** à gauche |
+| Cartes | Filet noir épais en haut, titres en majuscules espacées | Barre rose à gauche | Fond vert très clair, sans bordure | Fond anthracite, petit trait argenté sous le titre |
+| Fiches (clients…) | **Liste à gauche**, fiche à droite | **Fiche en haut** sur 2 colonnes, liste dessous | Fiche à gauche, **libellés au-dessus** des champs | **Liste en haut**, fiche dessous sur 3 colonnes |
+| Réservations | Client, voiture et montant en 3 cartes, puis une ligne réservation | Réservation en haut, montant sur la photo | 3 cartes côte à côte, libellés au-dessus | Colonne réservation + montant à gauche |
+| Boutons | Carrés, texte en majuscules | Arrondis (pilule) | Rectangles classiques | Arrondis argentés |
+| Connexion | Photo plein cadre, carte blanche à droite | Fenêtre verticale, photo en haut, logo rond | Photo en haut, champs **sur une ligne** | Photo sombre, carte centrée |
+
+## Réaliser chaque design dans Access
+
+### 1. Éditorial (noir et blanc)
+* Formulaire de navigation, disposition **« Onglets horizontaux »**. Barre : Rectangle `#0D0D0D` de 1,69 cm de haut.
+  Boutons de navigation : fond `#0D0D0D`, texte `#D4D4D4` en Segoe UI 9 pt **majuscules**, sans bordure ;
+  onglet actif : texte blanc gras et un trait blanc de 3 pt dessous (petit rectangle blanc).
+* Bandeau : contrôle Image `a-bandeau-<page>.jpg` (41,49 × 3,97 cm) en haut du sous-formulaire.
+  Titre en **Georgia** 28 pt blanc, sous-titre en majuscules 9 pt `#D4D4D4`.
+* Cartes : Rectangle blanc, bordure `#E0E0E0`, et un rectangle noir de 0,08 cm collé en haut (le filet).
+  Titres en majuscules 9 pt, gras.
+* Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.
+
+### 2. Rail d'icônes (rose et blanc)
+* Formulaire de navigation **« Onglets verticaux, à gauche »**, réduit à 2,75 cm de large. Boutons de navigation :
+  `Disposition image légende` **Haut** (icône au-dessus du texte), Segoe UI 9 pt, `Forme` **Rectangle arrondi** ;
+  onglet actif : fond blanc, texte `#9D174D`.
+* Panneau photo : contrôle Image `b-panneau-<page>.jpg` (8,47 × 18,84 cm) collé à droite. Par-dessus, une zone de
+  texte transparente pour le grand chiffre (40 pt blanc), par exemple `=CpteDom("*";"Client")`.
+* Cartes : Rectangle blanc, bordure `#F2D2E1`, et un rectangle `#DB2777` de 0,11 cm sur le bord gauche.
+* Boutons : `Forme` **Rectangle arrondi** (Enregistrer, Supprimer, Se connecter) ou **Ovale** (petits boutons).
+* Connexion : formulaire de 12,70 × 16,40 cm (vertical).
+
+### 3. Menu photo à droite (vert jade et blanc)
+* Formulaire de navigation **« Onglets verticaux, à droite »** (6,88 cm). Derrière les boutons, l'image
+  `c-menu-<page>.jpg` (6,88 × 20,74 cm). Boutons de navigation : `Style fond` **Transparent**, texte blanc ;
+  onglet actif : fond blanc, texte `#064E3B`.
+* Pas d'en-tête : le titre (22 pt `#065F46`) et le sous-titre sont dans chaque sous-formulaire.
+* Champs : étiquette **au-dessus** de la zone de texte (étiquette 9,5 pt, puis le champ 0,53 cm plus bas).
+* Cartes : Rectangle `#F3FAF7` sans bordure.
+
+### 4. Cockpit (argenté et noir)
+* Formulaire de navigation **« Onglets horizontaux »**. Propriété **`Image`** du formulaire Menu :
+  `d-fond-<page>.jpg` (41,49 × 20,74 cm), `Mode affichage image` **Découpage**. Dans chaque sous-formulaire,
+  `Style fond` des sections : **Transparent**, ou la même image en fond.
+* Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), `Style fond` Transparent, texte `#B8BCC2` ;
+  onglet actif : fond `#D4D7DB`, texte noir.
+* Cartes : Rectangle `#16181B`, bordure `#2A2D32`, titres en majuscules 9,5 pt `#E8EAED`, petit trait `#C9CDD2`
+  de 1,06 cm sous le titre. Zones de texte : fond `#1F2226`, texte `#F1F2F4`, bordure `#3A3E44`.
+* Indicateurs et montant : Rectangle argenté (`#D9DCE0`, `#C2C6CC`, `#A9AEB5`), texte et icônes noirs.
+* La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.
 
 ## Couleurs à saisir dans Access
 
-| Élément | Noir et blanc | Rose et blanc | Vert jade et blanc | Argenté et noir |
+| Élément | 1. Noir et blanc | 2. Rose et blanc | 3. Vert jade et blanc | 4. Argenté et noir |
 |---|---|---|---|---|
-| Menu (fond, en haut de l'image du menu) | `#0D0D0D` | `#9D174D` | `#064E3B` | `#000000` |
+| Menu / barre de navigation (fond) | `#0D0D0D` | `#9D174D` | `#064E3B` | `#000000` |
 | Fond de la zone de contenu | `#F2F2F2` | `#FCF1F6` | `#EDF7F3` | `#0B0C0E` |
 | Cartes (fond) | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` | `#16181B` |
-| Bande de titre des cartes | `#F8F8F8` | `#FEF6FA` | `#F3FAF7` | `#1B1D21` |
 | Bordure des cartes | `#DADADA` | `#F2D2E1` | `#CDE7DC` | `#2A2D32` |
-| Titres des cartes, « Connexion » | `#0D0D0D` | `#9D174D` | `#065F46` | `#E8EAED` |
-| Bouton principal, avatar, trait sous l'en-tête | `#111111` | `#DB2777` | `#00A86B` | `#C9CDD2` |
+| Titres | `#0D0D0D` | `#9D174D` | `#065F46` | `#E8EAED` |
+| Bouton principal, avatar | `#111111` | `#DB2777` | `#00A86B` | `#C9CDD2` |
 | Texte du bouton principal | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` | `#0B0C0E` |
-| En-tête (fond) | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` | `#121417` |
-| Trait sous l'en-tête | `#0D0D0D` | `#DB2777` | `#00A86B` | `#AEB3B9` |
 | Texte du menu | `#D4D4D4` | `#FCE1EE` | `#D1F2E4` | `#B8BCC2` |
 | Onglet actif (fond) | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` | `#D4D7DB` |
 | Onglet actif (texte) | `#0D0D0D` | `#9D174D` | `#064E3B` | `#000000` |
@@ -45,20 +95,7 @@ puis remplacez les couleurs dans la feuille de propriétés avec le tableau ci-d
 | Montant (fond) | `#F1F1F1` | `#FDE8F2` | `#E2F5EC` | `#24272C` |
 | Montant (texte) | `#0D0D0D` | `#9D174D` | `#047857` | `#F1F2F4` |
 | Zones de liste (bordure) | `#BDBDBD` | `#EBB8CF` | `#A8D6C2` | `#3A3E44` |
-| Petits boutons (bordure) | `#CFCFCF` | `#F0C6DA` | `#BCE0D0` | `#3A3E44` |
 | Supprimer (texte) | `#DC2626` | `#B91C1C` | `#DC2626` | `#F87171` |
 | Indicateurs (fond 1 / 2 / 3) | `#0D0D0D` / `#262626` / `#404040` | `#9D174D` / `#DB2777` / `#EC4899` | `#065F46` / `#00A86B` / `#10B981` | `#D9DCE0` / `#C2C6CC` / `#A9AEB5` |
-| Pastilles des indicateurs | `#2A2A2A` / `#404040` / `#5A5A5A` | `#B53D6F` / `#E35491` / `#F06DAC` | `#2A7A63` / `#2DBA87` / `#3CC99A` | `#BFC3C9` / `#A9AEB5` / `#91969E` |
-| Texte des indicateurs | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` | `#0B0C0E` |
 
-## Conseils par style
-
-* **Noir et blanc** : les photos sont en noir et blanc ; gardez les icônes noires (`#111111`) et un seul trait noir sous l'en-tête.
-* **Rose et blanc** : le rouge de « Supprimer » est plus foncé (`#B91C1C`) pour ne pas se confondre avec le rose.
-* **Vert jade et blanc** : le vert jade `#00A86B` sert aux boutons et icônes, le vert forêt `#064E3B` au menu.
-* **Argenté et noir** : c'est un thème sombre. Dans Access, mettez le fond de **chaque section** (Détail, En-tête) en
-  `#0B0C0E`, les cartes en `#16181B`, et pour les zones de texte `Couleur fond` `#1F2226` et `Couleur texte` `#F1F2F4`.
-  Le bouton principal est argenté avec un texte noir. Les indicateurs sont argentés, avec un texte et des icônes noirs.
-  La barre de titre sombre de la maquette correspond au mode sombre de Windows (*Paramètres › Couleurs*) : elle ne se règle pas dans Access.
-
-Pour régénérer un seul style : `python3 outils/generer.py rose-blanc` (voir `../README.md`).
+Pour régénérer un seul design : `python3 outils/generer.py rose-blanc` (voir `../README.md`).

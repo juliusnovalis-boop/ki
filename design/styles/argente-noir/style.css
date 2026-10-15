@@ -154,3 +154,64 @@ body { margin: 0; background: #FFFFFF; }
 .bandeau .b-titre { position: absolute; left: 32px; font-size: 26.67px; font-weight: 600; color: #FFFFFF; }
 .bandeau .b-sous { position: absolute; left: 32px; font-size: 14.67px; color: var(--bandeau-sous); }
 .kpi .sub { position: absolute; left: 20px; top: 74px; font-size: 13.33px; color: var(--kpi-lib); }
+
+/* ======================================================================
+   Designs des 4 styles « camarades » (classe d-a, d-b, d-c ou d-d sur la fenêtre)
+   ====================================================================== */
+@font-face { font-family: "Titre"; font-weight: 400; src: local("Georgia"), url(../../maquettes/fonts/gelasio-latin-400-normal.woff2); }
+@font-face { font-family: "Titre"; font-weight: 600; src: local("Georgia Bold"), url(../../maquettes/fonts/gelasio-latin-600-normal.woff2); }
+.etiq-haut { position: absolute; font-size: 12.67px; color: var(--etiq); white-space: nowrap; }
+.pastille-ronde { position: absolute; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.contenu .carte, .contenu .kpi { z-index: 1; }
+
+/* ---- A : Éditorial (noir et blanc) ---- */
+.d-a .barre-a { position: absolute; left: 0; top: 0; width: 100%; height: 64px; background: var(--menu); z-index: 2; }
+.d-a .logo-a { position: absolute; left: 28px; top: 21px; display: flex; align-items: center; gap: 10px; font-size: 14.67px; font-weight: 600; letter-spacing: 3px; color: #FFFFFF; }
+.d-a .nav-h { position: absolute; top: 0; height: 64px; line-height: 64px; text-align: center; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--nav-txt); }
+.d-a .nav-h.actif { color: #FFFFFF; font-weight: 600; border-bottom: 3px solid #FFFFFF; }
+.d-a .date-a { font-size: 12px; color: #9E9E9E; white-space: nowrap; }
+.d-a .avatar-a { background: #FFFFFF; color: #0D0D0D; }
+.d-a .carte { border: 1px solid #E0E0E0; border-top: 3px solid #0D0D0D; }
+.d-a .carte .bande { display: none; }
+.d-a .carte .titre-c { top: 16px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #0D0D0D; }
+.d-a .carte .info { top: 17px; font-size: 12px; font-style: italic; font-family: "Titre", Georgia, serif; }
+.d-a .carte .trait { left: 20px; right: 20px; top: 48px; background: #0D0D0D; }
+.d-a .btn, .d-a .btn-ico, .d-a .btn-nav { border-radius: 0; }
+.d-a .btn.primaire, .d-a .btn.danger { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+.d-a .val-a { position: absolute; font-family: "Titre", Georgia, serif; font-size: 37.33px; line-height: 44px; color: #0D0D0D; white-space: nowrap; }
+.d-a .val-a small { font-family: "UI", "Segoe UI", sans-serif; font-size: 14.67px; color: #6E6E6E; margin-left: 8px; }
+.d-a .panneau-a { background: #0D0D0D; border: none; }
+
+/* ---- B : Rail d'icônes (rose et blanc) ---- */
+.d-b .rail { position: absolute; left: 0; top: 0; width: 104px; height: 100%; background: var(--menu); }
+.d-b .rail-logo { position: absolute; left: 28px; top: 16px; width: 48px; height: 48px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+.d-b .rail-item { position: absolute; left: 8px; width: 88px; height: 64px; border-radius: 12px; color: var(--nav-txt); }
+.d-b .rail-item .ri { position: absolute; left: 33px; top: 10px; }
+.d-b .rail-item .rl { position: absolute; left: 0; right: 0; top: 38px; text-align: center; font-size: 12px; }
+.d-b .rail-item.actif { background: #FFFFFF; color: var(--nav-actif-txt); font-weight: 600; }
+.d-b .tete-b { position: absolute; left: 104px; top: 0; right: 0; height: 72px; background: var(--entete); border-bottom: 1px solid var(--carte-bordure); }
+.d-b .carte { border-left: 4px solid var(--accent); }
+.d-b .carte .bande { background: var(--surface); }
+.d-b .carte .trait { left: 20px; right: 20px; background: var(--sep); }
+.d-b .btn { border-radius: 16px; }
+.d-b .btn-ico, .d-b .btn-nav { border-radius: 50%; }
+
+/* ---- C : Menu photo à droite (vert jade et blanc) ---- */
+.d-c .contenu { background: #FFFFFF; }
+.d-c .carte { background: var(--bande); border: none; }
+.d-c .carte .bande, .d-c .carte .trait { display: none; }
+.d-c .carte .titre-c { font-size: 16px; }
+.d-c .nav-c { color: #FFFFFF; z-index: 1; }
+.d-c .nav-c.actif { background: #FFFFFF; color: var(--nav-actif-txt); }
+.d-c .date-c { display: flex; align-items: center; gap: 6px; font-size: 13.33px; color: var(--gris); white-space: nowrap; }
+.d-c .kpi { border: none; }
+
+/* ---- D : Cockpit (argenté et noir) ---- */
+.d-d .pill { position: absolute; top: 18px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.33px; color: #B8BCC2; white-space: nowrap; }
+.d-d .pill.actif { background: var(--nav-actif-fond); color: var(--nav-actif-txt); font-weight: 600; }
+.d-d .carte .bande { background: var(--surface); }
+.d-d .carte .titre-c { top: 17px; font-size: 12.67px; letter-spacing: 1.6px; text-transform: uppercase; }
+.d-d .carte .trait { left: 20px; right: auto; width: 40px; height: 2px; top: 49px; background: var(--accent); }
+.d-d .kpi { border: none; }
+.d-d .kpi .val small { color: rgba(0,0,0,.6); }
+.d-d .btn { border-radius: 17px; }

@@ -20,8 +20,9 @@ Pas d'effets spéciaux : **tout se règle dans la feuille de propriétés**, san
 * `assets/photos/` : les photos **déjà recadrées à la bonne taille et teintées en bleu** (bandeaux, fond du menu,
   photo de connexion). Il suffit de les insérer, sans retouche.
 * `maquettes/*.html` : les mêmes maquettes, à ouvrir dans un navigateur (sous Windows, elles s'affichent en Segoe UI).
-* **`styles/` : 4 autres styles de couleurs** (noir et blanc, rose et blanc, vert jade et blanc, argenté et noir), avec
-  la même disposition. Voir [`styles/README.md`](styles/README.md) et l'aperçu [`styles/apercu-4-styles.png`](styles/apercu-4-styles.png).
+* **`styles/` : 4 autres designs, tous différents** (éditorial noir et blanc, rail d'icônes rose et blanc, menu photo
+  vert jade et blanc, cockpit argenté et noir), chacun avec sa navigation, sa disposition et ses cotes.
+  Voir [`styles/README.md`](styles/README.md) et l'aperçu [`styles/apercu-4-styles.png`](styles/apercu-4-styles.png).
 * **Parc haut de gamme** : les maquettes montrent 5 marques de prestige (Bugatti, Ferrari, Lamborghini, Rolls-Royce,
   Bentley), 12 modèles chacune, avec des tarifs journaliers adaptés. Voir la section 6.
 

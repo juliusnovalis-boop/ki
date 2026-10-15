@@ -26,6 +26,7 @@ ASSETS = DESIGN / "assets"
 SVG_DIR = ICI / "icones-svg"
 
 from themes import THEMES
+import designs as D
 
 T = THEMES[0]                # thème courant (changé par appliquer_theme)
 ASSET_URL = "../assets"      # chemin des images vu depuis les fichiers HTML
@@ -97,7 +98,7 @@ def fenetre(titre_fen, largeur, hauteur, corps, boutons=("min", "max", "fermer")
     }
     for i, b in enumerate(reversed(boutons)):
         ctrl += f'<div class="ctrl" style="right:{i * 46}px">{glyphes[b]}</div>'
-    return f"""<div class="fenetre" id="fenetre" style="width:{largeur}px">
+    return f"""<div class="fenetre d-{T.get('design', 'bleu')}" id="fenetre" style="width:{largeur}px">
 <div class="barre-titre">{ICONE_FORM}<span class="txt">{e(titre_fen)}</span>{ctrl}</div>
 <div class="ecran" id="ecran" style="width:{largeur}px;height:{hauteur}px">
 {corps}
@@ -186,7 +187,8 @@ def carte(nom, titre, x, y, w, h, interieur="", actions=(), info=None, icone=Non
             f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], T["icone"], 16)}</div>' for a in actions) + "</div>"
     tx = 48 if icone else 20
     ico = f'<div class="abs" style="left:20px;top:16px">{svg(icone, T["icone"], 18)}</div>' if icone else ""
-    inf = f'<div class="info" style="left:{tx + 10 + int(len(titre) * 8.6)}px">{e(info)}</div>' if info else ""
+    k = {"a": 10.9, "d": 10.4}.get(T.get("design"), 8.6)  # largeur moyenne d'une lettre du titre
+    inf = f'<div class="info" style="left:{tx + 14 + int(len(titre) * k)}px">{e(info)}</div>' if info else ""
     return (f'<div class="carte" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px" {acc(nom, "Rectangle")}>'
             f'<div class="bande"></div>{ico}<div class="titre-c" style="left:{tx}px">{e(titre)}</div>{inf}{act}'
             f'<div class="trait"></div>{interieur}</div>')
@@ -280,6 +282,8 @@ def stats():
 
 
 def ecran_tableau():
+    if T["design"] != "bleu":
+        return D.fn("tableau")()
     ca, top = stats()
     (k1, p1), (k2, p2), (k3, p3) = T["kpi"]
     kpis = [("CA", "Chiffre d'affaires", fcfa(ca), "FCFA", "sur 25 réservations", "wallet", k1, p1),
@@ -327,6 +331,8 @@ def flotte_carburant():
 
 
 def ecran_reservations():
+    if T["design"] != "bleu":
+        return D.fn("reservations")()
     lw, iw = 104, 470
     cw = (CW - 48 - 16) // 2
     r1 = DONNEES["Reservation"][0]
@@ -363,6 +369,8 @@ def ecran_reservations():
 
 def ecran_fiche(cle, titre, sous_titre, titre_fiche, icone, champs, titre_liste, cols, lignes, total, compteur, info,
                 fiche_w=520, grande_liste=True):
+    if T["design"] != "bleu":
+        return D.fn("fiche")(cle, titre_fiche, icone, champs, titre_liste, cols, lignes, total, compteur, info, grande_liste)
     y0 = 132
     lw = 130
     iw = fiche_w - 40 - lw
@@ -441,6 +449,8 @@ def ecran_modeles():
 
 
 def ecran_login():
+    if T["design"] != "bleu":
+        return D.fn("login")()
     lw, lh = 880, 500
     fx = 470
     corps = f"""
@@ -516,6 +526,9 @@ def assets_jobs(tmp):
     def rgba(al):
         return f"rgba({v[0]},{v[1]},{v[2]},{al})"
 
+    if T["design"] != "bleu":
+        D.photos_jobs(photo, H, W)
+        return jobs
     voile_b = f"linear-gradient(90deg, {rgba(.97)} 0%, {rgba(.92)} 30%, {rgba(.55)} 58%, {rgba(.18)} 100%)"
     for cle, (src, pos, h) in BANDEAUX.items():
         photo(f"photos/bandeau-{cle}.jpg", BW, h, src, pos, voile_b, sat)
@@ -531,12 +544,14 @@ def cm(px):
     return f"{px / 37.795:.2f}".replace(".", ",")
 
 
-def ecrire_cotes(cotes):
+def ecrire_cotes(cotes, chemin, dossier_png="maquettes/png"):
     L = ["# Cotes des contrôles", "",
          "Positions et tailles en **centimètres**, à saisir dans la feuille de propriétés d'Access "
          "(onglet *Format* : `Gauche`, `Haut`, `Largeur`, `Hauteur`).", "",
-         "* **Menu** : mesurées depuis le coin haut-gauche du formulaire `Menu` (41,49 × 20,74 cm).",
-         f"* **Autres écrans** : mesurées depuis le coin haut-gauche du **sous-formulaire** ({cm(CW)} × {cm(CH)} cm).",
+         "* **Menu** : mesurées depuis le coin haut-gauche du formulaire `Menu` (41,49 × 20,74 cm, sans la barre de titre).",
+         (f"* **Autres écrans** : mesurées depuis le coin haut-gauche du **sous-formulaire** ({cm(CW)} × {cm(CH)} cm)."
+          if dossier_png == "maquettes/png" else
+          "* **Autres écrans** : mesurées depuis le coin haut-gauche du **sous-formulaire** (position et taille : ligne `Sous_Formulaire` du formulaire Menu)."),
          "* Les contrôles placés dans une carte sont donnés en position absolue dans le sous-formulaire.",
          "* Fichier généré par `outils/generer.py`.", ""]
 
@@ -556,8 +571,8 @@ def ecrire_cotes(cotes):
         if fic == "01-tableau-de-bord":
             L += ["## Formulaire « Menu » (commun à tous les écrans)", ""] + table([i for i in items if i["zone"] == "ecran"])
         zone = "ecran" if fic == "00-connexion" else "contenu"
-        L += [f"## {titre}", "", f"Maquette : `maquettes/png/{fic}.png`", ""] + table([i for i in items if i["zone"] == zone])
-    (DESIGN / "COTES.md").write_text("\n".join(L))
+        L += [f"## {titre}", "", f"Maquette : `{dossier_png}/{fic}.png`", ""] + table([i for i in items if i["zone"] == zone])
+    chemin.write_text("\n".join(L))
 
 
 def appliquer_theme(t):
@@ -577,6 +592,7 @@ def appliquer_theme(t):
 
 
 def main():
+    D.g = sys.modules[__name__]
     choix = sys.argv[1:]                     # ex. : python3 generer.py rose-blanc
     tmp = Path(tempfile.mkdtemp(prefix="rentalcar-"))
     jobs, ecr = [], []
@@ -597,8 +613,12 @@ def main():
     if r.returncode:
         sys.exit(r.returncode)
     cotes = json.loads(cf.read_text())
-    if "01-tableau-de-bord" in cotes:        # les cotes sont les mêmes pour tous les styles
-        ecrire_cotes(cotes)
+    for t in THEMES:
+        pre = "" if t["cle"] == "bleu" else t["cle"] + "/"
+        part = {k[len(pre):]: v for k, v in cotes.items() if (k.startswith(pre) if pre else "/" not in k)}
+        if part:
+            chemin = DESIGN / "COTES.md" if not pre else DESIGN / t["dossier"] / "COTES.md"
+            ecrire_cotes(part, chemin, "maquettes/png" if not pre else "png")
 
 
 if __name__ == "__main__":

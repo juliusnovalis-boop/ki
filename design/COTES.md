@@ -2,7 +2,7 @@
 
 Positions et tailles en **centimètres**, à saisir dans la feuille de propriétés d'Access (onglet *Format* : `Gauche`, `Haut`, `Largeur`, `Hauteur`).
 
-* **Menu** : mesurées depuis le coin haut-gauche du formulaire `Menu` (41,49 × 20,74 cm).
+* **Menu** : mesurées depuis le coin haut-gauche du formulaire `Menu` (41,49 × 20,74 cm, sans la barre de titre).
 * **Autres écrans** : mesurées depuis le coin haut-gauche du **sous-formulaire** (35,67 × 19,26 cm).
 * Les contrôles placés dans une carte sont donnés en position absolue dans le sous-formulaire.
 * Fichier généré par `outils/generer.py`.
