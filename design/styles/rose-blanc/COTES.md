@@ -37,7 +37,7 @@ Maquette : `png/00-connexion.png`
 | `Btn_Quitter` | Bouton | 1,01 | 19,31 | 0,69 | 0,69 |
 | `Entete` | Rectangle | 2,75 | 0,00 | 38,74 | 1,91 |
 | `Lbl_Titre_Page` | Étiquette | 3,39 | 0,26 | 4,71 | 0,82 |
-| `Date_Heure` | Zone de texte | 3,39 | 1,16 | 8,04 | 0,45 |
+| `Date_Heure` | Zone de texte | 3,39 | 1,16 | 6,88 | 0,45 |
 | `Btn_Avatar` | Bouton (ellipse) | 36,30 | 0,48 | 0,95 | 0,95 |
 | `Utilisateur` | Étiquettes | 37,52 | 0,50 | 3,07 | 0,85 |
 | `Panneau_Photo` | Image (b-panneau-tableau.jpg) | 33,02 | 1,91 | 8,47 | 18,84 |

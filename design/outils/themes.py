@@ -37,7 +37,7 @@ THEMES = [
         "btn-bordure": "#C6D4EE", "montant": "#EAF1FD", "montant-bordure": "#C6D4EE", "montant-txt": "#1E40AF",
         "accent": "#2563EB", "liste-bordure": "#B9C9E6",
     }, kpi=[("#1E40AF", "#3F5BBE"), ("#2563EB", "#4B7FEF"), ("#3B82F6", "#5C97F8")],
-        design="bleu", icone="#2563EB", icone_titre="#1E3A8A", nav_ico="#AFC3F0", nav_ico_actif="#1E3A8A", voile=(30, 58, 138)),
+        societe="RENTAL GABON CAR", photos="", design="bleu", icone="#2563EB", icone_titre="#1E3A8A", nav_ico="#AFC3F0", nav_ico_actif="#1E3A8A", voile=(30, 58, 138)),
 
     # ------------------------------------------------------------------ noir & blanc
     theme("noir-blanc", "Noir et blanc", "styles/noir-blanc", {
@@ -48,7 +48,7 @@ THEMES = [
         "lecture-bordure": "#DEDEDE", "liste-trait": "#DDDDDD", "sep": "#EEEEEE",
         "etiq": "#4A4A4A", "gris": "#6E6E6E", "texte": "#111111", "texte2": "#1C1C1C", "lecture-txt": "#333333",
     }, kpi=[("#0D0D0D", "#2A2A2A"), ("#262626", "#404040"), ("#404040", "#5A5A5A")],
-        design="a", icone="#111111", icone_titre="#111111", nav_ico="#BDBDBD", nav_ico_actif="#0D0D0D", voile=(13, 13, 13),
+        societe="ONYX CAR", photos="onyx", design="a", icone="#111111", icone_titre="#111111", nav_ico="#BDBDBD", nav_ico_actif="#0D0D0D", voile=(13, 13, 13),
         photo_filtre="grayscale(1) contrast(1.05)"),
 
     # ------------------------------------------------------------------ rose & blanc
@@ -59,7 +59,7 @@ THEMES = [
         "accent": "#DB2777", "liste-bordure": "#EBB8CF", "sep": "#F8EAF0", "lecture": "#FAF5F7", "lecture-bordure": "#EEDFE6",
         "danger": "#B91C1C", "danger-bordure": "#E3A3A3",
     }, kpi=[("#9D174D", "#B53D6F"), ("#DB2777", "#E35491"), ("#EC4899", "#F06DAC")],
-        design="b", icone="#DB2777", icone_titre="#9D174D", nav_ico="#F6B5D3", nav_ico_actif="#9D174D", voile=(131, 24, 67)),
+        societe="TIFFANY CAR", photos="tiffany", design="b", icone="#DB2777", icone_titre="#9D174D", nav_ico="#F6B5D3", nav_ico_actif="#9D174D", voile=(131, 24, 67)),
 
     # ------------------------------------------------------------------ vert jade & blanc
     theme("vert-jade-blanc", "Vert jade et blanc", "styles/vert-jade-blanc", {
@@ -68,7 +68,7 @@ THEMES = [
         "btn-bordure": "#BCE0D0", "montant": "#E2F5EC", "montant-bordure": "#BCE0D0", "montant-txt": "#047857",
         "accent": "#00A86B", "liste-bordure": "#A8D6C2", "sep": "#E6F2EC", "lecture": "#F4F8F6", "lecture-bordure": "#DCE8E2",
     }, kpi=[("#065F46", "#2A7A63"), ("#00A86B", "#2DBA87"), ("#10B981", "#3CC99A")],
-        design="c", icone="#00A86B", icone_titre="#065F46", nav_ico="#9FDCC3", nav_ico_actif="#064E3B", voile=(6, 78, 59)),
+        societe="JADE MOTORS", photos="jade", design="c", icone="#00A86B", icone_titre="#065F46", nav_ico="#9FDCC3", nav_ico_actif="#064E3B", voile=(6, 78, 59)),
 
     # ------------------------------------------------------------------ argenté & noir (sombre)
     theme("argente-noir", "Argenté et noir", "styles/argente-noir", {
@@ -84,6 +84,6 @@ THEMES = [
         "kpi-lib": "rgba(0,0,0,.62)", "kpi-val": "#0B0C0E",
         "barre-fond": "#202020", "barre-trait": "#2B2B2B", "barre-txt": "#FFFFFF",
     }, kpi=[("#D9DCE0", "#BFC3C9"), ("#C2C6CC", "#A9AEB5"), ("#A9AEB5", "#91969E")],
-        design="d", icone="#C9CDD2", icone_titre="#C9CDD2", nav_ico="#8E939A", nav_ico_actif="#000000", voile=(0, 0, 0),
+        societe="PLATINUM DRIVE", photos="platinum", design="d", icone="#C9CDD2", icone_titre="#C9CDD2", nav_ico="#8E939A", nav_ico_actif="#000000", voile=(0, 0, 0),
         kpi_ico="#0B0C0E", photo_filtre="saturate(.35) contrast(1.05)"),
 ]

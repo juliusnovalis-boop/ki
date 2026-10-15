@@ -14,9 +14,9 @@ Maquette : `png/00-connexion.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Login_Photo` | Image (a-connexion.jpg) | 0,00 | 0,00 | 23,28 | 13,23 |
-| `Logo` | Image + étiquette | 1,06 | 0,95 | 6,38 | 0,69 |
+| `Logo` | Image + étiquette | 1,06 | 0,95 | 3,70 | 0,69 |
 | `Login_Slogan` | Étiquette | 1,06 | 9,53 | 10,58 | 2,01 |
-| `Login_Copyright` | Étiquette | 1,06 | 11,91 | 4,79 | 0,45 |
+| `Login_Copyright` | Étiquette | 1,06 | 11,91 | 3,07 | 0,45 |
 | `Login_Carte` | Rectangle | 13,23 | 1,16 | 9,00 | 10,90 |
 | `Lbl_Titre` | Étiquette | 14,08 | 2,22 | 4,05 | 1,08 |
 | `Txt_Utilisateur` | Zone de texte | 14,08 | 5,40 | 7,30 | 0,90 |
@@ -28,7 +28,7 @@ Maquette : `png/00-connexion.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Entete` | Rectangle | 0,00 | 0,00 | 41,49 | 1,69 |
-| `Logo` | Image + étiquette | 0,74 | 0,56 | 5,93 | 0,58 |
+| `Logo` | Image + étiquette | 0,74 | 0,56 | 3,41 | 0,58 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 7,94 | 0,00 | 4,45 | 1,69 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 12,38 | 0,00 | 3,70 | 1,69 |
 | `BoutonNavigation_clients` | Bouton de navigation | 16,09 | 0,00 | 2,49 | 1,69 |
@@ -49,7 +49,7 @@ Maquette : `png/01-tableau-de-bord.png`
 |---|---|---:|---:|---:|---:|
 | `Bandeau` | Image (a-bandeau-tableau.jpg) | 0,00 | 0,00 | 41,49 | 3,97 |
 | `Bandeau_Titre` | Étiquette | 1,27 | 0,93 | 6,88 | 1,27 |
-| `Bandeau_SousTitre` | Étiquette | 1,32 | 2,35 | 12,81 | 0,45 |
+| `Bandeau_SousTitre` | Étiquette | 1,32 | 2,35 | 10,85 | 0,45 |
 | `Bande_Indicateurs` | Rectangle | 0,85 | 4,60 | 39,79 | 3,07 |
 | `Txt_CA` | Zone de texte | 1,72 | 5,74 | 7,62 | 1,30 |
 | `Txt_Voitures` | Zone de texte | 14,98 | 5,74 | 1,16 | 1,16 |

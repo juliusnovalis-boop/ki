@@ -1,4 +1,4 @@
-# Les 4 designs « camarades »
+# Les 4 projets « camarades »
 
 Quatre maquettes **réellement différentes**, une par camarade. Chacune a sa navigation, sa disposition, ses cartes,
 son écran de connexion et sa façon d'utiliser les photos, en plus de sa palette de couleurs. Les données (parc haut de
@@ -8,19 +8,21 @@ gamme) et le mode d'emploi général (`../README.md`) restent communs.
 
 ![Les 4 écrans de connexion](apercu-connexions.png)
 
-| | Design | Couleurs | Dossier |
-|---|---|---|---|
-| 1 | **Éditorial** | Noir et blanc | [`noir-blanc/`](noir-blanc/png/) |
-| 2 | **Rail d'icônes** | Rose et blanc | [`rose-blanc/`](rose-blanc/png/) |
-| 3 | **Menu photo à droite** | Vert jade et blanc | [`vert-jade-blanc/`](vert-jade-blanc/png/) |
-| 4 | **Cockpit** | Argenté et noir | [`argente-noir/`](argente-noir/png/) |
+| | Entreprise | Design | Couleurs | Dossier | Télécharger |
+|---|---|---|---|---|---|
+| 1 | **ONYX CAR** | Éditorial | Noir et blanc | [`noir-blanc/`](noir-blanc/) | [ONYX-CAR-noir-blanc.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/ONYX-CAR-noir-blanc.zip) |
+| 2 | **TIFFANY CAR** | Rail d'icônes | Rose et blanc | [`rose-blanc/`](rose-blanc/) | [TIFFANY-CAR-rose-blanc.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/TIFFANY-CAR-rose-blanc.zip) |
+| 3 | **JADE MOTORS** | Menu photo à droite | Vert jade et blanc | [`vert-jade-blanc/`](vert-jade-blanc/) | [JADE-MOTORS-vert-jade-blanc.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/JADE-MOTORS-vert-jade-blanc.zip) |
+| 4 | **PLATINUM DRIVE** | Cockpit | Argenté et noir | [`argente-noir/`](argente-noir/) | [PLATINUM-DRIVE-argente-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/PLATINUM-DRIVE-argente-noir.zip) |
 
-Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles de **ce** design, en cm),
-`assets/` (icônes dans les couleurs du style) et `assets/photos/` (photos déjà recadrées et teintées).
+Chaque projet a **son zip** (dossier `projets/` à la racine du dépôt) qui contient : `LISEZMOI.md` (mode d'emploi du design),
+`couleur.md` (toutes les couleurs à saisir dans Access), `COTES.md` (positions et tailles en cm), `png/` (les 8 écrans),
+`assets/` (icônes) et `assets/photos/` (photos de voitures **propres à ce projet**, déjà recadrées).
+Les zips sont produits par `python3 outils/projets.py`, après `outils/generer.py`.
 
 ## Ce qui distingue les 4 designs
 
-| | 1. Éditorial | 2. Rail d'icônes | 3. Menu photo à droite | 4. Cockpit |
+| | 1. ONYX CAR · Éditorial | 2. TIFFANY CAR · Rail d'icônes | 3. JADE MOTORS · Menu photo à droite | 4. PLATINUM DRIVE · Cockpit |
 |---|---|---|---|---|
 | Navigation | Barre noire **en haut**, libellés en majuscules soulignés | **Rail étroit à gauche** : icône + petit libellé | **Menu à droite** sur une photo, carte utilisateur en bas | **Pastilles** centrées en haut, sur la photo |
 | En-tête | Intégré à la barre de navigation | Titre de page + date, avatar à droite | Aucun : titre directement dans la page | Titre blanc posé sur la photo |
@@ -34,7 +36,7 @@ Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles
 
 ## Réaliser chaque design dans Access
 
-### 1. Éditorial (noir et blanc)
+### 1. ONYX CAR · Éditorial (noir et blanc)
 * Formulaire de navigation, disposition **« Onglets horizontaux »**. Barre : Rectangle `#0D0D0D` de 1,69 cm de haut.
   Boutons de navigation : fond `#0D0D0D`, texte `#D4D4D4` en Segoe UI 9 pt **majuscules**, sans bordure ;
   onglet actif : texte blanc gras et un trait blanc de 3 pt dessous (petit rectangle blanc).
@@ -44,7 +46,7 @@ Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles
   Titres en majuscules 9 pt, gras.
 * Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.
 
-### 2. Rail d'icônes (rose et blanc)
+### 2. TIFFANY CAR · Rail d'icônes (rose et blanc)
 * Formulaire de navigation **« Onglets verticaux, à gauche »**, réduit à 2,75 cm de large. Boutons de navigation :
   `Disposition image légende` **Haut** (icône au-dessus du texte), Segoe UI 9 pt, `Forme` **Rectangle arrondi** ;
   onglet actif : fond blanc, texte `#9D174D`.
@@ -54,7 +56,7 @@ Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles
 * Boutons : `Forme` **Rectangle arrondi** (Enregistrer, Supprimer, Se connecter) ou **Ovale** (petits boutons).
 * Connexion : formulaire de 12,70 × 16,40 cm (vertical).
 
-### 3. Menu photo à droite (vert jade et blanc)
+### 3. JADE MOTORS · Menu photo à droite (vert jade et blanc)
 * Formulaire de navigation **« Onglets verticaux, à droite »** (6,88 cm). Derrière les boutons, l'image
   `c-menu-<page>.jpg` (6,88 × 20,74 cm). Boutons de navigation : `Style fond` **Transparent**, texte blanc ;
   onglet actif : fond blanc, texte `#064E3B`.
@@ -62,7 +64,7 @@ Chaque dossier contient `png/` (les 8 écrans), `COTES.md` (positions et tailles
 * Champs : étiquette **au-dessus** de la zone de texte (étiquette 9,5 pt, puis le champ 0,53 cm plus bas).
 * Cartes : Rectangle `#F3FAF7` sans bordure.
 
-### 4. Cockpit (argenté et noir)
+### 4. PLATINUM DRIVE · Cockpit (argenté et noir)
 * Formulaire de navigation **« Onglets horizontaux »**. Propriété **`Image`** du formulaire Menu :
   `d-fond-<page>.jpg` (41,49 × 20,74 cm), `Mode affichage image` **Découpage**. Dans chaque sous-formulaire,
   `Style fond` des sections : **Transparent**, ou la même image en fond.

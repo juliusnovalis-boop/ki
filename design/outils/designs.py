@@ -23,7 +23,7 @@ PHOTOS = {
     "modeles": ("modeles-interieur.jpg", "center 55%", "50% center"),
 }
 TEXTES = {  # (titre, sous-titre) des pages
-    "tableau": ("Bonjour, admin", "Voici l'activité de RENTAL GABON CAR au 28 septembre 2026."),
+    "tableau": ("Bonjour, admin", "Voici l'activité de {nom} au 28 septembre 2026."),
     "reservations": ("Réservations", "25 réservations · 8 en cours aujourd'hui"),
     "clients": ("Clients", "200 clients enregistrés"),
     "voitures": ("Voitures", "60 véhicules de prestige · 5 marques · 3 types de carburant"),
@@ -164,6 +164,7 @@ def a_coquille(actif, corps):
 
 def a_hero(cle, h=A_HERO):
     titre, sous = TEXTES[cle]
+    sous = sous.replace("{nom}", g.NOM_APPLI)
     return (img(f"a-bandeau-{cle}.jpg", 0, 0, g.W, h, "Bandeau")
             + lbl(48, h // 2 - 40, e(titre), "font-family:'Titre',Georgia,serif;font-size:37.33px;color:#FFFFFF", "Bandeau_Titre")
             + lbl(50, h // 2 + 14, e(sous).upper(), "font-size:12px;letter-spacing:2px;color:#D4D4D4", "Bandeau_SousTitre"))
@@ -245,9 +246,9 @@ def a_login():
     lw, lh = 880, 500
     c = f"""
 {img("a-connexion.jpg", 0, 0, lw, lh, "Login_Photo")}
-{lbl(40, 36, g.svg("car-front", "#FFFFFF", 26, 1.8) + "RENTAL GABON CAR", "display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;letter-spacing:3px;color:#FFFFFF", "Logo", "Image + étiquette")}
+{lbl(40, 36, g.svg("car-front", "#FFFFFF", 26, 1.8) + g.NOM_APPLI, "display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;letter-spacing:3px;color:#FFFFFF", "Logo", "Image + étiquette")}
 {lbl(40, 360, "Location de véhicules<br>de prestige à Libreville", "font-family:'Titre',Georgia,serif;font-size:29.33px;line-height:38px;color:#FFFFFF;white-space:normal;width:400px", "Login_Slogan")}
-{lbl(40, 450, "© 2026 RENTAL GABON CAR", "font-size:12px;letter-spacing:1px;color:#BDBDBD", "Login_Copyright")}
+{lbl(40, 450, "© 2026 " + g.NOM_APPLI, "font-size:12px;letter-spacing:1px;color:#BDBDBD", "Login_Copyright")}
 <div class="abs" style="left:500px;top:44px;width:340px;height:412px;background:#FFFFFF;border-top:4px solid #0D0D0D" {acc("Login_Carte", "Rectangle")}></div>
 {lbl(532, 84, "Connexion", "font-family:'Titre',Georgia,serif;font-size:32px;color:#0D0D0D", "Lbl_Titre")}
 {lbl(534, 132, "ESPACE RÉSERVÉ AU PERSONNEL", "font-size:11px;letter-spacing:2px;color:#6E6E6E")}
@@ -290,7 +291,7 @@ def b_coquille(actif, corps, panneau):
 </div>
 <div class="tete-b" {acc("Entete", "Rectangle")}>
   {lbl(24, 10, e(titre), "font-size:22.67px;font-weight:600;color:var(--titre)", "Lbl_Titre_Page")}
-  {lbl(24, 44, "RENTAL GABON CAR · lundi 28 septembre 2026 · 20:06", "font-size:12px;color:var(--gris)", "Date_Heure", "Zone de texte")}
+  {lbl(24, 44, g.NOM_APPLI + " · lundi 28 septembre 2026 · 20:06", "font-size:12px;color:var(--gris)", "Date_Heure", "Zone de texte")}
   {avatar(g.W - B_RAIL - 196, 18, 36)}
   <div class="utilisateur" style="left:{g.W - B_RAIL - 150}px;top:19px" {acc("Utilisateur", "Étiquettes")}><b>admin</b><span>Administrateur</span></div>
 </div>
@@ -311,7 +312,7 @@ def b_panneau(cle, grand=None, unite="", texte="", lignes=()):
     out += lbl(x + 30, y + 62, e(texte), "font-size:16px;color:rgba(255,255,255,.9)", "Panneau_Texte")
     for i, l in enumerate(lignes):
         out += lbl(x + 30, y + 96 + i * 26, l, "font-size:13.33px;color:rgba(255,255,255,.8)")
-    out += lbl(x + 30, g.H - 52, "RENTAL GABON CAR · Libreville", "font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.7)")
+    out += lbl(x + 30, g.H - 52, g.NOM_APPLI + " · Libreville", "font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.7)")
     return out
 
 
@@ -387,7 +388,7 @@ def b_login():
 <div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:var(--surface)" {acc("Login_Fond", "Section Détail")}></div>
 {img("b-connexion.jpg", 0, 0, lw, 220, "Login_Photo")}
 <div class="rail-logo" style="left:{lw // 2 - 36}px;top:184px;width:72px;height:72px;border-radius:18px;box-shadow:0 0 0 6px #FFFFFF" {acc("Logo", "Bouton arrondi + image")}>{g.svg("car-front", T("menu"), 34, 1.8)}</div>
-{lbl(0, 276, "RENTAL GABON CAR", f"width:{lw}px;text-align:center;font-size:18.67px;font-weight:600;letter-spacing:1px;color:var(--titre)", "Lbl_Titre")}
+{lbl(0, 276, g.NOM_APPLI, f"width:{lw}px;text-align:center;font-size:18.67px;font-weight:600;letter-spacing:1px;color:var(--titre)", "Lbl_Titre")}
 {lbl(0, 308, "Location de véhicules de prestige à Libreville", f"width:{lw}px;text-align:center;font-size:13.33px;color:var(--gris)")}
 <div class="etiq" style="left:60px;top:348px">Nom d'utilisateur</div>
 <div class="champ" style="left:60px;top:376px;width:360px;height:36px;line-height:34px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
@@ -415,7 +416,7 @@ def c_coquille(actif, corps):
                 f'{acc("BoutonNavigation_" + cle, "Bouton de navigation")}>{g.svg(ico, T("nav_ico_actif") if on else "#FFFFFF", 18)}{e(lib)}</div>')
     c = f"""
 {img(f"c-menu-{actif}.jpg", x0, 0, C_MENU, g.H, "Menu_Fond")}
-<div class="abs" style="left:{x0 + 24}px;top:28px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", "#FFFFFF", 26, 1.8)}RENTAL GABON CAR</div>
+<div class="abs" style="left:{x0 + 24}px;top:28px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", "#FFFFFF", 26, 1.8)}{g.NOM_APPLI}</div>
 {lbl(x0 + 26, 64, "Location de prestige · Libreville", "font-size:12px;color:rgba(255,255,255,.75)")}
 {lbl(x0 + 28, 98, "NAVIGATION", "font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.6)")}
 {nav}
@@ -429,6 +430,7 @@ def c_coquille(actif, corps):
 
 def c_titre(cle):
     titre, sous = TEXTES[cle]
+    sous = sous.replace("{nom}", g.NOM_APPLI)
     cw = g.W - C_MENU
     return (lbl(32, 24, e(titre), "font-size:29.33px;font-weight:600;color:var(--titre)", "Lbl_Titre_Page")
             + lbl(34, 68, e(sous), "font-size:14.67px;color:var(--gris)", "Lbl_SousTitre")
@@ -514,7 +516,7 @@ def c_login():
     c = f"""
 <div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:var(--surface)" {acc("Login_Fond", "Section Détail")}></div>
 {img("c-connexion.jpg", 0, 0, lw, 300, "Login_Photo")}
-{lbl(40, 34, g.svg("car-front", "#FFFFFF", 28, 1.8) + "RENTAL GABON CAR", "display:flex;align-items:center;gap:10px;font-size:18.67px;font-weight:600;color:#FFFFFF", "Logo", "Image + étiquette")}
+{lbl(40, 34, g.svg("car-front", "#FFFFFF", 28, 1.8) + g.NOM_APPLI, "display:flex;align-items:center;gap:10px;font-size:18.67px;font-weight:600;color:#FFFFFF", "Logo", "Image + étiquette")}
 {lbl(40, 196, "Bienvenue", "font-size:32px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
 {lbl(42, 244, "Location de véhicules de prestige à Libreville", "font-size:14.67px;color:rgba(255,255,255,.9)")}
 <div class="etiq-haut" style="left:40px;top:336px">Nom d'utilisateur</div>
@@ -524,7 +526,7 @@ def c_login():
 <div class="btn primaire" style="left:600px;top:358px;width:240px;height:36px" {acc("Btn_Connexion", "Bouton")}>Se connecter</div>
 <div class="abs" style="left:40px;top:430px;width:800px;height:1px;background:var(--carte-bordure)"></div>
 {lbl(40, 448, "Mot de passe oublié ? Contactez l'administrateur.", "font-size:12px;color:var(--gris)")}
-{lbl(840 - 160, 448, "© 2026 RENTAL GABON CAR", "font-size:12px;color:var(--gris);width:160px;text-align:right")}
+{lbl(840 - 160, 448, "© 2026 " + g.NOM_APPLI, "font-size:12px;color:var(--gris);width:160px;text-align:right")}
 """
     return g.fenetre(g.NOM_APPLI + " - Connexion", lw, lh, c, boutons=("fermer",))
 
@@ -549,7 +551,7 @@ def d_coquille(actif, corps):
         x += w + 6
     c = f"""
 {img(f"d-fond-{actif}.jpg", 0, 0, g.W, g.H, "Image_Fond")}
-<div class="abs" style="left:32px;top:22px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:2px;color:#E8EAED" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", "#E8EAED", 26, 1.8)}RENTAL GABON CAR</div>
+<div class="abs" style="left:32px;top:22px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:2px;color:#E8EAED" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", "#E8EAED", 26, 1.8)}{g.NOM_APPLI}</div>
 {nav}
 {avatar(g.W - 104, 20, 32)}
 <div class="abs" style="left:{g.W - 56}px;top:26px" {acc("Btn_Quitter", "Bouton")}>{g.svg("power", "#C9CDD2", 20)}</div>
@@ -560,6 +562,7 @@ def d_coquille(actif, corps):
 
 def d_titre(cle):
     titre, sous = TEXTES[cle]
+    sous = sous.replace("{nom}", g.NOM_APPLI)
     return (lbl(32, 18, e(titre), "font-size:29.33px;font-weight:600;color:#FFFFFF", "Lbl_Titre_Page")
             + lbl(34, 60, e(sous), "font-size:13.33px;letter-spacing:.5px;color:#AEB3B9", "Lbl_SousTitre")
             + f'<div class="abs" style="right:32px;top:32px;font-size:13.33px;color:#AEB3B9" {acc("Date_Heure", "Zone de texte")}>lundi 28 septembre 2026 · 20:06</div>')
@@ -653,7 +656,7 @@ def d_login():
 {img("d-connexion.jpg", 0, 0, lw, lh, "Login_Photo")}
 <div class="abs" style="left:{cx}px;top:48px;width:400px;height:424px;background:#16181B;border:1px solid #3A3E44" {acc("Login_Carte", "Rectangle")}></div>
 <div class="abs" style="left:{cx + 176}px;top:76px" {acc("Logo", "Image")}>{g.svg("car-front", "#C9CDD2", 48, 1.5)}</div>
-{lbl(cx, 132, "RENTAL GABON CAR", "width:400px;text-align:center;font-size:18.67px;font-weight:600;letter-spacing:3px;color:#F1F2F4", "Lbl_Titre")}
+{lbl(cx, 132, g.NOM_APPLI, "width:400px;text-align:center;font-size:18.67px;font-weight:600;letter-spacing:3px;color:#F1F2F4", "Lbl_Titre")}
 {lbl(cx, 162, "LOCATION DE PRESTIGE · LIBREVILLE", "width:400px;text-align:center;font-size:11px;letter-spacing:2px;color:#8B9097")}
 <div class="etiq" style="left:{cx + 40}px;top:200px">Nom d'utilisateur</div>
 <div class="champ" style="left:{cx + 40}px;top:228px;width:320px;height:34px;line-height:32px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
@@ -672,6 +675,27 @@ def fn(nom):
     return globals()[f"{g.T['design']}_{nom}"]
 
 
+# Position (object-position) des photos propres à chaque projet : design -> page -> position
+POS_PROPRES = {
+    "a": {"tableau": "center 64%", "reservations": "center 42%", "clients": "center 58%", "voitures": "center 62%",
+          "marques": "center 40%", "carburants": "center 74%", "modeles": "center 50%", "connexion": "40% center"},
+    "b": {"tableau": "center 78%", "reservations": "center 60%", "clients": "center 55%", "voitures": "center 60%",
+          "marques": "center 50%", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 60%"},
+    "c": {"tableau": "center 60%", "reservations": "center 55%", "clients": "center 55%", "voitures": "center 60%",
+          "marques": "center 50%", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 62%"},
+    "d": {"tableau": "center center", "reservations": "center center", "clients": "center center", "voitures": "center center",
+          "marques": "center center", "carburants": "center center", "modeles": "center center", "connexion": "70% center"},
+}
+
+
+def source(cle, src, pos):
+    """Photo propre au projet (photos/<dossier>/<cle>.jpg) si elle existe, sinon la photo commune."""
+    dos = g.T.get("photos")
+    if dos and (g.ICI / "photos" / dos / f"{cle}.jpg").exists():
+        return f"{dos}/{cle}.jpg", POS_PROPRES[g.T["design"]][cle]
+    return src, pos
+
+
 def photos_jobs(photo, H, W):
     """Photos propres à chaque design (photo = fonction de generer.assets_jobs)."""
     d = g.T["design"]
@@ -683,25 +707,25 @@ def photos_jobs(photo, H, W):
 
     if d == "a":
         for cle, (src, pos, _) in PHOTOS.items():
-            photo(f"photos/a-bandeau-{cle}.jpg", W, A_HERO, src, pos,
+            photo(f"photos/a-bandeau-{cle}.jpg", W, A_HERO, *source(cle, src, pos),
                   f"linear-gradient(90deg, {rgba(.92)} 0%, {rgba(.7)} 35%, {rgba(.25)} 70%, {rgba(.1)} 100%)", filtre)
-        photo("photos/a-connexion.jpg", 880, 500, "login-route-cotiere.jpg", "30% center",
+        photo("photos/a-connexion.jpg", 880, 500, *source("connexion", "login-route-cotiere.jpg", "30% center"),
               f"linear-gradient(90deg, {rgba(.55)} 0%, {rgba(.25)} 50%, {rgba(.55)} 100%), linear-gradient(0deg, {rgba(.7)} 0%, {rgba(0)} 50%)", filtre)
     elif d == "b":
         for cle, (src, _, posv) in PHOTOS.items():
-            photo(f"photos/b-panneau-{cle}.jpg", B_PAN, H - B_TETE, src, posv,
+            photo(f"photos/b-panneau-{cle}.jpg", B_PAN, H - B_TETE, *source(cle, src, posv),
                   f"linear-gradient(180deg, {rgba(.15)} 0%, {rgba(.25)} 40%, {rgba(.85)} 72%, {rgba(.95)} 100%)", filtre)
-        photo("photos/b-connexion.jpg", 480, 220, "login-route-cotiere.jpg", "center 60%",
+        photo("photos/b-connexion.jpg", 480, 220, *source("connexion", "login-route-cotiere.jpg", "center 60%"),
               f"linear-gradient(180deg, {rgba(.15)} 0%, {rgba(.55)} 100%)", filtre)
     elif d == "c":
         for cle, (src, _, posv) in PHOTOS.items():
-            photo(f"photos/c-menu-{cle}.jpg", C_MENU, H, src, posv,
+            photo(f"photos/c-menu-{cle}.jpg", C_MENU, H, *source(cle, src, posv),
                   f"linear-gradient(180deg, {rgba(.97)} 0%, {rgba(.93)} 50%, {rgba(.55)} 68%, {rgba(.45)} 84%, {rgba(.9)} 100%)", filtre)
-        photo("photos/c-connexion.jpg", 880, 300, "login-route-cotiere.jpg", "center 62%",
+        photo("photos/c-connexion.jpg", 880, 300, *source("connexion", "login-route-cotiere.jpg", "center 62%"),
               f"linear-gradient(90deg, {rgba(.9)} 0%, {rgba(.55)} 45%, {rgba(.1)} 100%)", filtre)
     elif d == "d":
         for cle, (src, pos, _) in PHOTOS.items():
-            photo(f"photos/d-fond-{cle}.jpg", W, H, src, pos.replace("center ", "center "),
+            photo(f"photos/d-fond-{cle}.jpg", W, H, *source(cle, src, pos),
                   f"linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.62) 12%, rgba(0,0,0,.72) 40%, rgba(0,0,0,.86) 100%)", filtre)
-        photo("photos/d-connexion.jpg", 880, 520, "login-route-cotiere.jpg", "70% center",
+        photo("photos/d-connexion.jpg", 880, 520, *source("connexion", "login-route-cotiere.jpg", "70% center"),
               "radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.8) 100%)", filtre)

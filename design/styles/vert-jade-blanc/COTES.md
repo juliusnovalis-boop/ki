@@ -15,7 +15,7 @@ Maquette : `png/00-connexion.png`
 |---|---|---:|---:|---:|---:|
 | `Login_Fond` | Section Détail | 0,00 | 0,00 | 23,28 | 13,76 |
 | `Login_Photo` | Image (c-connexion.jpg) | 0,00 | 0,00 | 23,28 | 7,94 |
-| `Logo` | Image + étiquette | 1,06 | 0,90 | 5,85 | 0,74 |
+| `Logo` | Image + étiquette | 1,06 | 0,90 | 4,34 | 0,74 |
 | `Lbl_Titre` | Étiquette | 1,06 | 5,19 | 4,31 | 1,14 |
 | `Txt_Utilisateur` | Zone de texte | 1,06 | 9,47 | 6,88 | 0,95 |
 | `Txt_MotDePasse` | Zone de texte | 8,47 | 9,47 | 6,88 | 0,95 |
@@ -26,7 +26,7 @@ Maquette : `png/00-connexion.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Menu_Fond` | Image (c-menu-tableau.jpg) | 34,61 | 0,00 | 6,88 | 20,74 |
-| `Logo` | Image + étiquette | 35,24 | 0,74 | 5,05 | 0,69 |
+| `Logo` | Image + étiquette | 35,24 | 0,74 | 3,78 | 0,69 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 35,03 | 3,18 | 6,03 | 1,01 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 35,03 | 4,39 | 6,03 | 1,01 |
 | `BoutonNavigation_clients` | Bouton de navigation | 35,03 | 5,61 | 6,03 | 1,01 |
@@ -47,7 +47,7 @@ Maquette : `png/01-tableau-de-bord.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,64 | 5,79 | 1,06 |
-| `Lbl_SousTitre` | Étiquette | 0,90 | 1,80 | 11,03 | 0,53 |
+| `Lbl_SousTitre` | Étiquette | 0,90 | 1,80 | 9,90 | 0,53 |
 | `Date_Heure` | Zone de texte | 27,91 | 0,90 | 5,85 | 0,48 |
 | `Carte_CA` | Rectangle | 0,85 | 3,18 | 10,53 | 2,91 |
 | `Txt_CA` | Zone de texte | 1,43 | 4,18 | 6,24 | 1,08 |

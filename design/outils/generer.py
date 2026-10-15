@@ -577,8 +577,9 @@ def ecrire_cotes(cotes, chemin, dossier_png="maquettes/png"):
 
 def appliquer_theme(t):
     """Choisit le style courant : couleurs, dossiers de sortie et chemin des images."""
-    global T, MAQ, ASSETS, ASSET_URL
+    global T, MAQ, ASSETS, ASSET_URL, NOM_APPLI
     T = t
+    NOM_APPLI = t["societe"]
     if t["dossier"] == "maquettes":          # style bleu : emplacements historiques
         MAQ, ASSETS, ASSET_URL, fonts = DESIGN / "maquettes", DESIGN / "assets", "../assets", "fonts/"
     else:                                     # autres styles : design/styles/<style>/

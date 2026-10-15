@@ -26,7 +26,7 @@ Maquette : `png/00-connexion.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Image_Fond` | Image (d-fond-tableau.jpg) | 0,00 | 0,00 | 41,49 | 20,74 |
-| `Logo` | Image + étiquette | 0,85 | 0,58 | 5,69 | 0,69 |
+| `Logo` | Image + étiquette | 0,85 | 0,58 | 4,97 | 0,69 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 9,10 | 0,48 | 4,50 | 0,95 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 13,76 | 0,48 | 3,86 | 0,95 |
 | `BoutonNavigation_clients` | Bouton de navigation | 17,78 | 0,48 | 2,83 | 0,95 |
@@ -45,7 +45,7 @@ Maquette : `png/01-tableau-de-bord.png`
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 5,79 | 1,06 |
-| `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 10,80 | 0,48 |
+| `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 10,24 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
 | `Carte_CA` | Rectangle | 0,85 | 2,75 | 9,53 | 3,18 |
 | `Txt_CA` | Zone de texte | 1,43 | 3,76 | 5,66 | 0,98 |
