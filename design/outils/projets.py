@@ -30,7 +30,7 @@ DESIGNS = {
             "Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle noir de 0,08 cm collé en haut (le filet). "
             "Titres en majuscules 9 pt, gras.",
             "Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.",
-            "Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo `logo-car-front-26px-FFFFFF.png` (blanc).",
+            "Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo complet `assets/logo-connexion.png` (voir « Logos » plus haut).",
         ],
     },
     "b": {
@@ -46,7 +46,7 @@ DESIGNS = {
             "de texte transparente pour le grand chiffre (40 pt blanc), par exemple `=CpteDom(\"*\";\"Client\")`.",
             "Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle couleur *Accent* de 0,11 cm sur le bord gauche.",
             "Boutons : `Forme` **Rectangle arrondi** (Enregistrer, Supprimer, Se connecter) ou **Ovale** (petits boutons).",
-            "Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo `logo-car-front-34px-9D174D.png` dans un bouton blanc arrondi.",
+            "Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo complet `assets/logo-connexion.png` (carré blanc, icône et nom TIFFANY CAR en une image).",
         ],
     },
     "c": {
@@ -61,7 +61,7 @@ DESIGNS = {
             "Pas d'en-tête : le titre (22 pt, couleur *Titres*) et le sous-titre sont dans chaque sous-formulaire.",
             "Champs : étiquette **au-dessus** de la zone de texte (étiquette 9,5 pt, puis le champ 0,53 cm plus bas).",
             "Cartes : Rectangle couleur *Bande / fond des cartes* sans bordure.",
-            "Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous, logo `logo-car-front-28px-FFFFFF.png` (blanc) sur la photo.",
+            "Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous, logo complet `assets/logo-connexion.png` (blanc) sur la photo.",
         ],
     },
     "d": {
@@ -79,7 +79,7 @@ DESIGNS = {
             "petit trait couleur *Accent* de 1,06 cm sous le titre.",
             "Indicateurs et montant : Rectangles argentés (couleurs *Indicateurs*), texte et icônes noirs.",
             "Connexion : propriété **`Image`** du formulaire de connexion = `assets/photos/d-connexion.jpg`, carte centrée "
-            "(Rectangle couleur *Cartes (fond)*), logo `logo-car-front-48px-C9CDD2.png`.",
+            "(Rectangle couleur *Cartes (fond)*), logo complet `assets/logo-connexion.png` (icône et nom en une image).",
             "La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.",
         ],
     },
@@ -111,6 +111,10 @@ ROLES = [  # (clé css, élément, où le saisir dans Access)
     ("danger", "Bouton Supprimer (texte)", "Bouton Supprimer : *Couleur texte*"),
     ("danger-bordure", "Bouton Supprimer (bordure)", "Bouton Supprimer : *Couleur bordure*"),
 ]
+
+
+def cm(px):
+    return f"{px / 37.795:.2f}".replace(".", ",")
 
 
 def rgb(h):
@@ -158,6 +162,16 @@ def lisezmoi(t, num):
     L = [f"# {t['societe']} · maquettes Access", "",
          f"Design **{num}. {d['nom']}** · couleurs **{t['nom'].lower()}** · application de location de voitures de prestige à Libreville.", "",
          d["resume"], "",
+         "## Logos (une seule image à insérer)", "",
+         "Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleurs) est déjà prêt en PNG transparent. "
+         "Dans Access : **Créer › Contrôle Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position :", "",
+         "| Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |", "|---|---|---:|---:|---:|---:|"]
+    import json
+    lg = json.loads((DESIGN / t["dossier"] / "logos.json").read_text())
+    for ou, lib in [("connexion", "Connexion"), ("menu", "Menu")]:
+        p = lg[ou]
+        L.append(f"| `assets/logo-{ou}.png` | {lib} | {cm(p['x'])} | {cm(p['y'])} | {cm(p['w'])} | {cm(p['h'])} |")
+    L += ["", "Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.", "",
          "## Contenu du dossier", "",
          "| Fichier | Rôle |", "|---|---|",
          "| `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |",
@@ -182,7 +196,7 @@ def verifier(zp, nom, dos):
     z = zipfile.ZipFile(zp)
     assert z.testzip() is None, "zip corrompu"
     dedans = {n[len(nom) + 1:] for n in z.namelist()}
-    attendu = {"LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png"}
+    attendu = {"LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png", "assets/logo-connexion.png", "assets/logo-menu.png"}
     for h in sorted(dos.glob("0*.html")):
         attendu.add(f"png/{h.stem}.png")
         attendu |= {f"assets/{r}" for r in re.findall(r'(?:src="|url\(["\']?)assets/([^"\')]+)', h.read_text())}

@@ -4,6 +4,17 @@ Design **2. Rail d'icônes** · couleurs **rose et blanc** · application de loc
 
 Menu étroit à gauche (icône + petit libellé), panneau photo vertical à droite avec un grand chiffre, boutons arrondis, cartes avec une barre colorée à gauche. Fiches : fiche en haut, liste dessous.
 
+## Logos (une seule image à insérer)
+
+Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleurs) est déjà prêt en PNG transparent. Dans Access : **Créer › Contrôle Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position :
+
+| Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
+|---|---|---:|---:|---:|---:|
+| `assets/logo-connexion.png` | Connexion | 4,66 | 4,71 | 3,39 | 3,25 |
+| `assets/logo-menu.png` | Menu | 0,74 | 0,42 | 1,27 | 1,27 |
+
+Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
+
 ## Contenu du dossier
 
 | Fichier | Rôle |
@@ -24,6 +35,6 @@ Menu étroit à gauche (icône + petit libellé), panneau photo vertical à droi
 * Panneau photo : contrôle Image `assets/photos/b-panneau-<page>.jpg` (8,47 × 18,84 cm) collé à droite. Par-dessus, une zone de texte transparente pour le grand chiffre (40 pt blanc), par exemple `=CpteDom("*";"Client")`.
 * Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle couleur *Accent* de 0,11 cm sur le bord gauche.
 * Boutons : `Forme` **Rectangle arrondi** (Enregistrer, Supprimer, Se connecter) ou **Ovale** (petits boutons).
-* Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo `logo-car-front-34px-9D174D.png` dans un bouton blanc arrondi.
+* Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo complet `assets/logo-connexion.png` (carré blanc, icône et nom TIFFANY CAR en une image).
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.

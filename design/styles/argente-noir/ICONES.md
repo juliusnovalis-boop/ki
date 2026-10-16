@@ -4,6 +4,17 @@ Toutes les icônes dessinées sur les 8 écrans, déjà exportées en PNG transp
 
 Dans Access : propriété **Image** du bouton (ou contrôle **Image**), `Mode affichage image` **Découpage**, `Type image` **Incorporé**. Les icônes blanches ou claires sont prévues pour un fond foncé (menu, photo, pastille).
 
+## Logos complets (une seule image)
+
+Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les bonnes couleurs) est fourni en **une seule image** PNG transparente : insérer un contrôle **Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position et la taille ci-dessous (feuille de propriétés, onglet *Format*).
+
+| Fichier | Où | Gauche | Haut | Largeur | Hauteur | Remplace |
+|---|---|---:|---:|---:|---:|---|
+| `logo-connexion.png` | Formulaire de connexion | 9,05 | 2,01 | 5,19 | 2,14 | `Logo` (icône) et `Lbl_Titre` (nom) |
+| `logo-menu.png` | Formulaire Menu | 0,85 | 0,58 | 4,97 | 0,69 | `Logo` (icône + nom) |
+
+## Toutes les icônes
+
 | Fichier | Taille | Couleur | Contrôle(s) | Écran(s) |
 |---|---|---|---|---|
 | `bouton-chevron-first-16px-C9CDD2.png` | 16 × 16 px | `#C9CDD2` | `Btn_Premier` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |

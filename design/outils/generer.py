@@ -585,6 +585,23 @@ class Releve(HTMLParser):
             self.pile.pop()
 
 
+# Logo complet (une seule image) : sélecteurs des éléments repris, marge (anneau du design B), fond de l'aperçu
+LOGOS = {
+    "a": {"connexion": (['[data-acc="Logo"]'], 0, "#2B2D31"), "menu": (['[data-acc="Logo"]'], 0, "#0D0D0D")},
+    "b": {"connexion": (['[data-acc="Logo"]', '[data-acc="Lbl_Titre"]'], 6, "#F6E3EC"), "menu": (['[data-acc="Logo"]'], 0, "#9D174D")},
+    "c": {"connexion": (['[data-acc="Logo"]'], 0, "#064E3B"), "menu": (['[data-acc="Logo"]'], 0, "#064E3B")},
+    "d": {"connexion": (['[data-acc="Logo"]', '[data-acc="Lbl_Titre"]'], 0, "#16181B"), "menu": (['[data-acc="Logo"]'], 0, "#0B0C0E")},
+}
+
+
+def logos_jobs(t):
+    out = []
+    for ou, fic in [("connexion", "00-connexion"), ("menu", "01-tableau-de-bord")]:
+        sels, marge, _ = LOGOS[t["design"]][ou]
+        out.append({"html": (MAQ / f"{fic}.html").as_uri(), "sels": sels, "marge": marge, "out": str(ASSETS / f"logo-{ou}.png")})
+    return out
+
+
 def releve_icones(pages):
     """pages : [(fichier écran, titre, html)] -> {(nom, couleur, taille, trait): infos}"""
     icones = {}
@@ -618,6 +635,11 @@ def lum(hexa):
 def planche_icones(icones, tmp):
     """Page HTML montrant toutes les icônes du design (fond sombre pour les icônes claires)."""
     cases = []
+    for ou in ("connexion", "menu"):
+        fond = LOGOS[T["design"]][ou][2]
+        cases.append(f'<div class="c logo"><div class="i" style="background:{fond};width:auto;height:auto;padding:12px">'
+                     f'<img src="{(ASSETS / f"logo-{ou}.png").as_uri()}" style="display:block"></div>'
+                     f'<div class="n"><b>logo-{ou}.png</b><br>Logo complet ({"page de connexion" if ou == "connexion" else "menu"})</div></div>')
     for (name, color, size, stroke), i in sorted(icones.items(), key=lambda kv: kv[1]["fichier"]):
         fond = "#2B2D31" if lum(color) > .62 else "#FFFFFF"
         cases.append(f'<div class="c"><div class="i" style="background:{fond}">{svg(name, color, size, stroke)}</div>'
@@ -627,7 +649,7 @@ def planche_icones(icones, tmp):
                  '#a{display:grid;grid-template-columns:repeat(5,250px);gap:10px;padding:16px;background:#ECEDEF;width:1290px}'
                  '.c{background:#fff;border:1px solid #D6D8DC;padding:8px;display:flex;align-items:center;gap:10px}'
                  '.i{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border:1px solid #E1E3E6;flex:none}'
-                 '.n{word-break:break-all;color:#333}</style></head><body><div id="a">' + "".join(cases) + '</div></body></html>')
+                 '.n{word-break:break-all;color:#333}.logo{grid-column:span 5;gap:16px}.logo .n{word-break:normal}</style></head><body><div id="a">' + "".join(cases) + '</div></body></html>')
     return {"html": p.as_uri(), "out": str(MAQ / "apercu-icones.png"), "w": 1322, "h": 200, "transparent": False, "sel": "#a"}
 
 
@@ -637,6 +659,8 @@ def ecrire_icones_md(icones):
          "(aperçu : `apercu-icones.png`).", "",
          "Dans Access : propriété **Image** du bouton (ou contrôle **Image**), `Mode affichage image` **Découpage**, "
          "`Type image` **Incorporé**. Les icônes blanches ou claires sont prévues pour un fond foncé (menu, photo, pastille).", "",
+         "@@LOGOS@@", "",
+         "## Toutes les icônes", "",
          "| Fichier | Taille | Couleur | Contrôle(s) | Écran(s) |", "|---|---|---|---|---|"]
     for (name, color, size, stroke), i in sorted(icones.items(), key=lambda kv: kv[1]["fichier"]):
         ctx = ", ".join(f"`{c}`" for c in i["ctx"]) or "icône décorative (titre de carte ou bandeau)"
@@ -644,9 +668,30 @@ def ecrire_icones_md(icones):
     (MAQ / "ICONES.md").write_text("\n".join(L) + "\n")
 
 
+def ecrire_logos(t, maq, assets, pos):
+    """Section « Logos » de ICONES.md et logos.json (position en cm dans le formulaire)."""
+    remplace = {"a": ("`Logo` (icône + nom)", "`Logo` (icône + nom)"),
+                "b": ("`Logo` (bouton blanc arrondi + icône) et `Lbl_Titre` (nom)", "`Logo` (bouton blanc arrondi + icône)"),
+                "c": ("`Logo` (icône + nom)", "`Logo` (icône + nom)"),
+                "d": ("`Logo` (icône) et `Lbl_Titre` (nom)", "`Logo` (icône + nom)")}[t["design"]]
+    L = ["## Logos complets (une seule image)", "",
+         "Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les bonnes couleurs) est fourni en **une seule image** "
+         "PNG transparente : insérer un contrôle **Image**, choisir le fichier, `Mode affichage image` **Découpage**, "
+         "puis saisir la position et la taille ci-dessous (feuille de propriétés, onglet *Format*).", "",
+         "| Fichier | Où | Gauche | Haut | Largeur | Hauteur | Remplace |", "|---|---|---:|---:|---:|---:|---|"]
+    data = {}
+    for k, (ou, lib) in enumerate([("connexion", "Formulaire de connexion"), ("menu", "Formulaire Menu")]):
+        p = pos[str(assets / f"logo-{ou}.png")]
+        data[ou] = p
+        L.append(f"| `logo-{ou}.png` | {lib} | {cm(p['x'])} | {cm(p['y'])} | {cm(p['w'])} | {cm(p['h'])} | {remplace[k]} |")
+    (maq / "logos.json").write_text(json.dumps(data))
+    f = maq / "ICONES.md"
+    f.write_text(f.read_text().replace("@@LOGOS@@", "\n".join(L)))
+
+
 def controle(t, icones, pages, ASSETS):
     """Vérifie que chaque icône et chaque image utilisée par les écrans existe dans assets/."""
-    manque = []
+    manque = [f for f in ("logo-connexion.png", "logo-menu.png") if not (ASSETS / f).exists()]
     for (name, color, size, stroke), i in icones.items():
         if not (ASSETS / i["fichier"]).exists():
             manque.append(i["fichier"])
@@ -714,7 +759,7 @@ def main():
     D.g = sys.modules[__name__]
     choix = sys.argv[1:]                     # ex. : python3 generer.py rose-blanc
     tmp = Path(tempfile.mkdtemp(prefix="rentalcar-"))
-    jobs, ecr, verif = [], [], []
+    jobs, ecr, verif, logos = [], [], [], []
     for t in THEMES:
         if choix and t["cle"] not in choix:
             continue
@@ -735,17 +780,21 @@ def main():
                 f.unlink()
             icones = releve_icones(pages)
             jobs += assets_jobs(tmp / t["cle"], icones)
+            logos += logos_jobs(t)
             jobs.append(planche_icones(icones, tmp / t["cle"]))
             ecrire_icones_md(icones)
             verif.append((t, icones, pages, MAQ, ASSETS))
     jf = tmp / "jobs.json"
     cf = tmp / "cotes.json"
-    jf.write_text(json.dumps({"assets": jobs, "ecrans": ecr, "cotes": str(cf)}))
+    lf = tmp / "logos.json"
+    jf.write_text(json.dumps({"assets": jobs, "ecrans": ecr, "cotes": str(cf), "logos": logos, "logos_out": str(lf)}))
     r = subprocess.run(["node", str(ICI / "rendre.mjs"), str(jf)], cwd=ICI)
     if r.returncode:
         sys.exit(r.returncode)
+    pos_logos = json.loads(lf.read_text()) if logos else {}
     erreurs = 0
     for t, icones, pages, _maq, dossier_assets in verif:
+        ecrire_logos(t, _maq, dossier_assets, pos_logos)
         m = controle(t, icones, pages, dossier_assets)
         erreurs += len(m)
         print(f"Contrôle {t['societe']} : {len(icones)} icônes" + (" – OK, rien ne manque" if not m else " – MANQUE : " + ", ".join(m)))

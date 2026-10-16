@@ -4,6 +4,17 @@ Design **4. Cockpit** · couleurs **argenté et noir** · application de locatio
 
 Photo de voiture en fond de toute l'application, onglets en pastilles centrés en haut, cartes anthracite, indicateurs argentés empilés. Connexion : carte centrée sur une photo sombre.
 
+## Logos (une seule image à insérer)
+
+Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleurs) est déjà prêt en PNG transparent. Dans Access : **Créer › Contrôle Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position :
+
+| Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
+|---|---|---:|---:|---:|---:|
+| `assets/logo-connexion.png` | Connexion | 9,05 | 2,01 | 5,19 | 2,14 |
+| `assets/logo-menu.png` | Menu | 0,85 | 0,58 | 4,97 | 0,69 |
+
+Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
+
 ## Contenu du dossier
 
 | Fichier | Rôle |
@@ -24,7 +35,7 @@ Photo de voiture en fond de toute l'application, onglets en pastilles centrés e
 * Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), `Style fond` Transparent, texte couleur *Texte du menu* ; onglet actif : fond couleur *Onglet actif (fond)*, texte noir.
 * Cartes : Rectangle couleur *Cartes (fond)*, bordure couleur *Bordure des cartes*, titres en majuscules 9,5 pt, petit trait couleur *Accent* de 1,06 cm sous le titre.
 * Indicateurs et montant : Rectangles argentés (couleurs *Indicateurs*), texte et icônes noirs.
-* Connexion : propriété **`Image`** du formulaire de connexion = `assets/photos/d-connexion.jpg`, carte centrée (Rectangle couleur *Cartes (fond)*), logo `logo-car-front-48px-C9CDD2.png`.
+* Connexion : propriété **`Image`** du formulaire de connexion = `assets/photos/d-connexion.jpg`, carte centrée (Rectangle couleur *Cartes (fond)*), logo complet `assets/logo-connexion.png` (icône et nom en une image).
 * La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.

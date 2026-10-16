@@ -4,6 +4,17 @@ Design **3. Menu photo à droite** · couleurs **vert jade et blanc** · applica
 
 Menu à droite posé sur une photo qui change à chaque page, pas d'en-tête, libellés au-dessus des champs, blocs de couleur pleins. Connexion avec les champs sur une seule ligne.
 
+## Logos (une seule image à insérer)
+
+Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleurs) est déjà prêt en PNG transparent. Dans Access : **Créer › Contrôle Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position :
+
+| Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
+|---|---|---:|---:|---:|---:|
+| `assets/logo-connexion.png` | Connexion | 1,06 | 0,90 | 4,37 | 0,74 |
+| `assets/logo-menu.png` | Menu | 35,24 | 0,74 | 3,78 | 0,69 |
+
+Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
+
 ## Contenu du dossier
 
 | Fichier | Rôle |
@@ -24,6 +35,6 @@ Menu à droite posé sur une photo qui change à chaque page, pas d'en-tête, li
 * Pas d'en-tête : le titre (22 pt, couleur *Titres*) et le sous-titre sont dans chaque sous-formulaire.
 * Champs : étiquette **au-dessus** de la zone de texte (étiquette 9,5 pt, puis le champ 0,53 cm plus bas).
 * Cartes : Rectangle couleur *Bande / fond des cartes* sans bordure.
-* Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous, logo `logo-car-front-28px-FFFFFF.png` (blanc) sur la photo.
+* Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous, logo complet `assets/logo-connexion.png` (blanc) sur la photo.
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.

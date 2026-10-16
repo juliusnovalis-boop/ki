@@ -4,6 +4,17 @@ Design **1. Éditorial** · couleurs **noir et blanc** · application de locatio
 
 Menu en barre noire en haut, grand bandeau photo noir et blanc, gros chiffres à empattements (style magazine), boutons carrés en majuscules. Fiches : liste à gauche, fiche à droite.
 
+## Logos (une seule image à insérer)
+
+Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleurs) est déjà prêt en PNG transparent. Dans Access : **Créer › Contrôle Image**, choisir le fichier, `Mode affichage image` **Découpage**, puis saisir la position :
+
+| Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
+|---|---|---:|---:|---:|---:|
+| `assets/logo-connexion.png` | Connexion | 1,06 | 0,95 | 3,70 | 0,69 |
+| `assets/logo-menu.png` | Menu | 0,74 | 0,56 | 3,41 | 0,58 |
+
+Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
+
 ## Contenu du dossier
 
 | Fichier | Rôle |
@@ -25,6 +36,6 @@ Menu en barre noire en haut, grand bandeau photo noir et blanc, gros chiffres à
 * Bandeau : contrôle Image `assets/photos/a-bandeau-<page>.jpg` (41,49 × 3,97 cm) en haut du sous-formulaire. Titre en **Georgia** 28 pt blanc, sous-titre en majuscules 9 pt.
 * Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle noir de 0,08 cm collé en haut (le filet). Titres en majuscules 9 pt, gras.
 * Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.
-* Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo `logo-car-front-26px-FFFFFF.png` (blanc).
+* Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo complet `assets/logo-connexion.png` (voir « Logos » plus haut).
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.
