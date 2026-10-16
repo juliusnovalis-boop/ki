@@ -68,7 +68,7 @@ def svg(name, color, size=18, stroke=1.75):
     raw = (SVG_DIR / f"{name}.svg").read_text()
     inner = re.search(r"<svg[^>]*>(.*)</svg>", raw, re.S).group(1)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
-            f'stroke="{color}" stroke-width="{stroke}" stroke-linecap="round" stroke-linejoin="round" style="display:block">{inner}</svg>')
+            f'stroke="{color}" stroke-width="{stroke}" stroke-linecap="round" stroke-linejoin="round" style="display:block" data-ico="{name}">{inner}</svg>')
 
 
 def fdate(iso):
@@ -486,7 +486,7 @@ ECRANS = [
 # --------------------------------------------------------------------------
 # Icônes PNG à importer dans Access
 # --------------------------------------------------------------------------
-def assets_jobs(tmp):
+def assets_jobs(tmp, icones=None):
     jobs = []
 
     def add(out, taille, name, color, size, stroke=1.75):
@@ -497,19 +497,23 @@ def assets_jobs(tmp):
                      f'#a{{position:relative;width:{taille}px;height:{taille}px}}</style></head><body><div id="a">{corps}</div></body></html>')
         jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": taille, "h": taille, "transparent": True, "sel": "#a"})
 
-    for _, _, ico in MENU:
+    if icones is not None:                    # designs : exactement les icônes dessinées sur les écrans
+        for (name, color, size, stroke), info in icones.items():
+            add(info["fichier"], size, name, color, size, stroke)
+    for _, _, ico in (MENU if icones is None else []):
         add(f"menu-{ico}.png", 20, ico, T["nav_ico"], 18)
         add(f"menu-{ico}-actif.png", 20, ico, T["nav_ico_actif"], 18)
-    for ico in list(ACTIONS.values()) + ["chevron-first", "chevron-left", "chevron-right", "chevron-last", "power"]:
+    for ico in (list(ACTIONS.values()) + ["chevron-first", "chevron-left", "chevron-right", "chevron-last", "power"] if icones is None else []):
         add(f"bouton-{ico}.png", 16, ico, T["icone_titre"] if ico == "power" else T["icone"], 16)
-    add("date.png", 16, "calendar-range", T["gris"], 15)
-    add("logo-voiture.png", 28, "car-front", T["logo"], 24, 1.8)
-    for ico, col in [("wallet", T["kpi_ico"]), ("car-front", T["kpi_ico"]), ("users", T["kpi_ico"])]:
-        add(f"indicateur-{ico}.png", 24, ico, col, 24)
-    add("bouton-enregistrer.png", 16, "save", T["accent_txt"], 16)
-    add("bouton-supprimer.png", 16, "trash-2", T["danger"], 16)
-    for ico in ["user", "car", "calendar-range", "list", "trophy", "clipboard-list", "tag", "fuel", "layers"]:
-        add(f"carte-{ico}.png", 18, ico, T["icone"], 18)
+    if icones is None:
+        add("date.png", 16, "calendar-range", T["gris"], 15)
+        add("logo-voiture.png", 28, "car-front", T["logo"], 24, 1.8)
+        for ico, col in [("wallet", T["kpi_ico"]), ("car-front", T["kpi_ico"]), ("users", T["kpi_ico"])]:
+            add(f"indicateur-{ico}.png", 24, ico, col, 24)
+        add("bouton-enregistrer.png", 16, "save", T["accent_txt"], 16)
+        add("bouton-supprimer.png", 16, "trash-2", T["danger"], 16)
+        for ico in ["user", "car", "calendar-range", "list", "trophy", "clipboard-list", "tag", "fuel", "layers"]:
+            add(f"carte-{ico}.png", 18, ico, T["icone"], 18)
 
     # Photos : recadrées à la taille exacte et assombries en bleu, prêtes pour Access
     def photo(out, w, h, src, pos, voile, filtre="none"):
@@ -537,6 +541,120 @@ def assets_jobs(tmp):
     photo("photos/login-photo.jpg", 420, 500, "login-route-cotiere.jpg", "80% center",
           f"linear-gradient(180deg, {rgba(.88)} 0%, {rgba(.35)} 38%, {rgba(.25)} 62%, {rgba(.92)} 100%)", sat)
     return jobs
+
+
+# --------------------------------------------------------------------------
+# Relevé des icônes réellement dessinées sur les écrans d'un design
+# --------------------------------------------------------------------------
+from html.parser import HTMLParser
+
+VIDES = {"img", "input", "br", "hr", "meta", "link", "source", "col", "wbr"}
+PREFIXES = [("BoutonNavigation", "menu"), ("Btn_Quitter", "bouton"), ("Btn_", "bouton"), ("Logo", "logo"),
+            ("Pastille", "indicateur"), ("KPI", "indicateur"), ("Carte_CA", "indicateur"), ("Carte_Voitures", "indicateur"),
+            ("Carte_Clients", "indicateur"), ("Bande_Indicateurs", "indicateur"), ("Date", "date"), ("Lbl_", "carte"), ("Carte", "carte")]
+
+
+class Releve(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.pile, self.trouve, self.dans_svg = [], [], 0
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "svg" and "data-ico" in a:
+            ctx = next((x for x in reversed(self.pile) if x), None)
+            self.trouve.append(((a["data-ico"], a["stroke"], int(float(a["width"])), float(a["stroke-width"])), ctx))
+        if self.dans_svg or tag == "svg":
+            self.dans_svg += 1 if tag == "svg" else 0
+            return
+        if tag not in VIDES:
+            self.pile.append(a.get("data-acc"))
+
+    def handle_startendtag(self, tag, attrs):
+        if tag == "svg":
+            self.handle_starttag(tag, attrs)
+            self.dans_svg -= 1
+
+    def handle_endtag(self, tag):
+        if tag == "svg":
+            self.dans_svg -= 1
+            return
+        if self.dans_svg:
+            return
+        if tag not in VIDES and self.pile:
+            self.pile.pop()
+
+
+def releve_icones(pages):
+    """pages : [(fichier écran, titre, html)] -> {(nom, couleur, taille, trait): infos}"""
+    icones = {}
+    for fic, titre, h in pages:
+        r = Releve()
+        r.feed(h)
+        for cle, ctx in r.trouve:
+            i = icones.setdefault(cle, {"ecrans": [], "ctx": []})
+            if titre not in i["ecrans"]:
+                i["ecrans"].append(titre)
+            if ctx and ctx not in i["ctx"]:
+                i["ctx"].append(ctx)
+    noms = set()
+    for (name, color, size, stroke), i in sorted(icones.items(), key=lambda kv: (kv[0][0], kv[0][2])):
+        pre = next((p for c in i["ctx"] for k, p in PREFIXES if c.startswith(k)), "icone")
+        actif = "-actif" if pre == "menu" and color.upper() == T["nav_ico_actif"].upper() else ""
+        f = f"{pre}-{name}{actif}-{size}px-{color.lstrip('#').upper()}.png"
+        while f in noms:
+            f = f.replace(".png", "-b.png")
+        noms.add(f)
+        i["fichier"] = f
+    return icones
+
+
+def lum(hexa):
+    h = hexa.lstrip("#")
+    r, g_, b = (int(h[k:k + 2], 16) for k in (0, 2, 4))
+    return (0.299 * r + 0.587 * g_ + 0.114 * b) / 255
+
+
+def planche_icones(icones, tmp):
+    """Page HTML montrant toutes les icônes du design (fond sombre pour les icônes claires)."""
+    cases = []
+    for (name, color, size, stroke), i in sorted(icones.items(), key=lambda kv: kv[1]["fichier"]):
+        fond = "#2B2D31" if lum(color) > .62 else "#FFFFFF"
+        cases.append(f'<div class="c"><div class="i" style="background:{fond}">{svg(name, color, size, stroke)}</div>'
+                     f'<div class="n">{e(i["fichier"])}</div></div>')
+    p = tmp / "planche-icones.html"
+    p.write_text('<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;font:12px "Open Sans",sans-serif}'
+                 '#a{display:grid;grid-template-columns:repeat(5,250px);gap:10px;padding:16px;background:#ECEDEF;width:1290px}'
+                 '.c{background:#fff;border:1px solid #D6D8DC;padding:8px;display:flex;align-items:center;gap:10px}'
+                 '.i{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border:1px solid #E1E3E6;flex:none}'
+                 '.n{word-break:break-all;color:#333}</style></head><body><div id="a">' + "".join(cases) + '</div></body></html>')
+    return {"html": p.as_uri(), "out": str(MAQ / "apercu-icones.png"), "w": 1322, "h": 200, "transparent": False, "sel": "#a"}
+
+
+def ecrire_icones_md(icones):
+    L = [f"# Icônes · {NOM_APPLI}", "",
+         "Toutes les icônes dessinées sur les 8 écrans, déjà exportées en PNG transparent dans `assets/` "
+         "(aperçu : `apercu-icones.png`).", "",
+         "Dans Access : propriété **Image** du bouton (ou contrôle **Image**), `Mode affichage image` **Découpage**, "
+         "`Type image` **Incorporé**. Les icônes blanches ou claires sont prévues pour un fond foncé (menu, photo, pastille).", "",
+         "| Fichier | Taille | Couleur | Contrôle(s) | Écran(s) |", "|---|---|---|---|---|"]
+    for (name, color, size, stroke), i in sorted(icones.items(), key=lambda kv: kv[1]["fichier"]):
+        ctx = ", ".join(f"`{c}`" for c in i["ctx"]) or "icône décorative (titre de carte ou bandeau)"
+        L.append(f"| `{i['fichier']}` | {size} × {size} px | `{color.upper()}` | {ctx} | {', '.join(i['ecrans'])} |")
+    (MAQ / "ICONES.md").write_text("\n".join(L) + "\n")
+
+
+def controle(t, icones, pages, ASSETS):
+    """Vérifie que chaque icône et chaque image utilisée par les écrans existe dans assets/."""
+    manque = []
+    for (name, color, size, stroke), i in icones.items():
+        if not (ASSETS / i["fichier"]).exists():
+            manque.append(i["fichier"])
+    for fic, titre, h in pages:
+        for ref in re.findall(r'(?:src="|url\(["\']?)(?:\.\./)?assets/([^"\')]+)', h):
+            if not (ASSETS / ref).exists():
+                manque.append(f"{ref} ({titre})")
+    return manque
 
 
 # --------------------------------------------------------------------------
@@ -596,23 +714,43 @@ def main():
     D.g = sys.modules[__name__]
     choix = sys.argv[1:]                     # ex. : python3 generer.py rose-blanc
     tmp = Path(tempfile.mkdtemp(prefix="rentalcar-"))
-    jobs, ecr = [], []
+    jobs, ecr, verif = [], [], []
     for t in THEMES:
         if choix and t["cle"] not in choix:
             continue
         appliquer_theme(t)
-        jobs += assets_jobs(tmp / t["cle"]) if (tmp / t["cle"]).mkdir() is None else []
+        (tmp / t["cle"]).mkdir()
+        pages = []
         for fic, titre, fn in ECRANS:
-            (MAQ / f"{fic}.html").write_text(page(titre, fn()))
+            h = page(titre, fn())
+            pages.append((fic, titre, h))
+            (MAQ / f"{fic}.html").write_text(h)
             ecr.append({"html": (MAQ / f"{fic}.html").as_uri(), "out": str(MAQ / "png" / f"{fic}.png"),
                         "w": 1600, "h": 820, "transparent": False, "sel": "#fenetre",
                         "cotes": fic if t["cle"] == "bleu" else f"{t['cle']}/{fic}"})
+        if t["design"] == "bleu":
+            jobs += assets_jobs(tmp / t["cle"])
+        else:
+            for f in ASSETS.glob("*.png"):        # repartir d'un dossier propre
+                f.unlink()
+            icones = releve_icones(pages)
+            jobs += assets_jobs(tmp / t["cle"], icones)
+            jobs.append(planche_icones(icones, tmp / t["cle"]))
+            ecrire_icones_md(icones)
+            verif.append((t, icones, pages, MAQ, ASSETS))
     jf = tmp / "jobs.json"
     cf = tmp / "cotes.json"
     jf.write_text(json.dumps({"assets": jobs, "ecrans": ecr, "cotes": str(cf)}))
     r = subprocess.run(["node", str(ICI / "rendre.mjs"), str(jf)], cwd=ICI)
     if r.returncode:
         sys.exit(r.returncode)
+    erreurs = 0
+    for t, icones, pages, _maq, dossier_assets in verif:
+        m = controle(t, icones, pages, dossier_assets)
+        erreurs += len(m)
+        print(f"Contrôle {t['societe']} : {len(icones)} icônes" + (" – OK, rien ne manque" if not m else " – MANQUE : " + ", ".join(m)))
+    if erreurs:
+        sys.exit(1)
     cotes = json.loads(cf.read_text())
     for t in THEMES:
         pre = "" if t["cle"] == "bleu" else t["cle"] + "/"

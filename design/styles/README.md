@@ -17,7 +17,7 @@ gamme) et le mode d'emploi général (`../README.md`) restent communs.
 
 Chaque projet a **son zip** (dossier `projets/` à la racine du dépôt) qui contient : `LISEZMOI.md` (mode d'emploi du design),
 `couleur.md` (toutes les couleurs à saisir dans Access), `COTES.md` (positions et tailles en cm), `png/` (les 8 écrans),
-`assets/` (icônes) et `assets/photos/` (photos de voitures **propres à ce projet**, déjà recadrées).
+`ICONES.md` et `apercu-icones.png` (liste et aperçu de **toutes** les icônes), `assets/` (icônes en PNG) et `assets/photos/` (photos de voitures **propres à ce projet**, déjà recadrées).
 Les zips sont produits par `python3 outils/projets.py`, après `outils/generer.py`.
 
 ## Ce qui distingue les 4 designs

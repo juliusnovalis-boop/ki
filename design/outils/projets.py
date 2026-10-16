@@ -30,7 +30,7 @@ DESIGNS = {
             "Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle noir de 0,08 cm collé en haut (le filet). "
             "Titres en majuscules 9 pt, gras.",
             "Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.",
-            "Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite.",
+            "Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo `logo-car-front-26px-FFFFFF.png` (blanc).",
         ],
     },
     "b": {
@@ -46,7 +46,7 @@ DESIGNS = {
             "de texte transparente pour le grand chiffre (40 pt blanc), par exemple `=CpteDom(\"*\";\"Client\")`.",
             "Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle couleur *Accent* de 0,11 cm sur le bord gauche.",
             "Boutons : `Forme` **Rectangle arrondi** (Enregistrer, Supprimer, Se connecter) ou **Ovale** (petits boutons).",
-            "Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo dans un bouton ovale.",
+            "Connexion : formulaire vertical de 12,70 × 16,40 cm, photo `b-connexion.jpg` en haut, logo `logo-car-front-34px-9D174D.png` dans un bouton blanc arrondi.",
         ],
     },
     "c": {
@@ -61,7 +61,7 @@ DESIGNS = {
             "Pas d'en-tête : le titre (22 pt, couleur *Titres*) et le sous-titre sont dans chaque sous-formulaire.",
             "Champs : étiquette **au-dessus** de la zone de texte (étiquette 9,5 pt, puis le champ 0,53 cm plus bas).",
             "Cartes : Rectangle couleur *Bande / fond des cartes* sans bordure.",
-            "Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous.",
+            "Connexion : photo `c-connexion.jpg` en haut (23,28 × 7,94 cm), champs et bouton alignés sur une ligne dessous, logo `logo-car-front-28px-FFFFFF.png` (blanc) sur la photo.",
         ],
     },
     "d": {
@@ -78,6 +78,8 @@ DESIGNS = {
             "Cartes : Rectangle couleur *Cartes (fond)*, bordure couleur *Bordure des cartes*, titres en majuscules 9,5 pt, "
             "petit trait couleur *Accent* de 1,06 cm sous le titre.",
             "Indicateurs et montant : Rectangles argentés (couleurs *Indicateurs*), texte et icônes noirs.",
+            "Connexion : propriété **`Image`** du formulaire de connexion = `assets/photos/d-connexion.jpg`, carte centrée "
+            "(Rectangle couleur *Cartes (fond)*), logo `logo-car-front-48px-C9CDD2.png`.",
             "La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.",
         ],
     },
@@ -161,13 +163,37 @@ def lisezmoi(t, num):
          "| `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |",
          "| `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |",
          "| `COTES.md` | Position et taille de chaque contrôle, en centimètres |",
-         "| `assets/photos/` | Photos de voitures de ce projet, déjà recadrées |",
-         "| `assets/` | Icônes (PNG) pour les boutons, les cartes et le menu |", "",
+         "| `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |",
+         "| `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |",
+         "| `assets/` | Les icônes en PNG transparent, à la taille exacte (logo de la connexion et du menu compris) |",
+         "| `assets/photos/` | Les 8 photos de voitures de ce projet, déjà recadrées à la taille exacte |", "",
+         "> Les icônes **blanches** paraissent vides dans l'explorateur Windows (blanc sur blanc) : elles sont bien là, "
+         "voir `apercu-icones.png`.", "",
          "## Réaliser ce design dans Access", ""]
     L += [f"* {x}" for x in d["guide"]]
     L += ["", "Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, "
           "étiquettes sans bordure, `Effet spécial` **Plat** partout.", ""]
     return "\n".join(L)
+
+
+def verifier(zp, nom, dos):
+    """Contrôle du zip : écrans, photos et icônes utilisés par chaque écran, fichiers d'aide."""
+    import re
+    z = zipfile.ZipFile(zp)
+    assert z.testzip() is None, "zip corrompu"
+    dedans = {n[len(nom) + 1:] for n in z.namelist()}
+    attendu = {"LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png"}
+    for h in sorted(dos.glob("0*.html")):
+        attendu.add(f"png/{h.stem}.png")
+        attendu |= {f"assets/{r}" for r in re.findall(r'(?:src="|url\(["\']?)assets/([^"\')]+)', h.read_text())}
+    attendu |= {f"assets/{f}" for f in re.findall(r"^\| `([^`]+\.png)`", (dos / "ICONES.md").read_text(), re.M)}
+    manque = sorted(attendu - dedans)
+    if manque:
+        raise SystemExit(f"{zp.name} : il manque {manque}")
+    n_ico = sum(1 for f in dedans if f.startswith("assets/") and f.endswith(".png"))
+    n_ph = sum(1 for f in dedans if f.startswith("assets/photos/"))
+    n_ecr = sum(1 for f in dedans if f.startswith("png/"))
+    return f"contrôle OK : {n_ecr} écrans, {n_ph} photos, {n_ico} icônes, rien ne manque"
 
 
 def main():
@@ -180,11 +206,11 @@ def main():
         nom = f"{t['societe'].replace(' ', '-')}-{t['cle']}"
         out = RACINE / "projets" / f"{nom}.zip"
         with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-            fic = ["LISEZMOI.md", "couleur.md", "COTES.md"] + sorted(
+            fic = ["LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png"] + sorted(
                 os.path.relpath(f, dos) for f in glob.glob(str(dos / "png" / "*.png")) + glob.glob(str(dos / "assets" / "**" / "*.*"), recursive=True))
             for f in fic:
                 z.write(dos / f, f"{nom}/{f}")
-        print(out.name, len(fic), "fichiers", out.stat().st_size // 1024, "Ko")
+        print(out.name, len(fic), "fichiers", out.stat().st_size // 1024, "Ko", "·", verifier(out, nom, dos))
 
 
 if __name__ == "__main__":

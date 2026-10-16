@@ -11,8 +11,12 @@ Menu en barre noire en haut, grand bandeau photo noir et blanc, gros chiffres à
 | `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |
 | `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |
 | `COTES.md` | Position et taille de chaque contrôle, en centimètres |
-| `assets/photos/` | Photos de voitures de ce projet, déjà recadrées |
-| `assets/` | Icônes (PNG) pour les boutons, les cartes et le menu |
+| `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |
+| `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |
+| `assets/` | Les icônes en PNG transparent, à la taille exacte (logo de la connexion et du menu compris) |
+| `assets/photos/` | Les 8 photos de voitures de ce projet, déjà recadrées à la taille exacte |
+
+> Les icônes **blanches** paraissent vides dans l'explorateur Windows (blanc sur blanc) : elles sont bien là, voir `apercu-icones.png`.
 
 ## Réaliser ce design dans Access
 
@@ -21,6 +25,6 @@ Menu en barre noire en haut, grand bandeau photo noir et blanc, gros chiffres à
 * Bandeau : contrôle Image `assets/photos/a-bandeau-<page>.jpg` (41,49 × 3,97 cm) en haut du sous-formulaire. Titre en **Georgia** 28 pt blanc, sous-titre en majuscules 9 pt.
 * Cartes : Rectangle blanc, bordure couleur *Bordure des cartes*, et un rectangle noir de 0,08 cm collé en haut (le filet). Titres en majuscules 9 pt, gras.
 * Les grands chiffres (indicateurs, montant) sont en Georgia 28 pt.
-* Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite.
+* Connexion : photo `a-connexion.jpg` sur tout le formulaire, carte blanche à droite, logo `logo-car-front-26px-FFFFFF.png` (blanc).
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.
