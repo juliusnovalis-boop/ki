@@ -1,4 +1,4 @@
-# RENTAL GABON CAR · maquettes Access
+# AURION · maquettes Access
 
 Design **5. Prestige futuriste** · couleurs **bleu royal et noir** · application de location de voitures de prestige à Libreville.
 
@@ -10,8 +10,8 @@ Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleur
 
 | Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `assets/logo-connexion.png` | Connexion | 16,30 | 1,43 | 6,43 | 0,74 |
-| `assets/logo-menu.png` | Menu | 0,74 | 0,50 | 6,38 | 0,69 |
+| `assets/logo-connexion.png` | Connexion | 16,30 | 1,43 | 3,86 | 0,74 |
+| `assets/logo-menu.png` | Menu | 0,74 | 0,50 | 3,81 | 0,69 |
 
 Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
 
@@ -33,6 +33,7 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 
 * Formulaire de navigation **« Onglets horizontaux »**. Barre : Rectangle noir `#000000` de 41,49 × 1,69 cm, puis un **trait doré** `#C9A24B` de 1 pt sur toute la largeur juste dessous. Logo à gauche : `assets/logo-menu.png`.
 * Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), police **Bahnschrift 11 pt**, `Style fond` Transparent, texte et icône argentés `#C4CAD3` ; onglet actif : fond **bleu royal `#002366`**, bordure `#2A55B8`, texte et icône blancs, gras.
+* À droite de la barre : avatar (bouton `Forme` **Ovale** `#002366`, bordure dorée 2 pt), nom et rôle de l'utilisateur, puis le bouton **Se déconnecter** : `Forme` **Rectangle arrondi** de 3,65 × 0,90 cm, fond `#0A1838`, bordure `#2A55B8`, texte blanc Bahnschrift 10,5 pt, image `log-out` dorée à gauche du texte (`Disposition image légende` **Gauche**). Dans `Sur clic` : fermer le formulaire Menu et rouvrir le formulaire de connexion (`DoCmd.Close acForm, Me.Name` puis `DoCmd.OpenForm "Connexion"`).
 * Cartes : Rectangle `#06112A`, bordure `#13284F`. Titre en **Bahnschrift SemiBold 11 pt majuscules**, précédé du **numéro doré** (01, 02…, Bahnschrift Light). Sous le titre : un trait `#13284F` sur toute la largeur et un petit trait doré de 1,06 cm × 2 pt à gauche.
 * Tableau de bord : pas de bandeau, mais un en-tête *Bonjour, admin* (Bahnschrift SemiBold 28 pt) et l'heure en grand à droite (Bahnschrift Light 26 pt, `=Format(Maintenant();"hh:nn")`).
 * Voiture phare : contrôle Image `assets/photos/e-vedette.jpg` (10,53 × 6,56 cm) dans la carte, à droite ; les caractéristiques à gauche viennent de la table Voiture (Puissance, CoutParJour, Annee).

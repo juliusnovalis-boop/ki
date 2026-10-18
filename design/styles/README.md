@@ -19,7 +19,7 @@ gamme) et le mode d'emploi général (`../README.md`) restent communs.
 
 | | Entreprise | Design | Couleurs | Dossier | Télécharger |
 |---|---|---|---|---|---|
-| ★ | **RENTAL GABON CAR** | Prestige futuriste | Bleu royal #002366 et noir, or, argent, blanc | [`bleu-royal-noir/`](bleu-royal-noir/) | [RENTAL-GABON-CAR-bleu-royal-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/RENTAL-GABON-CAR-bleu-royal-noir.zip) |
+| ★ | **AURION** | Prestige futuriste | Bleu royal #002366 et noir, or, argent, blanc | [`bleu-royal-noir/`](bleu-royal-noir/) | [AURION-bleu-royal-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/AURION-bleu-royal-noir.zip) |
 
 Style écran de bord de voiture de luxe : police Bahnschrift, cartes numérotées, jauge d'occupation, voiture phare, barre de progression de la location, onglets en pastilles centrés (comme argenté-noir), filet doré, connexion en deux panneaux. Mode d'emploi : [`bleu-royal-noir/LISEZMOI.md`](bleu-royal-noir/LISEZMOI.md).
 

@@ -1,4 +1,4 @@
-# Icônes · RENTAL GABON CAR
+# Icônes · AURION
 
 Toutes les icônes dessinées sur les 8 écrans, déjà exportées en PNG transparent dans `assets/` (aperçu : `apercu-icones.png`).
 
@@ -10,8 +10,8 @@ Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les b
 
 | Fichier | Où | Gauche | Haut | Largeur | Hauteur | Remplace |
 |---|---|---:|---:|---:|---:|---|
-| `logo-connexion.png` | Formulaire de connexion | 16,30 | 1,43 | 6,43 | 0,74 | `Logo` (icône dorée + nom) |
-| `logo-menu.png` | Formulaire Menu | 0,74 | 0,50 | 6,38 | 0,69 | `Logo` (icône dorée + nom) |
+| `logo-connexion.png` | Formulaire de connexion | 16,30 | 1,43 | 3,86 | 0,74 | `Logo` (icône dorée + nom) |
+| `logo-menu.png` | Formulaire Menu | 0,74 | 0,50 | 3,81 | 0,69 | `Logo` (icône dorée + nom) |
 
 ## Toutes les icônes
 
@@ -21,8 +21,8 @@ Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les b
 | `bouton-chevron-last-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Dernier` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-chevron-left-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Precedent` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-chevron-right-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Suivant` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
+| `bouton-log-out-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Deconnexion` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-plus-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Ajouter` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
-| `bouton-power-20px-C4CAD3.png` | 20 × 20 px | `#C4CAD3` | `Btn_Quitter` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-printer-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Imprimer` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-refresh-cw-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Btn_Actualiser` | Clients, Voitures, Marques, Carburants, Modèles |
 | `bouton-save-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `Btn_Enregistrer` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |

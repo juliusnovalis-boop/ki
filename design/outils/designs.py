@@ -823,7 +823,7 @@ def e_carte(nom, num, titre, x, y, w, h, interieur="", actions=(), info=None):
 def e_coquille(actif, corps):
     items = [(cle, lib, ico, int(len(lib) * 7.4) + 50) for cle, lib, ico in g.MENU]
     tot = sum(i[3] for i in items) + 6 * (len(items) - 1)
-    x = (g.W - tot) // 2 + 10
+    x = (g.W - tot) // 2 - 20
     nav = ""
     for cle, lib, ico, w in items:
         on = cle == actif
@@ -843,11 +843,11 @@ def e_coquille(actif, corps):
                 + f'<div class="abs date-e" style="right:32px;top:{y0 + 24}px" {acc("Date_Heure", "Zone de texte")}>{g.svg("calendar-range", OR, 16)}lundi 28 septembre 2026 · 20:06</div>')
     c = f"""
 <div class="abs" style="left:0;top:0;width:{g.W}px;height:{E_TETE}px;background:#000000" {acc("Entete", "Section En-tête")}></div>
-<div class="abs" style="left:28px;top:19px;display:flex;align-items:center;gap:11px;{FU}font-size:18.67px;font-weight:600;letter-spacing:3.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 26, 1.8)}{g.NOM_APPLI}</div>
+<div class="abs" style="left:28px;top:19px;display:flex;align-items:center;gap:11px;{FU}font-size:21.33px;font-weight:600;letter-spacing:7px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 26, 1.8)}{g.NOM_APPLI}</div>
 {nav}
-<div class="avatar" style="left:{g.W - 212}px;top:15px;width:34px;height:34px;box-shadow:0 0 0 2px {OR}" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
-<div class="utilisateur" style="left:{g.W - 166}px;top:16px" {acc("Txt_Utilisateur", "Zone de texte")}><b style="color:#FFFFFF">admin</b><span style="color:{ARGENT}">Administrateur</span></div>
-<div class="abs" style="left:{g.W - 50}px;top:22px" {acc("Btn_Quitter", "Bouton")}>{g.svg("power", ARGENT, 20)}</div>
+<div class="avatar" style="left:{g.W - 316}px;top:15px;width:34px;height:34px;box-shadow:0 0 0 2px {OR}" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
+<div class="utilisateur" style="left:{g.W - 272}px;top:16px;width:100px" {acc("Txt_Utilisateur", "Zone de texte")}><b style="color:#FFFFFF">admin</b><span style="color:{ARGENT}">Administrateur</span></div>
+<div class="btn-deco" style="left:{g.W - 162}px;top:15px;width:138px" {acc("Btn_Deconnexion", "Bouton")}>{g.svg("log-out", OR, 16)}Se déconnecter</div>
 <div class="abs" style="left:0;top:{E_TETE}px;width:{g.W}px;height:1px;background:{OR}" {acc("Trait_Or", "Trait")}></div>
 {tete}
 {contenu(0, E_TETE + 1 + hh, g.W, g.H - E_TETE - 1 - hh, corps, fond=False)}"""
@@ -869,7 +869,7 @@ def e_kpi(n, x, y, w, h, lib, val, sub, ico, royal=False, petit=False):
 def e_tableau():
     kpis, res, top = donnees_tableau()
     ca = kpis[0][2]
-    out = (lbl(26, 18, "TABLEAU DE BORD · RENTAL GABON CAR", f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")
+    out = (lbl(26, 18, "TABLEAU DE BORD · " + g.NOM_APPLI, f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")
            + lbl(24, 34, "Bonjour, admin", f"{FU}font-size:37.33px;font-weight:600;color:#FFFFFF", "Lbl_Titre_Page")
            + f'<div class="abs" style="right:24px;top:22px;text-align:right" {acc("Date_Heure", "Zone de texte")}>'
              f'<div style="{FU}font-size:34.67px;font-weight:300;line-height:36px;color:#FFFFFF">20:06</div>'
@@ -1025,7 +1025,7 @@ def e_login():
 {lbl(40, 56, "LOCATION DE PRESTIGE · LIBREVILLE", f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")}
 {lbl(38, 80, "L'excellence automobile,<br>à votre service.", f"{FU}font-size:34.67px;font-weight:600;line-height:38px;color:#FFFFFF", "Lbl_Slogan")}
 <div class="abs" style="left:{px}px;top:0;width:1px;height:{lh}px;background:{OR}" {acc("Trait_Or", "Trait")}></div>
-<div class="abs" style="left:{fx}px;top:54px;display:flex;align-items:center;gap:11px;{FU}font-size:18.67px;font-weight:600;letter-spacing:3.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 28, 1.8)}{g.NOM_APPLI}</div>
+<div class="abs" style="left:{fx}px;top:54px;display:flex;align-items:center;gap:11px;{FU}font-size:21.33px;font-weight:600;letter-spacing:7px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 28, 1.8)}{g.NOM_APPLI}</div>
 {lbl(fx, 118, "Connexion", f"{FU}font-size:40px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
 <div class="abs" style="left:{fx + 1}px;top:170px;width:40px;height:2px;background:{OR}"></div>
 {lbl(fx, 184, "Accédez à votre espace de gestion.", f"font-size:13.33px;color:{ARGENT}")}

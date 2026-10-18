@@ -97,6 +97,10 @@ DESIGNS = {
             "`#C9A24B` de 1 pt sur toute la largeur juste dessous. Logo à gauche : `assets/logo-menu.png`.",
             "Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), police **Bahnschrift 11 pt**, `Style fond` Transparent, texte et icône argentés `#C4CAD3` ; "
             "onglet actif : fond **bleu royal `#002366`**, bordure `#2A55B8`, texte et icône blancs, gras.",
+            "À droite de la barre : avatar (bouton `Forme` **Ovale** `#002366`, bordure dorée 2 pt), nom et rôle de l'utilisateur, puis le bouton "
+            "**Se déconnecter** : `Forme` **Rectangle arrondi** de 3,65 × 0,90 cm, fond `#0A1838`, bordure `#2A55B8`, texte blanc Bahnschrift 10,5 pt, "
+            "image `log-out` dorée à gauche du texte (`Disposition image légende` **Gauche**). Dans `Sur clic` : fermer le formulaire Menu et rouvrir le formulaire de connexion "
+            "(`DoCmd.Close acForm, Me.Name` puis `DoCmd.OpenForm \"Connexion\"`).",
             "Cartes : Rectangle `#06112A`, bordure `#13284F`. Titre en **Bahnschrift SemiBold 11 pt majuscules**, précédé du **numéro doré** "
             "(01, 02…, Bahnschrift Light). Sous le titre : un trait `#13284F` sur toute la largeur et un petit trait doré de 1,06 cm × 2 pt à gauche.",
             "Tableau de bord : pas de bandeau, mais un en-tête *Bonjour, admin* (Bahnschrift SemiBold 28 pt) et l'heure en grand à droite "

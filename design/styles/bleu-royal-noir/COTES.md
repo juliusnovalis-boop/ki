@@ -18,29 +18,29 @@ Maquette : `png/00-connexion.png`
 | `Lbl_Surtitre` | Étiquette | 1,06 | 1,48 | 8,10 | 0,37 |
 | `Lbl_Slogan` | Étiquette | 1,01 | 2,12 | 8,89 | 2,01 |
 | `Trait_Or` | Trait | 14,82 | 0,00 | 0,03 | 14,82 |
-| `Logo` | Image + étiquette | 16,30 | 1,43 | 6,43 | 0,74 |
+| `Logo` | Image + étiquette | 16,30 | 1,43 | 3,84 | 0,74 |
 | `Lbl_Titre` | Étiquette | 16,30 | 3,12 | 4,39 | 1,27 |
 | `Txt_Utilisateur` | Zone de texte | 16,30 | 6,67 | 8,68 | 1,01 |
 | `Txt_MotDePasse` | Zone de texte | 16,30 | 8,73 | 8,68 | 1,01 |
 | `Btn_Connexion` | Bouton | 16,30 | 10,48 | 8,68 | 1,11 |
-| `Login_Copyright` | Étiquette | 16,30 | 13,76 | 4,68 | 0,37 |
+| `Login_Copyright` | Étiquette | 16,30 | 13,76 | 2,62 | 0,37 |
 
 ## Formulaire « Menu » (commun à tous les écrans)
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Entete` | Section En-tête | 0,00 | 0,00 | 41,49 | 1,69 |
-| `Logo` | Image + étiquette | 0,74 | 0,50 | 6,38 | 0,69 |
-| `BoutonNavigation_tableau` | Bouton de navigation | 9,47 | 0,37 | 4,26 | 0,95 |
-| `BoutonNavigation_reservations` | Bouton de navigation | 13,89 | 0,37 | 3,65 | 0,95 |
-| `BoutonNavigation_clients` | Bouton de navigation | 17,70 | 0,37 | 2,67 | 0,95 |
-| `BoutonNavigation_voitures` | Bouton de navigation | 20,53 | 0,37 | 2,88 | 0,95 |
-| `BoutonNavigation_marques` | Bouton de navigation | 23,57 | 0,37 | 2,67 | 0,95 |
-| `BoutonNavigation_carburants` | Bouton de navigation | 26,41 | 0,37 | 3,28 | 0,95 |
-| `BoutonNavigation_modeles` | Bouton de navigation | 29,85 | 0,37 | 2,67 | 0,95 |
-| `Btn_Avatar` | Bouton (ellipse) | 35,88 | 0,40 | 0,90 | 0,90 |
-| `Txt_Utilisateur` | Zone de texte | 37,09 | 0,42 | 3,07 | 0,85 |
-| `Btn_Quitter` | Bouton | 40,16 | 0,58 | 0,53 | 0,53 |
+| `Logo` | Image + étiquette | 0,74 | 0,50 | 3,78 | 0,69 |
+| `BoutonNavigation_tableau` | Bouton de navigation | 8,68 | 0,37 | 4,26 | 0,95 |
+| `BoutonNavigation_reservations` | Bouton de navigation | 13,10 | 0,37 | 3,65 | 0,95 |
+| `BoutonNavigation_clients` | Bouton de navigation | 16,91 | 0,37 | 2,67 | 0,95 |
+| `BoutonNavigation_voitures` | Bouton de navigation | 19,74 | 0,37 | 2,88 | 0,95 |
+| `BoutonNavigation_marques` | Bouton de navigation | 22,78 | 0,37 | 2,67 | 0,95 |
+| `BoutonNavigation_carburants` | Bouton de navigation | 25,61 | 0,37 | 3,28 | 0,95 |
+| `BoutonNavigation_modeles` | Bouton de navigation | 29,05 | 0,37 | 2,67 | 0,95 |
+| `Btn_Avatar` | Bouton (ellipse) | 33,13 | 0,40 | 0,90 | 0,90 |
+| `Txt_Utilisateur` | Zone de texte | 34,29 | 0,42 | 2,65 | 0,85 |
+| `Btn_Deconnexion` | Bouton | 37,20 | 0,40 | 3,65 | 0,90 |
 | `Trait_Or` | Trait | 0,00 | 1,69 | 41,49 | 0,03 |
 | `Sous_Formulaire` | Sous-formulaire | 0,00 | 1,72 | 41,49 | 19,02 |
 
@@ -50,7 +50,7 @@ Maquette : `png/01-tableau-de-bord.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `Lbl_Surtitre` | Étiquette | 0,69 | 0,48 | 8,63 | 0,37 |
+| `Lbl_Surtitre` | Étiquette | 0,69 | 0,48 | 6,01 | 0,37 |
 | `Lbl_Titre_Page` | Étiquette | 0,64 | 0,90 | 5,87 | 1,16 |
 | `Date_Heure` | Zone de texte | 36,96 | 0,58 | 3,89 | 1,43 |
 | `Carte_Vedette` | Rectangle | 0,64 | 2,38 | 15,88 | 6,61 |

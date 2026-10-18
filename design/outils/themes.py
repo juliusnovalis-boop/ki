@@ -102,6 +102,6 @@ THEMES = [
         "barre-fond": "#000000", "barre-trait": "#1A1D24", "barre-txt": "#FFFFFF",
         "or": "#C9A24B", "or-clair": "#E3C77A", "argent": "#C4CAD3", "royal-bordure": "#2A55B8", "royal-clair": "#3D6FE0",
     }, kpi=[("#002366", "#2A55B8"), ("#06112A", "#13284F"), ("#06112A", "#13284F"), ("#06112A", "#13284F")],
-        societe="RENTAL GABON CAR", photos="royal", design="e", icone="#C9A24B", icone_titre="#C9A24B", nav_ico="#C4CAD3",
+        societe="AURION", photos="royal", design="e", icone="#C9A24B", icone_titre="#C9A24B", nav_ico="#C4CAD3",
         nav_ico_actif="#FFFFFF", voile=(1, 4, 11), kpi_ico="#C9A24B"),
 ]
