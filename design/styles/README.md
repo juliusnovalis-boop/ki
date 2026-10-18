@@ -15,6 +15,14 @@ gamme) et le mode d'emploi général (`../README.md`) restent communs.
 | 3 | **JADE MOTORS** | Menu photo à droite | Vert jade et blanc | [`vert-jade-blanc/`](vert-jade-blanc/) | [JADE-MOTORS-vert-jade-blanc.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/JADE-MOTORS-vert-jade-blanc.zip) |
 | 4 | **PLATINUM DRIVE** | Cockpit | Argenté et noir | [`argente-noir/`](argente-noir/) | [PLATINUM-DRIVE-argente-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/PLATINUM-DRIVE-argente-noir.zip) |
 
+## Maquette spéciale · bleu royal et noir
+
+| | Entreprise | Design | Couleurs | Dossier | Télécharger |
+|---|---|---|---|---|---|
+| ★ | **RENTAL GABON CAR** | Prestige | Bleu royal et noir, or, argent, blanc | [`bleu-royal-noir/`](bleu-royal-noir/) | [RENTAL-GABON-CAR-bleu-royal-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/RENTAL-GABON-CAR-bleu-royal-noir.zip) |
+
+Barre noire avec onglets en pastilles centrés (comme argenté-noir), filet doré, bandeau photo sur chaque page, 4 indicateurs, graphique de la flotte, recherche dans les listes, fiches en colonne à droite, connexion en deux panneaux. Mode d'emploi : [`bleu-royal-noir/LISEZMOI.md`](bleu-royal-noir/LISEZMOI.md).
+
 Chaque projet a **son zip** (dossier `projets/` à la racine du dépôt) qui contient : `LISEZMOI.md` (mode d'emploi du design),
 `couleur.md` (toutes les couleurs à saisir dans Access), `COTES.md` (positions et tailles en cm), `png/` (les 8 écrans),
 `ICONES.md` et `apercu-icones.png` (liste et aperçu de **toutes** les icônes), `assets/` (icônes en PNG) et `assets/photos/` (photos de voitures **propres à ce projet**, déjà recadrées).

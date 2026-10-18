@@ -187,7 +187,7 @@ def carte(nom, titre, x, y, w, h, interieur="", actions=(), info=None, icone=Non
             f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{svg(ACTIONS[a], T["icone"], 16)}</div>' for a in actions) + "</div>"
     tx = 48 if icone else 20
     ico = f'<div class="abs" style="left:20px;top:16px">{svg(icone, T["icone"], 18)}</div>' if icone else ""
-    k = {"a": 10.9, "d": 10.4}.get(T.get("design"), 8.6)  # largeur moyenne d'une lettre du titre
+    k = {"a": 10.9, "d": 10.4, "e": 9.4}.get(T.get("design"), 8.6)  # largeur moyenne d'une lettre du titre
     inf = f'<div class="info" style="left:{tx + 14 + int(len(titre) * k)}px">{e(info)}</div>' if info else ""
     return (f'<div class="carte" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px" {acc(nom, "Rectangle")}>'
             f'<div class="bande"></div>{ico}<div class="titre-c" style="left:{tx}px">{e(titre)}</div>{inf}{act}'
@@ -591,6 +591,7 @@ LOGOS = {
     "b": {"connexion": (['[data-acc="Logo"]', '[data-acc="Lbl_Titre"]'], 6, "#F6E3EC"), "menu": (['[data-acc="Logo"]'], 0, "#9D174D")},
     "c": {"connexion": (['[data-acc="Logo"]'], 0, "#064E3B"), "menu": (['[data-acc="Logo"]'], 0, "#064E3B")},
     "d": {"connexion": (['[data-acc="Logo"]', '[data-acc="Lbl_Titre"]'], 0, "#16181B"), "menu": (['[data-acc="Logo"]'], 0, "#0B0C0E")},
+    "e": {"connexion": (['[data-acc="Logo"]'], 0, "#07090F"), "menu": (['[data-acc="Logo"]'], 0, "#05070C")},
 }
 
 
@@ -673,7 +674,8 @@ def ecrire_logos(t, maq, assets, pos):
     remplace = {"a": ("`Logo` (icône + nom)", "`Logo` (icône + nom)"),
                 "b": ("`Logo` (bouton blanc arrondi + icône) et `Lbl_Titre` (nom)", "`Logo` (bouton blanc arrondi + icône)"),
                 "c": ("`Logo` (icône + nom)", "`Logo` (icône + nom)"),
-                "d": ("`Logo` (icône) et `Lbl_Titre` (nom)", "`Logo` (icône + nom)")}[t["design"]]
+                "d": ("`Logo` (icône) et `Lbl_Titre` (nom)", "`Logo` (icône + nom)"),
+                "e": ("`Logo` (icône dorée + nom)", "`Logo` (icône dorée + nom)")}[t["design"]]
     L = ["## Logos complets (une seule image)", "",
          "Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les bonnes couleurs) est fourni en **une seule image** "
          "PNG transparente : insérer un contrôle **Image**, choisir le fichier, `Mode affichage image` **Découpage**, "

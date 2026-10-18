@@ -169,3 +169,18 @@ body { margin: 0; background: #FFFFFF; }
 .d-d .kpi { border: none; }
 .d-d .kpi .val small { color: rgba(0,0,0,.6); }
 .d-d .btn { border-radius: 17px; }
+
+/* --- Design E : Prestige (bleu royal & noir, or, argent) --- */
+.d-e .pill { position: absolute; top: 16px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.33px; color: #C4CAD3; white-space: nowrap; }
+.d-e .pill.actif { background: var(--nav-actif-fond); color: var(--nav-actif-txt); font-weight: 600; }
+.d-e .date-e { display: flex; align-items: center; gap: 8px; font-size: 13.33px; color: #C4CAD3; white-space: nowrap; }
+.d-e .carte .bande { background: var(--surface); }
+.d-e .carte .titre-c { top: 17px; font-size: 12.67px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #FFFFFF; }
+.d-e .carte .trait { left: 20px; right: auto; width: 40px; height: 2px; top: 49px; background: #C9A24B; }
+.d-e .carte .info { color: #C9A24B; }
+.d-e .kpi { border: none; }
+.d-e .kpi .val small { color: rgba(255,255,255,.7); }
+.d-e .btn { border-radius: 17px; }
+.d-e .avatar { background: #1F4FD8; color: #FFFFFF; }
+.d-e .utilisateur b, .d-e .utilisateur span { display: block; }
+

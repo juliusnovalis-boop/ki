@@ -86,4 +86,22 @@ THEMES = [
     }, kpi=[("#D9DCE0", "#BFC3C9"), ("#C2C6CC", "#A9AEB5"), ("#A9AEB5", "#91969E")],
         societe="PLATINUM DRIVE", photos="platinum", design="d", icone="#C9CDD2", icone_titre="#C9CDD2", nav_ico="#8E939A", nav_ico_actif="#000000", voile=(0, 0, 0),
         kpi_ico="#0B0C0E", photo_filtre="saturate(.35) contrast(1.05)"),
+
+    # ------------------------------------------------------------------ bleu royal & noir (maquette spéciale)
+    theme("bleu-royal-noir", "Bleu royal et noir", "styles/bleu-royal-noir", {
+        "fond": "#07090F", "surface": "#0F1420", "champ": "#121828", "entete": "#05070C", "logo": "#FFFFFF",
+        "menu": "#05070C", "nav-txt": "#C4CAD3", "nav-actif-fond": "#1F4FD8", "nav-actif-txt": "#FFFFFF", "rubrique": "#7D8696",
+        "entete-trait": "#C9A24B", "titre": "#FFFFFF", "carte-bordure": "#1E2740", "bande": "#0F1420",
+        "btn-bordure": "#26314D", "montant": "#1F4FD8", "montant-bordure": "#1F4FD8", "montant-txt": "#FFFFFF",
+        "accent": "#1F4FD8", "accent-txt": "#FFFFFF", "liste-bordure": "#26314D", "liste-trait": "#1C2438",
+        "texte": "#F2F4F8", "texte2": "#DCE1EA", "etiq": "#A9B1BE", "gris": "#8A93A3",
+        "champ-bordure": "#2A3550", "lecture": "#0B101C", "lecture-bordure": "#1E2740", "lecture-txt": "#C4CAD3",
+        "sep": "#1A2236", "danger": "#F87171", "danger-bordure": "#6B2C2C",
+        "defil": "#121828", "defil-trait": "#1E2740", "pouce": "#3A4766",
+        "kpi-lib": "rgba(255,255,255,.82)", "kpi-val": "#FFFFFF",
+        "barre-fond": "#05070C", "barre-trait": "#1A1D24", "barre-txt": "#FFFFFF",
+        "or": "#C9A24B", "or-clair": "#E3C77A", "argent": "#C4CAD3",
+    }, kpi=[("#1F4FD8", "#173FAF"), ("#0F1420", "#151B2B"), ("#0F1420", "#151B2B"), ("#0F1420", "#151B2B")],
+        societe="RENTAL GABON CAR", photos="royal", design="e", icone="#C9A24B", icone_titre="#C9A24B", nav_ico="#C4CAD3",
+        nav_ico_actif="#FFFFFF", voile=(5, 7, 12), kpi_ico="#FFFFFF"),
 ]
