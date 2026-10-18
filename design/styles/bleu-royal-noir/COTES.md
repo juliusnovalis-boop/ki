@@ -31,13 +31,13 @@ Maquette : `png/00-connexion.png`
 |---|---|---:|---:|---:|---:|
 | `Entete` | Section En-tête | 0,00 | 0,00 | 41,49 | 1,69 |
 | `Logo` | Image (marque/aurion-menu.png) | 0,64 | 0,16 | 5,66 | 1,38 |
-| `BoutonNavigation_tableau` | Bouton de navigation | 8,68 | 0,37 | 4,26 | 0,95 |
-| `BoutonNavigation_reservations` | Bouton de navigation | 13,10 | 0,37 | 3,65 | 0,95 |
-| `BoutonNavigation_clients` | Bouton de navigation | 16,91 | 0,37 | 2,67 | 0,95 |
-| `BoutonNavigation_voitures` | Bouton de navigation | 19,74 | 0,37 | 2,88 | 0,95 |
-| `BoutonNavigation_marques` | Bouton de navigation | 22,78 | 0,37 | 2,67 | 0,95 |
-| `BoutonNavigation_carburants` | Bouton de navigation | 25,61 | 0,37 | 3,28 | 0,95 |
-| `BoutonNavigation_modeles` | Bouton de navigation | 29,05 | 0,37 | 2,67 | 0,95 |
+| `BoutonNavigation_tableau` | Bouton de navigation | 8,12 | 0,37 | 4,42 | 0,95 |
+| `BoutonNavigation_reservations` | Bouton de navigation | 12,70 | 0,37 | 3,81 | 0,95 |
+| `BoutonNavigation_clients` | Bouton de navigation | 16,67 | 0,37 | 2,83 | 0,95 |
+| `BoutonNavigation_voitures` | Bouton de navigation | 19,66 | 0,37 | 3,04 | 0,95 |
+| `BoutonNavigation_marques` | Bouton de navigation | 22,86 | 0,37 | 2,83 | 0,95 |
+| `BoutonNavigation_carburants` | Bouton de navigation | 25,85 | 0,37 | 3,44 | 0,95 |
+| `BoutonNavigation_modeles` | Bouton de navigation | 29,45 | 0,37 | 2,83 | 0,95 |
 | `Btn_Avatar` | Bouton (ellipse) | 33,13 | 0,40 | 0,90 | 0,90 |
 | `Txt_Utilisateur` | Zone de texte | 34,29 | 0,42 | 2,65 | 0,85 |
 | `Btn_Deconnexion` | Bouton | 37,20 | 0,40 | 3,65 | 0,90 |
@@ -66,16 +66,16 @@ Maquette : `png/01-tableau-de-bord.png`
 | `Txt_Taux` | Zone de texte | 16,96 | 5,27 | 6,83 | 1,06 |
 | `Carte_CA` | Rectangle | 24,24 | 2,38 | 8,10 | 3,10 |
 | `Txt_CA` | Zone de texte | 24,79 | 3,31 | 5,95 | 1,11 |
-| `Icone_CA` | Image | 31,30 | 2,83 | 0,53 | 0,53 |
+| `Icone_CA` | Image | 31,04 | 2,70 | 0,79 | 0,79 |
 | `Carte_Reservations` | Rectangle | 32,76 | 2,38 | 8,10 | 3,10 |
 | `Txt_Reservations` | Zone de texte | 33,31 | 3,31 | 0,85 | 1,11 |
-| `Icone_Reservations` | Image | 39,82 | 2,83 | 0,53 | 0,53 |
+| `Icone_Reservations` | Image | 39,56 | 2,70 | 0,79 | 0,79 |
 | `Carte_Clients` | Rectangle | 24,24 | 5,90 | 8,10 | 3,10 |
 | `Txt_Clients` | Zone de texte | 24,79 | 6,83 | 1,35 | 1,11 |
-| `Icone_Clients` | Image | 31,30 | 6,35 | 0,53 | 0,53 |
+| `Icone_Clients` | Image | 31,04 | 6,22 | 0,79 | 0,79 |
 | `Carte_Meilleur` | Rectangle | 32,76 | 5,90 | 8,10 | 3,10 |
 | `Txt_Meilleur` | Zone de texte | 33,31 | 6,99 | 3,97 | 0,77 |
-| `Icone_Meilleur` | Image | 39,82 | 6,35 | 0,53 | 0,53 |
+| `Icone_Meilleur` | Image | 39,56 | 6,22 | 0,79 | 0,79 |
 | `Carte_Reservees` | Rectangle | 0,64 | 9,42 | 28,15 | 9,08 |
 | `Lbl_Reservees` | Étiquette | 1,19 | 9,82 | 8,52 | 0,48 |
 | `Txt_Info_Reservees` | Zone de texte | 25,88 | 9,84 | 1,40 | 0,42 |

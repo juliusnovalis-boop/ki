@@ -30,21 +30,21 @@ Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les b
 | `bouton-trash-2-16px-F87171.png` | 16 × 16 px | `#F87171` | `Btn_Supprimer` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
 | `carte-search-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `Carte_Liste` | Clients, Voitures, Marques, Carburants, Modèles |
 | `date-calendar-range-16px-C9A24B.png` | 16 × 16 px | `#C9A24B` | `Date_Heure` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
-| `icone-calendar-range-20px-C9A24B.png` | 20 × 20 px | `#C9A24B` | `Icone_Reservations` | Tableau de bord |
-| `icone-trophy-20px-C9A24B.png` | 20 × 20 px | `#C9A24B` | `Icone_Meilleur` | Tableau de bord |
-| `icone-users-20px-C9A24B.png` | 20 × 20 px | `#C9A24B` | `Icone_Clients` | Tableau de bord |
-| `icone-wallet-20px-E3C77A.png` | 20 × 20 px | `#E3C77A` | `Icone_CA` | Tableau de bord |
-| `menu-calendar-range-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_reservations` | Tableau de bord, Clients, Voitures, Marques, Carburants, Modèles |
-| `menu-calendar-range-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_reservations` | Réservations |
-| `menu-car-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_voitures` | Tableau de bord, Réservations, Clients, Marques, Carburants, Modèles |
-| `menu-car-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_voitures` | Voitures |
-| `menu-fuel-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_carburants` | Tableau de bord, Réservations, Clients, Voitures, Marques, Modèles |
-| `menu-fuel-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_carburants` | Carburants |
-| `menu-layers-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_modeles` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants |
-| `menu-layers-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_modeles` | Modèles |
-| `menu-layout-dashboard-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_tableau` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
-| `menu-layout-dashboard-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_tableau` | Tableau de bord |
-| `menu-tag-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_marques` | Tableau de bord, Réservations, Clients, Voitures, Carburants, Modèles |
-| `menu-tag-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_marques` | Marques |
-| `menu-users-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_clients` | Tableau de bord, Réservations, Voitures, Marques, Carburants, Modèles |
-| `menu-users-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_clients` | Clients |
+| `icone-calendar-range-30px-C9A24B.png` | 30 × 30 px | `#C9A24B` | `Icone_Reservations` | Tableau de bord |
+| `icone-trophy-30px-C9A24B.png` | 30 × 30 px | `#C9A24B` | `Icone_Meilleur` | Tableau de bord |
+| `icone-users-30px-C9A24B.png` | 30 × 30 px | `#C9A24B` | `Icone_Clients` | Tableau de bord |
+| `icone-wallet-30px-E3C77A.png` | 30 × 30 px | `#E3C77A` | `Icone_CA` | Tableau de bord |
+| `menu-calendar-range-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_reservations` | Tableau de bord, Clients, Voitures, Marques, Carburants, Modèles |
+| `menu-calendar-range-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_reservations` | Réservations |
+| `menu-car-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_voitures` | Tableau de bord, Réservations, Clients, Marques, Carburants, Modèles |
+| `menu-car-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_voitures` | Voitures |
+| `menu-fuel-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_carburants` | Tableau de bord, Réservations, Clients, Voitures, Marques, Modèles |
+| `menu-fuel-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_carburants` | Carburants |
+| `menu-layers-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_modeles` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants |
+| `menu-layers-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_modeles` | Modèles |
+| `menu-layout-dashboard-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_tableau` | Réservations, Clients, Voitures, Marques, Carburants, Modèles |
+| `menu-layout-dashboard-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_tableau` | Tableau de bord |
+| `menu-tag-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_marques` | Tableau de bord, Réservations, Clients, Voitures, Carburants, Modèles |
+| `menu-tag-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_marques` | Marques |
+| `menu-users-22px-C4CAD3.png` | 22 × 22 px | `#C4CAD3` | `BoutonNavigation_clients` | Tableau de bord, Réservations, Voitures, Marques, Carburants, Modèles |
+| `menu-users-actif-22px-FFFFFF.png` | 22 × 22 px | `#FFFFFF` | `BoutonNavigation_clients` | Clients |

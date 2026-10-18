@@ -824,15 +824,24 @@ def e_carte(nom, num, titre, x, y, w, h, interieur="", actions=(), info=None):
             f'<div class="sep-e"></div><div class="trait-e"></div>{interieur}</div>')
 
 
+CONTENEURS = ("medaillon", "anneau", "plaque")
+
+
+def e_tailles():
+    """Taille des icônes du menu et des indicateurs (plus grandes quand l'icône a un médaillon, un anneau ou une plaque)."""
+    return (22, 30) if g.ICO_MODELE in CONTENEURS else (16, 20)
+
+
 def e_coquille(actif, corps):
-    items = [(cle, lib, ico, int(len(lib) * 7.4) + 50) for cle, lib, ico in g.MENU]
+    tm = e_tailles()[0]
+    items = [(cle, lib, ico, int(len(lib) * 7.4) + 50 + tm - 16) for cle, lib, ico in g.MENU]
     tot = sum(i[3] for i in items) + 6 * (len(items) - 1)
     x = (g.W - tot) // 2 - 20
     nav = ""
     for cle, lib, ico, w in items:
         on = cle == actif
         nav += (f'<div class="pill{" actif" if on else ""}" style="left:{x}px;width:{w}px" {acc("BoutonNavigation_" + cle, "Bouton de navigation")}>'
-                f'{g.svg(ico, "#FFFFFF" if on else ARGENT, 16)}{e(lib)}</div>')
+                f'{g.svg(ico, "#FFFFFF" if on else ARGENT, tm)}{e(lib)}</div>')
         x += w + 6
     hh = e_hero_h(actif)
     tete = ""
@@ -867,7 +876,8 @@ def e_kpi(n, x, y, w, h, lib, val, sub, ico, royal=False, petit=False):
             + f'<div class="val" style="left:20px;top:{40 if petit else 34}px;{FU}font-size:{taille};font-weight:{400 if petit else 300};color:#FFFFFF" '
               f'{acc("Txt_" + n, "Zone de texte")}>{val}</div>'
             + lbl(20, 84, sub, f"font-size:12.67px;color:{'#C9D5EE' if royal else '#8A96AD'}")
-            + f'<div class="abs" style="left:{w - 40}px;top:16px" {acc("Icone_" + n, "Image")}>{g.svg(ico, OR_CLAIR if royal else OR, 20)}</div></div>')
+            + f'<div class="abs" style="left:{w - 20 - e_tailles()[1]}px;top:{26 - e_tailles()[1] // 2}px" {acc("Icone_" + n, "Image")}>'
+              f'{g.svg(ico, OR_CLAIR if royal else OR, e_tailles()[1])}</div></div>')
 
 
 def e_tableau():

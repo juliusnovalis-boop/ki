@@ -78,15 +78,81 @@ def accent_icone(color):
     return "#E3C77A"              # icône argent ou blanche : détail doré
 
 
+ICO_MODELE = os.environ.get("AURION_ICONES", "medaillon")   # choisi : medaillon (autres : "" plat, metal, anneau, facettes, plaque)
+
+PALETTES = {   # dégradés métalliques tirés du logo (haut, reflet, ombre, bas)
+    "or": ("#FFF1C2", "#E8CB80", "#8C6A24", "#C9A24B"),
+    "argent": ("#FFFFFF", "#E3E7EC", "#7F8896", "#C4CAD3"),
+    "blanc": ("#FFFFFF", "#FFFFFF", "#AEB6C3", "#E6EAF0"),
+}
+
+
+def palette(color):
+    c = color.upper()
+    if c in OR_ICONES:
+        return "or", "argent"
+    if c == "#FFFFFF":
+        return "blanc", "or"
+    if c == "#F87171":
+        return None, None
+    return "argent", "or"
+
+
+def defs_metal():
+    out = []
+    for k, (a, b, c, d) in PALETTES.items():
+        out.append(f'<linearGradient id="au-{k}" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="20" y2="22">'
+                   f'<stop offset="0" stop-color="{a}"/><stop offset=".40" stop-color="{b}"/><stop offset=".52" stop-color="{c}"/>'
+                   f'<stop offset=".64" stop-color="{b}"/><stop offset="1" stop-color="{d}"/></linearGradient>')
+    out.append('<radialGradient id="au-disque" gradientUnits="userSpaceOnUse" cx="10" cy="8" r="14">'
+               '<stop offset="0" stop-color="#2F63D6"/><stop offset=".55" stop-color="#0A2E86"/><stop offset="1" stop-color="#001640"/></radialGradient>')
+    out.append('<filter id="au-halo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation=".9"/></filter>')
+    return "<defs>" + "".join(out) + "</defs>"
+
+
+def svg_aurion(name, color, size, stroke, inner):
+    m = ICO_MODELE
+    pal, acc = palette(color)
+    if not m or pal is None:
+        inner = inner.replace("ACC", accent_icone(color))
+        return inner, stroke * 0.9, color
+    principal, accent = f"url(#au-{pal})", f"url(#au-{acc})"
+    glyphe = inner.replace("ACC", accent)
+    sw = stroke * 0.9
+    if m == "facettes":
+        sombre = {"or": "#7A5A1E", "argent": "#5E6672", "blanc": "#7E8796"}[pal]
+        base = inner.replace('stroke="ACC"', f'stroke="{sombre}"').replace('fill="ACC"', f'fill="{sombre}"')
+        haut = glyphe
+        glyphe = (f'<g stroke="{sombre}" stroke-width="{sw * 1.55:.2f}" transform="translate(.35 .35)">{base}</g>'
+                  f'<g stroke-width="{sw * 0.95:.2f}">{haut}</g>')
+        return defs_metal() + glyphe, sw * 0.95, principal
+    conteneur = size >= 20 and m in ("medaillon", "anneau", "plaque")
+    if not conteneur:
+        return defs_metal() + glyphe, sw * (1.15 if m == "metal" else 1), principal
+    k = 0.6
+    g_ = f'<g transform="translate(12 12) scale({k}) translate(-12 -12)" stroke-width="{sw * 0.9 / k:.2f}">{glyphe}</g>'
+    if m == "medaillon":
+        fond = ('<circle cx="12" cy="12" r="10.4" fill="#3D7BFF" opacity=".55" filter="url(#au-halo)" stroke="none"/>'
+                '<circle cx="12" cy="12" r="10" fill="url(#au-disque)" stroke="url(#au-or)" stroke-width="1"/>')
+    elif m == "plaque":
+        oct_ = "M8 1.6 H16 L22.4 8 V16 L16 22.4 H8 L1.6 16 V8 Z"
+        fond = (f'<path d="{oct_}" fill="url(#au-disque)" stroke="url(#au-or)" stroke-width="1"/>'
+                '<path d="M8.6 3.2 H15.4 L20.8 8.6" stroke="#FFFFFF" stroke-opacity=".28" stroke-width=".6"/>')
+    else:
+        fond = ('<circle cx="12" cy="12" r="10.2" fill="none" stroke="#3D7BFF" stroke-width="1.6" opacity=".7" filter="url(#au-halo)"/>'
+                '<circle cx="12" cy="12" r="10.2" fill="#00143D" fill-opacity=".55" stroke="#2A55B8" stroke-width="1.1"/>')
+    return defs_metal() + fond + g_, sw, principal
+
+
 def svg(name, color, size=18, stroke=1.75):
     perso = ICO_SET and (ICO_SET / f"{name}.svg").exists()
     raw = ((ICO_SET if perso else SVG_DIR) / f"{name}.svg").read_text()
     inner = re.search(r"<svg[^>]*>(.*)</svg>", raw, re.S).group(1)
     if perso:
-        inner = inner.replace("ACC", accent_icone(color))
+        inner, sw, trait = svg_aurion(name, color, size, stroke, inner)
         return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
-                f'stroke="{color}" stroke-width="{stroke * 0.9:.2f}" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" '
-                f'style="display:block" data-ico="{name}">{inner}</svg>')
+                f'stroke="{trait}" stroke-width="{sw:.2f}" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" '
+                f'style="display:block;overflow:visible" data-ico="{name}" data-col="{color}" data-sw="{stroke}">{inner}</svg>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
             f'stroke="{color}" stroke-width="{stroke}" stroke-linecap="round" stroke-linejoin="round" style="display:block" data-ico="{name}">{inner}</svg>')
 
@@ -585,7 +651,8 @@ class Releve(HTMLParser):
         a = dict(attrs)
         if tag == "svg" and "data-ico" in a:
             ctx = next((x for x in reversed(self.pile) if x), None)
-            self.trouve.append(((a["data-ico"], a["stroke"], int(float(a["width"])), float(a["stroke-width"])), ctx))
+            self.trouve.append(((a["data-ico"], a.get("data-col", a.get("stroke")), int(float(a["width"])),
+                                float(a.get("data-sw", a.get("stroke-width")))), ctx))
         if self.dans_svg or tag == "svg":
             self.dans_svg += 1 if tag == "svg" else 0
             return
