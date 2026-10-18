@@ -64,9 +64,29 @@ def acc(nom, typ):
     return f'data-acc="{e(nom)}" data-type="{e(typ)}"'
 
 
+ICO_SET = None                # jeu d'icônes propre au style courant (AURION : icones-aurion/)
+OR_ICONES = {"#C9A24B", "#E3C77A"}
+
+
+def accent_icone(color):
+    """Couleur du détail d'accent des icônes AURION (deux tons)."""
+    c = color.upper()
+    if c in OR_ICONES:
+        return "#EEF1F5"          # icône dorée : détail argent clair
+    if c == "#F87171":
+        return "#FCA5A5"          # supprimer : rouge clair
+    return "#E3C77A"              # icône argent ou blanche : détail doré
+
+
 def svg(name, color, size=18, stroke=1.75):
-    raw = (SVG_DIR / f"{name}.svg").read_text()
+    perso = ICO_SET and (ICO_SET / f"{name}.svg").exists()
+    raw = ((ICO_SET if perso else SVG_DIR) / f"{name}.svg").read_text()
     inner = re.search(r"<svg[^>]*>(.*)</svg>", raw, re.S).group(1)
+    if perso:
+        inner = inner.replace("ACC", accent_icone(color))
+        return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
+                f'stroke="{color}" stroke-width="{stroke * 0.9:.2f}" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" '
+                f'style="display:block" data-ico="{name}">{inner}</svg>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" '
             f'stroke="{color}" stroke-width="{stroke}" stroke-linecap="round" stroke-linejoin="round" style="display:block" data-ico="{name}">{inner}</svg>')
 
@@ -744,8 +764,9 @@ def ecrire_cotes(cotes, chemin, dossier_png="maquettes/png"):
 
 def appliquer_theme(t):
     """Choisit le style courant : couleurs, dossiers de sortie et chemin des images."""
-    global T, MAQ, ASSETS, ASSET_URL, NOM_APPLI
+    global T, MAQ, ASSETS, ASSET_URL, NOM_APPLI, ICO_SET
     T = t
+    ICO_SET = ICI / "icones-aurion" if t["design"] == "e" else None
     NOM_APPLI = t["societe"]
     if t["dossier"] == "maquettes":          # style bleu : emplacements historiques
         MAQ, ASSETS, ASSET_URL, fonts = DESIGN / "maquettes", DESIGN / "assets", "../assets", "fonts/"

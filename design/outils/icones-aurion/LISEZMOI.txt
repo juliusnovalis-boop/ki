@@ -1,0 +1,2 @@
+Jeu d'icônes AURION (dessin original, angles à 45°, deux tons).
+ACC = couleur d'accent, remplacée par generer.svg().

@@ -127,6 +127,9 @@ DESIGNS = {
             "(connexion, 6,61 × 3,10 cm), `aurion-logo-hd.png` et `aurion-embleme-hd.png` en grand format (états imprimés, page de garde), "
             "et **`aurion.ico`** pour l'icône de l'application : *Fichier › Options › Base de données active › Icône de l'application*, "
             "cocher *Utiliser comme icône de formulaire et d'état*. Tous les PNG sont transparents, prévus pour un fond foncé.",
+            "**Icônes exclusives AURION** : jeu dessiné uniquement pour ce projet (angles coupés à 45°, deux tons : détail doré sur les icônes argent "
+            "et blanches, détail argent clair sur les icônes dorées). Tableau de bord = compteur de vitesse, Marques = écusson, Voitures = supercar de profil. "
+            "Elles sont toutes dans `assets/` (voir `apercu-icones.png`) et ne sont utilisées par aucun autre projet.",
             "La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.",
         ],
     },
