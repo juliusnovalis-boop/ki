@@ -677,7 +677,7 @@ def ecrire_logos(t, maq, assets, pos):
                 "b": ("`Logo` (bouton blanc arrondi + icône) et `Lbl_Titre` (nom)", "`Logo` (bouton blanc arrondi + icône)"),
                 "c": ("`Logo` (icône + nom)", "`Logo` (icône + nom)"),
                 "d": ("`Logo` (icône) et `Lbl_Titre` (nom)", "`Logo` (icône + nom)"),
-                "e": ("`Logo` (icône dorée + nom)", "`Logo` (icône dorée + nom)")}[t["design"]]
+                "e": ("`Logo` (image `marque/aurion-connexion.png`)", "`Logo` (image `marque/aurion-menu.png`)")}[t["design"]]
     L = ["## Logos complets (une seule image)", "",
          "Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les bonnes couleurs) est fourni en **une seule image** "
          "PNG transparente : insérer un contrôle **Image**, choisir le fichier, `Mode affichage image` **Découpage**, "

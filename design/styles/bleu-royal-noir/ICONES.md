@@ -10,8 +10,8 @@ Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les b
 
 | Fichier | Où | Gauche | Haut | Largeur | Hauteur | Remplace |
 |---|---|---:|---:|---:|---:|---|
-| `logo-connexion.png` | Formulaire de connexion | 16,30 | 1,43 | 3,86 | 0,74 | `Logo` (icône dorée + nom) |
-| `logo-menu.png` | Formulaire Menu | 0,74 | 0,50 | 3,81 | 0,69 | `Logo` (icône dorée + nom) |
+| `logo-connexion.png` | Formulaire de connexion | 16,14 | 0,90 | 6,61 | 3,10 | `Logo` (image `marque/aurion-connexion.png`) |
+| `logo-menu.png` | Formulaire Menu | 0,64 | 0,16 | 5,66 | 1,38 | `Logo` (image `marque/aurion-menu.png`) |
 
 ## Toutes les icônes
 
@@ -34,8 +34,6 @@ Le logo entier (icône **et** nom de l'entreprise, avec la bonne police et les b
 | `icone-trophy-20px-C9A24B.png` | 20 × 20 px | `#C9A24B` | `Icone_Meilleur` | Tableau de bord |
 | `icone-users-20px-C9A24B.png` | 20 × 20 px | `#C9A24B` | `Icone_Clients` | Tableau de bord |
 | `icone-wallet-20px-E3C77A.png` | 20 × 20 px | `#E3C77A` | `Icone_CA` | Tableau de bord |
-| `logo-car-front-26px-C9A24B.png` | 26 × 26 px | `#C9A24B` | `Logo` | Tableau de bord, Réservations, Clients, Voitures, Marques, Carburants, Modèles |
-| `logo-car-front-28px-C9A24B.png` | 28 × 28 px | `#C9A24B` | `Logo` | Connexion |
 | `menu-calendar-range-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_reservations` | Tableau de bord, Clients, Voitures, Marques, Carburants, Modèles |
 | `menu-calendar-range-actif-16px-FFFFFF.png` | 16 × 16 px | `#FFFFFF` | `BoutonNavigation_reservations` | Réservations |
 | `menu-car-16px-C4CAD3.png` | 16 × 16 px | `#C4CAD3` | `BoutonNavigation_voitures` | Tableau de bord, Réservations, Clients, Marques, Carburants, Modèles |

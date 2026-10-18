@@ -122,6 +122,10 @@ DESIGNS = {
             "puis 03 Réservation sur une ligne et 04 Liste.",
             "Connexion : formulaire de 26,46 × 14,82 cm. À gauche, `assets/photos/e-connexion.jpg` (14,82 × 14,82 cm) avec le slogan en haut ; trait doré vertical ; "
             "à droite sur fond `#01040B` : `assets/logo-connexion.png`, titre Bahnschrift, libellés en majuscules, bouton bleu royal **SE CONNECTER**.",
+            "**Logo AURION** (dossier `assets/marque/`) : `aurion-menu.png` (barre du menu, 5,66 × 1,38 cm), `aurion-connexion.png` "
+            "(connexion, 6,61 × 3,10 cm), `aurion-logo-hd.png` et `aurion-embleme-hd.png` en grand format (états imprimés, page de garde), "
+            "et **`aurion.ico`** pour l'icône de l'application : *Fichier › Options › Base de données active › Icône de l'application*, "
+            "cocher *Utiliser comme icône de formulaire et d'état*. Tous les PNG sont transparents, prévus pour un fond foncé.",
             "La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.",
         ],
     },

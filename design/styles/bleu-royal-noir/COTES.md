@@ -18,19 +18,19 @@ Maquette : `png/00-connexion.png`
 | `Lbl_Surtitre` | Étiquette | 1,06 | 1,48 | 8,10 | 0,37 |
 | `Lbl_Slogan` | Étiquette | 1,01 | 2,12 | 8,89 | 2,01 |
 | `Trait_Or` | Trait | 14,82 | 0,00 | 0,03 | 14,82 |
-| `Logo` | Image + étiquette | 16,30 | 1,43 | 3,84 | 0,74 |
-| `Lbl_Titre` | Étiquette | 16,30 | 3,12 | 4,39 | 1,27 |
-| `Txt_Utilisateur` | Zone de texte | 16,30 | 6,67 | 8,68 | 1,01 |
-| `Txt_MotDePasse` | Zone de texte | 16,30 | 8,73 | 8,68 | 1,01 |
-| `Btn_Connexion` | Bouton | 16,30 | 10,48 | 8,68 | 1,11 |
-| `Login_Copyright` | Étiquette | 16,30 | 13,76 | 2,62 | 0,37 |
+| `Logo` | Image (marque/aurion-connexion.png) | 16,14 | 0,90 | 6,61 | 3,10 |
+| `Lbl_Titre` | Étiquette | 16,30 | 4,39 | 4,39 | 1,27 |
+| `Txt_Utilisateur` | Zone de texte | 16,30 | 7,78 | 8,68 | 1,01 |
+| `Txt_MotDePasse` | Zone de texte | 16,30 | 9,84 | 8,68 | 1,01 |
+| `Btn_Connexion` | Bouton | 16,30 | 11,48 | 8,68 | 1,11 |
+| `Login_Copyright` | Étiquette | 16,30 | 13,97 | 2,62 | 0,37 |
 
 ## Formulaire « Menu » (commun à tous les écrans)
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
 | `Entete` | Section En-tête | 0,00 | 0,00 | 41,49 | 1,69 |
-| `Logo` | Image + étiquette | 0,74 | 0,50 | 3,78 | 0,69 |
+| `Logo` | Image (marque/aurion-menu.png) | 0,64 | 0,16 | 5,66 | 1,38 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 8,68 | 0,37 | 4,26 | 0,95 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 13,10 | 0,37 | 3,65 | 0,95 |
 | `BoutonNavigation_clients` | Bouton de navigation | 16,91 | 0,37 | 2,67 | 0,95 |

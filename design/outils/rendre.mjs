@@ -44,7 +44,7 @@ for (const j of (jobs.logos || [])) {
       el.style.visibility = "visible";
       el.querySelectorAll("*").forEach((c) => (c.style.visibility = "visible"));
       const cs = getComputedStyle(el);
-      const plein = cs.backgroundColor !== "rgba(0, 0, 0, 0)" || cs.boxShadow !== "none";
+      const plein = cs.backgroundColor !== "rgba(0, 0, 0, 0)" || cs.boxShadow !== "none" || el.tagName === "IMG";
       let q;
       if (plein) {
         const b = el.getBoundingClientRect();

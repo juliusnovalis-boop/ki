@@ -789,6 +789,10 @@ def e_jauges_jobs(tmp):
     """21 images de jauge (0 à 100 %, pas de 5) : Access change l'image en VBA selon le taux."""
     jobs = []
     (g.ASSETS / "jauges").mkdir(parents=True, exist_ok=True)
+    import shutil                                                            # logo AURION (emblème choisi)
+    (g.ASSETS / "marque").mkdir(parents=True, exist_ok=True)
+    for f in (g.ICI / "marque").iterdir():
+        shutil.copy(f, g.ASSETS / "marque" / f.name)
     (g.ASSETS / "photos" / "e-bandeau-tableau.jpg").unlink(missing_ok=True)   # plus de bandeau sur le tableau de bord
     for pct in range(0, 101, 5):
         out = f"jauges/jauge-{pct:03d}.png"
@@ -843,7 +847,7 @@ def e_coquille(actif, corps):
                 + f'<div class="abs date-e" style="right:32px;top:{y0 + 24}px" {acc("Date_Heure", "Zone de texte")}>{g.svg("calendar-range", OR, 16)}lundi 28 septembre 2026 · 20:06</div>')
     c = f"""
 <div class="abs" style="left:0;top:0;width:{g.W}px;height:{E_TETE}px;background:#000000" {acc("Entete", "Section En-tête")}></div>
-<div class="abs" style="left:28px;top:19px;display:flex;align-items:center;gap:11px;{FU}font-size:21.33px;font-weight:600;letter-spacing:7px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 26, 1.8)}{g.NOM_APPLI}</div>
+<img class="abs" src="{g.ASSET_URL}/marque/aurion-menu.png" style="left:24px;top:6px;width:214px;height:52px" {acc("Logo", "Image (marque/aurion-menu.png)")}>
 {nav}
 <div class="avatar" style="left:{g.W - 316}px;top:15px;width:34px;height:34px;box-shadow:0 0 0 2px {OR}" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
 <div class="utilisateur" style="left:{g.W - 272}px;top:16px;width:100px" {acc("Txt_Utilisateur", "Zone de texte")}><b style="color:#FFFFFF">admin</b><span style="color:{ARGENT}">Administrateur</span></div>
@@ -1025,16 +1029,16 @@ def e_login():
 {lbl(40, 56, "LOCATION DE PRESTIGE · LIBREVILLE", f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")}
 {lbl(38, 80, "L'excellence automobile,<br>à votre service.", f"{FU}font-size:34.67px;font-weight:600;line-height:38px;color:#FFFFFF", "Lbl_Slogan")}
 <div class="abs" style="left:{px}px;top:0;width:1px;height:{lh}px;background:{OR}" {acc("Trait_Or", "Trait")}></div>
-<div class="abs" style="left:{fx}px;top:54px;display:flex;align-items:center;gap:11px;{FU}font-size:21.33px;font-weight:600;letter-spacing:7px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 28, 1.8)}{g.NOM_APPLI}</div>
-{lbl(fx, 118, "Connexion", f"{FU}font-size:40px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
-<div class="abs" style="left:{fx + 1}px;top:170px;width:40px;height:2px;background:{OR}"></div>
-{lbl(fx, 184, "Accédez à votre espace de gestion.", f"font-size:13.33px;color:{ARGENT}")}
-<div class="abs" style="left:{fx}px;top:230px;{et}">NOM D'UTILISATEUR</div>
-<div class="champ" style="left:{fx}px;top:252px;width:{fw}px;height:38px;line-height:36px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
-<div class="abs" style="left:{fx}px;top:308px;{et}">MOT DE PASSE</div>
-<div class="champ" style="left:{fx}px;top:330px;width:{fw}px;height:38px;line-height:36px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
-<div class="btn primaire" style="left:{fx}px;top:396px;width:{fw}px;height:42px;{FU}font-size:14.67px;letter-spacing:3px" {acc("Btn_Connexion", "Bouton")}>SE CONNECTER</div>
-{lbl(fx, 458, "Mot de passe oublié ? Contactez l'administrateur.", "font-size:12px;color:#8A96AD")}
-{lbl(fx, lh - 40, "© 2026 " + g.NOM_APPLI, f"{FU}font-size:12px;letter-spacing:2px;color:#5B6A86", "Login_Copyright")}
+<img class="abs" src="{g.ASSET_URL}/marque/aurion-connexion.png" style="left:{fx - 6}px;top:34px;width:250px;height:117px" {acc("Logo", "Image (marque/aurion-connexion.png)")}>
+{lbl(fx, 166, "Connexion", f"{FU}font-size:40px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
+<div class="abs" style="left:{fx + 1}px;top:218px;width:40px;height:2px;background:{OR}"></div>
+{lbl(fx, 232, "Accédez à votre espace de gestion.", f"font-size:13.33px;color:{ARGENT}")}
+<div class="abs" style="left:{fx}px;top:272px;{et}">NOM D'UTILISATEUR</div>
+<div class="champ" style="left:{fx}px;top:294px;width:{fw}px;height:38px;line-height:36px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
+<div class="abs" style="left:{fx}px;top:350px;{et}">MOT DE PASSE</div>
+<div class="champ" style="left:{fx}px;top:372px;width:{fw}px;height:38px;line-height:36px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
+<div class="btn primaire" style="left:{fx}px;top:434px;width:{fw}px;height:42px;{FU}font-size:14.67px;letter-spacing:3px" {acc("Btn_Connexion", "Bouton")}>SE CONNECTER</div>
+{lbl(fx, 494, "Mot de passe oublié ? Contactez l'administrateur.", "font-size:12px;color:#8A96AD")}
+{lbl(fx, lh - 32, "© 2026 " + g.NOM_APPLI, f"{FU}font-size:12px;letter-spacing:2px;color:#5B6A86", "Login_Copyright")}
 """
     return g.fenetre(g.NOM_APPLI + " - Connexion", lw, lh, c, boutons=("fermer",))

@@ -10,8 +10,8 @@ Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleur
 
 | Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `assets/logo-connexion.png` | Connexion | 16,30 | 1,43 | 3,86 | 0,74 |
-| `assets/logo-menu.png` | Menu | 0,74 | 0,50 | 3,81 | 0,69 |
+| `assets/logo-connexion.png` | Connexion | 16,14 | 0,90 | 6,61 | 3,10 |
+| `assets/logo-menu.png` | Menu | 0,64 | 0,16 | 5,66 | 1,38 |
 
 Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
 
@@ -44,6 +44,7 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 * Fiches : liste à gauche avec la zone **Rechercher…** (filtre) dans la bande de titre ; fiche à droite (12,70 cm), champs tous les 1,16 cm. Sur Marques, Carburants et Modèles, la photo `e-vignette-<page>.jpg` complète la colonne avec un grand chiffre.
 * Réservations : cartes 01 Client et 02 Voiture, carte du **montant en doré sur bleu royal** avec la barre de progression de la location, puis 03 Réservation sur une ligne et 04 Liste.
 * Connexion : formulaire de 26,46 × 14,82 cm. À gauche, `assets/photos/e-connexion.jpg` (14,82 × 14,82 cm) avec le slogan en haut ; trait doré vertical ; à droite sur fond `#01040B` : `assets/logo-connexion.png`, titre Bahnschrift, libellés en majuscules, bouton bleu royal **SE CONNECTER**.
+* **Logo AURION** (dossier `assets/marque/`) : `aurion-menu.png` (barre du menu, 5,66 × 1,38 cm), `aurion-connexion.png` (connexion, 6,61 × 3,10 cm), `aurion-logo-hd.png` et `aurion-embleme-hd.png` en grand format (états imprimés, page de garde), et **`aurion.ico`** pour l'icône de l'application : *Fichier › Options › Base de données active › Icône de l'application*, cocher *Utiliser comme icône de formulaire et d'état*. Tous les PNG sont transparents, prévus pour un fond foncé.
 * La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.
