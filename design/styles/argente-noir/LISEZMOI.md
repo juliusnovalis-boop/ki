@@ -21,6 +21,7 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 |---|---|
 | `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |
 | `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |
+| `FOND-NAVIGATION.md` et `schema-fond-navigation.png` | **Photo de fond derrière le menu et le sous-formulaire** : pas à pas et code VBA |
 | `COTES.md` | Position et taille de chaque contrôle, en centimètres |
 | `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |
 | `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |
@@ -31,7 +32,7 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 
 ## Réaliser ce design dans Access
 
-* Formulaire de navigation **« Onglets horizontaux »**. Propriété **`Image`** du formulaire Menu : `assets/photos/d-fond-<page>.jpg` (41,49 × 20,74 cm), `Mode affichage image` **Découpage**. Dans chaque sous-formulaire, `Style fond` des sections : **Transparent**, ou la même image en fond.
+* Formulaire de navigation **« Onglets horizontaux »**. **Photo de fond sur le menu ET le sous-formulaire** : Access ne rend pas un sous-formulaire transparent, la photo est donc coupée en deux morceaux alignés. Formulaire Menu : `Image` = `assets/photos/d-fond-<page>.jpg` (photo complète, 41,49 × 20,74 cm) ; chaque page : `Image` = `assets/photos/d-corps-<page>.jpg` (bas de la photo, 41,49 × 18,84 cm) ; les deux en **Étirer**, sous-formulaire au **Haut 1,905 cm**, sans bordure. Pas à pas, code VBA et schéma : **`FOND-NAVIGATION.md`** et `schema-fond-navigation.png`.
 * Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), `Style fond` Transparent, texte couleur *Texte du menu* ; onglet actif : fond couleur *Onglet actif (fond)*, texte noir.
 * Cartes : Rectangle couleur *Cartes (fond)*, bordure couleur *Bordure des cartes*, titres en majuscules 9,5 pt, petit trait couleur *Accent* de 1,06 cm sous le titre.
 * Indicateurs et montant : Rectangles argentés (couleurs *Indicateurs*), texte et icônes noirs.

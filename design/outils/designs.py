@@ -556,7 +556,7 @@ def d_coquille(actif, corps):
 {avatar(g.W - 104, 20, 32)}
 <div class="abs" style="left:{g.W - 56}px;top:26px" {acc("Btn_Quitter", "Bouton")}>{g.svg("power", "#C9CDD2", 20)}</div>
 <div class="abs" style="left:32px;top:{D_TETE - 1}px;width:{g.W - 64}px;height:1px;background:rgba(201,205,210,.25)"></div>
-{contenu(0, D_TETE, g.W, g.H - D_TETE, corps, fond=False)}"""
+{contenu(0, D_TETE, g.W, g.H - D_TETE, img(f"d-corps-{actif}.jpg", 0, 0, g.W, g.H - D_TETE, "Image_Fond_SousFormulaire") + corps, fond=False)}"""
     return g.fenetre(g.NOM_APPLI, g.W, g.H, c)
 
 
@@ -741,8 +741,10 @@ def photos_jobs(photo, H, W):
               "linear-gradient(180deg, rgba(1,4,11,.30) 0%, rgba(1,4,11,.05) 35%, rgba(1,4,11,.80) 72%, rgba(1,4,11,.97) 100%)", filtre)
     elif d == "d":
         for cle, (src, pos, _) in PHOTOS.items():
-            photo(f"photos/d-fond-{cle}.jpg", W, H, *source(cle, src, pos),
-                  f"linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.62) 12%, rgba(0,0,0,.72) 40%, rgba(0,0,0,.86) 100%)", filtre)
+            voile_d = "linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.62) 12%, rgba(0,0,0,.72) 40%, rgba(0,0,0,.86) 100%)"
+            photo(f"photos/d-fond-{cle}.jpg", W, H, *source(cle, src, pos), voile_d, filtre)
+            # même photo, coupée sous la barre de navigation : fond du sous-formulaire, raccord parfait
+            photo(f"photos/d-corps-{cle}.jpg", W, H, *source(cle, src, pos), voile_d, filtre, coupe=(D_TETE, H - D_TETE))
         photo("photos/d-connexion.jpg", 880, 520, *source("connexion", "login-route-cotiere.jpg", "70% center"),
               "radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.8) 100%)", filtre)
 

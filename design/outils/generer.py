@@ -602,13 +602,16 @@ def assets_jobs(tmp, icones=None):
             add(f"carte-{ico}.png", 18, ico, T["icone"], 18)
 
     # Photos : recadrées à la taille exacte et assombries en bleu, prêtes pour Access
-    def photo(out, w, h, src, pos, voile, filtre="none"):
+    def photo(out, w, h, src, pos, voile, filtre="none", coupe=None):
+        """coupe = (haut, hauteur) : ne garder qu'une bande de la photo w × h (ex. partie sous-formulaire)."""
+        y0, hv = coupe if coupe else (0, h)
         p = tmp / (out.replace("/", "_") + ".html")
-        p.write_text(f'<!doctype html><html><head><style>html,body{{margin:0}}#a{{position:relative;width:{w}px;height:{h}px;'
-                     f'overflow:hidden;background:{T["menu"]}}}#a img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
-                     f'object-position:{pos};filter:{filtre}}}#a .v{{position:absolute;inset:0;background:{voile}}}</style></head>'
-                     f'<body><div id="a"><img src="{(ICI / "photos" / src).as_uri()}"><div class="v"></div></div></body></html>')
-        jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": w, "h": h, "transparent": False, "sel": "#a"})
+        p.write_text(f'<!doctype html><html><head><style>html,body{{margin:0}}#a{{position:relative;width:{w}px;height:{hv}px;'
+                     f'overflow:hidden;background:{T["menu"]}}}#i{{position:absolute;left:0;top:{-y0}px;width:{w}px;height:{h}px}}'
+                     f'#i img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'
+                     f'object-position:{pos};filter:{filtre}}}#i .v{{position:absolute;inset:0;background:{voile}}}</style></head>'
+                     f'<body><div id="a"><div id="i"><img src="{(ICI / "photos" / src).as_uri()}"><div class="v"></div></div></div></body></html>')
+        jobs.append({"html": p.as_uri(), "out": str(ASSETS / out), "w": w, "h": hv, "transparent": False, "sel": "#a"})
 
     v = T["voile"]  # couleur du voile posé sur les photos (r, g, b)
     sat = T.get("photo_filtre", "none")

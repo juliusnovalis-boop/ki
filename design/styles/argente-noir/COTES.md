@@ -44,6 +44,7 @@ Maquette : `png/01-tableau-de-bord.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-tableau.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 5,79 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 10,24 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -70,6 +71,7 @@ Maquette : `png/02-reservations.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-reservations.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 4,84 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 7,01 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -110,6 +112,7 @@ Maquette : `png/03-clients.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-clients.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 2,54 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 4,00 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -143,6 +146,7 @@ Maquette : `png/04-voitures.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-voitures.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 3,12 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 10,42 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -176,6 +180,7 @@ Maquette : `png/05-marques.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-marques.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 3,31 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 6,32 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -203,6 +208,7 @@ Maquette : `png/06-carburants.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-carburants.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 4,21 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 3,65 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
@@ -230,6 +236,7 @@ Maquette : `png/07-modeles.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
+| `Image_Fond_SousFormulaire` | Image (d-corps-modeles.jpg) | 0,00 | 0,00 | 41,49 | 18,84 |
 | `Lbl_Titre_Page` | Étiquette | 0,85 | 0,48 | 3,15 | 1,06 |
 | `Lbl_SousTitre` | Étiquette | 0,90 | 1,59 | 6,19 | 0,48 |
 | `Date_Heure` | Zone de texte | 35,38 | 0,85 | 5,27 | 0,48 |
