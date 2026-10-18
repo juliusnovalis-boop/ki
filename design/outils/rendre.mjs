@@ -66,7 +66,7 @@ for (const j of (jobs.logos || [])) {
 }
 if (jobs.logos_out) fs.writeFileSync(jobs.logos_out, JSON.stringify(logos, null, 1));
 
-for (const j of jobs.assets) await rendre(j);
+for (const j of jobs.assets) await rendre(j, j.scale || 1);
 
 const cotes = {};
 for (const j of jobs.ecrans) {

@@ -1,0 +1,58 @@
+[
+ {
+  "png": "etats/png/01-bon-de-reservation.png",
+  "nom": "Etat_BonReservation",
+  "titre": "Bon de réservation",
+  "bouton": "Réservations › carte 03 Réservation › Imprimer",
+  "pages": 1
+ },
+ {
+  "png": "etats/png/02-liste-des-reservations.png",
+  "nom": "Etat_Reservations",
+  "titre": "Liste des réservations",
+  "bouton": "Réservations › carte 04 Liste des réservations › Imprimer",
+  "pages": 2
+ },
+ {
+  "png": "etats/png/03-voitures-reservees.png",
+  "nom": "Etat_VoituresReservees",
+  "titre": "Voitures réservées",
+  "bouton": "Tableau de bord › carte 02 Voitures actuellement réservées › Imprimer",
+  "pages": 1
+ },
+ {
+  "png": "etats/png/04-liste-des-clients.png",
+  "nom": "Etat_Clients",
+  "titre": "Liste des clients",
+  "bouton": "Clients › carte 01 Liste des clients › Imprimer",
+  "pages": 8
+ },
+ {
+  "png": "etats/png/05-parc-automobile.png",
+  "nom": "Etat_Voitures",
+  "titre": "Parc automobile",
+  "bouton": "Voitures › carte 01 Liste des voitures › Imprimer",
+  "pages": 2
+ },
+ {
+  "png": "etats/png/06-marques.png",
+  "nom": "Etat_Marques",
+  "titre": "Marques",
+  "bouton": "Marques › carte 01 Liste des marques › Imprimer",
+  "pages": 1
+ },
+ {
+  "png": "etats/png/07-carburants.png",
+  "nom": "Etat_Carburants",
+  "titre": "Types de carburant",
+  "bouton": "Carburants › carte 01 Types de carburant › Imprimer",
+  "pages": 1
+ },
+ {
+  "png": "etats/png/08-modeles.png",
+  "nom": "Etat_Modeles",
+  "titre": "Modèles",
+  "bouton": "Modèles › carte 01 Liste des modèles › Imprimer",
+  "pages": 2
+ }
+]

@@ -13,6 +13,21 @@ Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleur
 | `assets/logo-connexion.png` | Connexion | 16,14 | 0,90 | 6,61 | 3,10 |
 | `assets/logo-menu.png` | Menu | 0,64 | 0,16 | 5,66 | 1,38 |
 
+## États (impressions)
+
+Chaque bouton **Imprimer** ouvre un état A4 : aperçus dans `etats/png/`, sections et contrôles en cm dans **`ETATS.md`**.
+
+| Aperçu | État | Bouton Imprimer |
+|---|---|---|
+| `etats/png/01-bon-de-reservation.png` | **Etat_BonReservation** (Bon de réservation) | Réservations › carte 03 Réservation › Imprimer |
+| `etats/png/02-liste-des-reservations.png` | **Etat_Reservations** (Liste des réservations) | Réservations › carte 04 Liste des réservations › Imprimer |
+| `etats/png/03-voitures-reservees.png` | **Etat_VoituresReservees** (Voitures réservées) | Tableau de bord › carte 02 Voitures actuellement réservées › Imprimer |
+| `etats/png/04-liste-des-clients.png` | **Etat_Clients** (Liste des clients) | Clients › carte 01 Liste des clients › Imprimer |
+| `etats/png/05-parc-automobile.png` | **Etat_Voitures** (Parc automobile) | Voitures › carte 01 Liste des voitures › Imprimer |
+| `etats/png/06-marques.png` | **Etat_Marques** (Marques) | Marques › carte 01 Liste des marques › Imprimer |
+| `etats/png/07-carburants.png` | **Etat_Carburants** (Types de carburant) | Carburants › carte 01 Types de carburant › Imprimer |
+| `etats/png/08-modeles.png` | **Etat_Modeles** (Modèles) | Modèles › carte 01 Liste des modèles › Imprimer |
+
 Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
 
 ## Contenu du dossier
@@ -21,6 +36,7 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 |---|---|
 | `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |
 | `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |
+| `etats/png/` et `ETATS.md` | Les **états** (impressions) ouverts par les boutons Imprimer, avec leurs cotes |
 | `COTES.md` | Position et taille de chaque contrôle, en centimètres |
 | `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |
 | `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |

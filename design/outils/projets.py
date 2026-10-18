@@ -5,6 +5,7 @@ Sorties : design/styles/<style>/couleur.md, design/styles/<style>/LISEZMOI.md, d
           et projets/<NOM>-<style>.zip à la racine du dépôt.
 """
 import glob
+import json
 import os
 import zipfile
 from pathlib import Path
@@ -221,11 +222,19 @@ def lisezmoi(t, num):
     for ou, lib in [("connexion", "Connexion"), ("menu", "Menu")]:
         p = lg[ou]
         L.append(f"| `assets/logo-{ou}.png` | {lib} | {cm(p['x'])} | {cm(p['y'])} | {cm(p['w'])} | {cm(p['h'])} |")
+    fe = DESIGN / t["dossier"] / "etats.json"
+    if fe.exists():
+        L += ["", "## États (impressions)", "",
+              "Chaque bouton **Imprimer** ouvre un état A4 : aperçus dans `etats/png/`, sections et contrôles en cm dans **`ETATS.md`**.", "",
+              "| Aperçu | État | Bouton Imprimer |", "|---|---|---|"]
+        for x in json.loads(fe.read_text()):
+            L.append(f"| `{x['png']}` | **{x['nom']}** ({x['titre']}) | {x['bouton']} |")
     L += ["", "Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.", "",
          "## Contenu du dossier", "",
          "| Fichier | Rôle |", "|---|---|",
          "| `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |",
          "| `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |",
+         ] + (["| `etats/png/` et `ETATS.md` | Les **états** (impressions) ouverts par les boutons Imprimer, avec leurs cotes |"] if fe.exists() else []) + [
          "| `COTES.md` | Position et taille de chaque contrôle, en centimètres |",
          "| `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |",
          "| `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |",
@@ -248,6 +257,9 @@ def verifier(zp, nom, dos):
     assert z.testzip() is None, "zip corrompu"
     dedans = {n[len(nom) + 1:] for n in z.namelist()}
     attendu = {"LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png", "assets/logo-connexion.png", "assets/logo-menu.png"}
+    for h in sorted((dos / "etats").glob("*.html")) if (dos / "etats").exists() else []:
+        attendu |= {f"etats/png/{h.stem}.png", "ETATS.md"}
+        attendu |= {f"assets/{r}" for r in re.findall(r'src="\.\./assets/([^"]+)"', h.read_text())}
     for h in sorted(dos.glob("0*.html")):
         attendu.add(f"png/{h.stem}.png")
         attendu |= {f"assets/{r}" for r in re.findall(r'(?:src="|url\(["\']?)assets/([^"\')]+)', h.read_text())}
@@ -258,7 +270,8 @@ def verifier(zp, nom, dos):
     n_ico = sum(1 for f in dedans if f.startswith("assets/") and f.endswith(".png"))
     n_ph = sum(1 for f in dedans if f.startswith("assets/photos/"))
     n_ecr = sum(1 for f in dedans if f.startswith("png/"))
-    return f"contrôle OK : {n_ecr} écrans, {n_ph} photos, {n_ico} icônes, rien ne manque"
+    n_et = sum(1 for f in dedans if f.startswith("etats/png/"))
+    return f"contrôle OK : {n_ecr} écrans, {n_et} états, {n_ph} photos, {n_ico} icônes, rien ne manque"
 
 
 def main():
@@ -271,7 +284,9 @@ def main():
         nom = f"{t['societe'].replace(' ', '-')}-{t['cle']}"
         out = RACINE / "projets" / f"{nom}.zip"
         with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-            fic = ["LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png"] + sorted(
+            extra = (["ETATS.md"] + sorted(os.path.relpath(f, dos) for f in glob.glob(str(dos / "etats" / "png" / "*.png")))
+                     if (dos / "ETATS.md").exists() else [])
+            fic = ["LISEZMOI.md", "couleur.md", "COTES.md", "ICONES.md", "apercu-icones.png"] + extra + sorted(
                 os.path.relpath(f, dos) for f in glob.glob(str(dos / "png" / "*.png")) + glob.glob(str(dos / "assets" / "**" / "*.*"), recursive=True))
             for f in fic:
                 z.write(dos / f, f"{nom}/{f}")
