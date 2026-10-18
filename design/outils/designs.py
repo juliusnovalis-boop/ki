@@ -683,8 +683,9 @@ POS_PROPRES = {
           "marques": "center 50%", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 60%"},
     "c": {"tableau": "center 60%", "reservations": "center 55%", "clients": "center 55%", "voitures": "center 60%",
           "marques": "15% center", "carburants": "center 55%", "modeles": "center 50%", "connexion": "center 62%"},
-    "e": {"tableau": "center 74%", "reservations": "center 46%", "clients": "center 62%", "voitures": "center 64%",
-          "marques": "center 50%", "carburants": "center 76%", "modeles": "center 55%", "connexion": "65% center"},
+    "e": {"tableau": "center center", "reservations": "center 30%", "clients": "center 55%", "voitures": "center 55%",
+          "marques": "center 50%", "carburants": "center 62%", "modeles": "center 55%", "connexion": "50% center",
+          "vedette": "62% 55%"},
     "d": {"tableau": "center center", "reservations": "center center", "clients": "center center", "voitures": "center center",
           "marques": "center center", "carburants": "center center", "modeles": "center center", "connexion": "100% center"},
 }
@@ -726,14 +727,18 @@ def photos_jobs(photo, H, W):
         photo("photos/c-connexion.jpg", 880, 300, *source("connexion", "login-route-cotiere.jpg", "center 62%"),
               f"linear-gradient(90deg, {rgba(.9)} 0%, {rgba(.55)} 45%, {rgba(.1)} 100%)", filtre)
     elif d == "e":
+        voile_h = "linear-gradient(90deg, rgba(1,4,11,.97) 0%, rgba(1,4,11,.86) 30%, rgba(0,35,102,.30) 64%, rgba(1,4,11,.10) 100%)"
         for cle, (src, pos, _) in PHOTOS.items():
-            photo(f"photos/e-bandeau-{cle}.jpg", W, e_hero_h(cle), *source(cle, src, pos),
-                  "linear-gradient(90deg, rgba(5,7,12,.96) 0%, rgba(5,7,12,.82) 28%, rgba(8,20,70,.35) 62%, rgba(5,7,12,.12) 100%)", filtre)
+            if cle == "tableau":
+                continue
+            photo(f"photos/e-bandeau-{cle}.jpg", W, E_HERO, *source(cle, src, pos), voile_h, filtre)
             if cle in E_FICHE_N and e_dims_fiche(cle)[1]:
                 photo(f"photos/e-vignette-{cle}.jpg", E_COL_D, e_dims_fiche(cle)[1], *source(cle, src, "center center"),
-                      "linear-gradient(180deg, rgba(5,7,12,.1) 0%, rgba(5,7,12,.25) 45%, rgba(5,7,12,.9) 100%)", filtre)
-        photo("photos/e-connexion.jpg", 540, 560, *source("connexion", "login-route-cotiere.jpg", "65% center"),
-              "linear-gradient(180deg, rgba(5,7,12,.25) 0%, rgba(5,7,12,.1) 40%, rgba(5,7,12,.75) 72%, rgba(5,7,12,.96) 100%)", filtre)
+                      "linear-gradient(180deg, rgba(1,4,11,.05) 0%, rgba(1,4,11,.2) 45%, rgba(1,4,11,.92) 100%)", filtre)
+        photo("photos/e-vedette.jpg", 398, 248, *source("vedette", "", "62% 55%"),
+              "linear-gradient(90deg, rgba(6,17,42,1) 0%, rgba(6,17,42,.55) 22%, rgba(6,17,42,0) 45%)", filtre)
+        photo("photos/e-connexion.jpg", 560, 560, *source("connexion", "login-route-cotiere.jpg", "66% center"),
+              "linear-gradient(180deg, rgba(1,4,11,.30) 0%, rgba(1,4,11,.05) 35%, rgba(1,4,11,.80) 72%, rgba(1,4,11,.97) 100%)", filtre)
     elif d == "d":
         for cle, (src, pos, _) in PHOTOS.items():
             photo(f"photos/d-fond-{cle}.jpg", W, H, *source(cle, src, pos),
@@ -743,33 +748,80 @@ def photos_jobs(photo, H, W):
 
 
 # ==========================================================================
-# DESIGN E : PRESTIGE (bleu royal et noir, or, argent, blanc)
+# DESIGN E : PRESTIGE FUTURISTE (bleu royal #002366 et noir, or, argent, blanc)
 # ==========================================================================
-OR, OR_CLAIR, ARGENT, ROYAL, ROYAL_FONCE = "#C9A24B", "#E3C77A", "#C4CAD3", "#1F4FD8", "#173FAF"
-E_TETE = 68
-E_HERO = {"tableau": 150}          # hauteur du bandeau photo (120 sur les autres pages)
-E_SURTITRE = {"tableau": "TABLEAU DE BORD", "reservations": "GESTION · LOCATIONS", "clients": "GESTION · CLIENTÈLE",
+OR, OR_CLAIR, ARGENT, ROYAL, ROYAL_BORD, ROYAL_CLAIR = "#C9A24B", "#E3C77A", "#C4CAD3", "#002366", "#2A55B8", "#3D6FE0"
+CARTE, LIGNE = "#06112A", "#13284F"
+FU = "font-family:'Futur',Bahnschrift,sans-serif;"      # Bahnschrift dans Access
+E_TETE = 64
+E_HERO = 124                       # bandeau photo des pages (pas de bandeau sur le tableau de bord)
+E_SURTITRE = {"reservations": "GESTION · LOCATIONS", "clients": "GESTION · CLIENTÈLE",
               "voitures": "PARC AUTOMOBILE", "marques": "CATALOGUE", "carburants": "CATALOGUE", "modeles": "CATALOGUE"}
 E_FICHE_N = {"clients": 8, "voitures": 8, "marques": 2, "carburants": 2, "modeles": 3}
-E_COL_D = 480                      # largeur de la colonne de droite (fiches)
+E_COL_D = 480
 
 
 def e_hero_h(cle):
-    return E_HERO.get(cle, 120)
+    return 0 if cle == "tableau" else E_HERO
 
 
 def e_dims_fiche(cle):
-    """(y, hauteur) de la fiche et hauteur de la vignette photo sous la fiche (0 = pas de vignette)."""
-    dispo = g.H - E_TETE - 1 - e_hero_h(cle) - 44
-    h = 174 + 44 * E_FICHE_N[cle]
+    """(hauteur de la fiche, hauteur de la vignette photo dessous, hauteur disponible)."""
+    dispo = g.H - E_TETE - 1 - E_HERO - 40
+    h = 162 + 44 * E_FICHE_N[cle]
     reste = dispo - h - 16
     if reste < 120:
         return dispo, 0, dispo
     return h, reste, dispo
 
 
+def e_jauge(pct, taille=150, ep=10):
+    """Anneau de jauge (SVG) : piste bleu nuit, arc doré qui part du haut."""
+    r = (taille - ep) / 2
+    c = 2 * 3.14159265 * r
+    arc = "" if pct <= 0 else (f'<circle cx="{taille / 2}" cy="{taille / 2}" r="{r}" fill="none" stroke="{OR}" stroke-width="{ep}" '
+                              f'stroke-linecap="round" stroke-dasharray="{c * pct / 100:.2f} {c:.2f}" transform="rotate(-90 {taille / 2} {taille / 2})"/>')
+    return (f'<svg width="{taille}" height="{taille}" xmlns="http://www.w3.org/2000/svg">'
+            f'<circle cx="{taille / 2}" cy="{taille / 2}" r="{r}" fill="none" stroke="{LIGNE}" stroke-width="{ep}"/>{arc}</svg>')
+
+
+def e_jauges_jobs(tmp):
+    """21 images de jauge (0 à 100 %, pas de 5) : Access change l'image en VBA selon le taux."""
+    jobs = []
+    (g.ASSETS / "jauges").mkdir(parents=True, exist_ok=True)
+    (g.ASSETS / "photos" / "e-bandeau-tableau.jpg").unlink(missing_ok=True)   # plus de bandeau sur le tableau de bord
+    for pct in range(0, 101, 5):
+        out = f"jauges/jauge-{pct:03d}.png"
+        p = tmp / f"jauge-{pct}.html"
+        p.write_text(f'<!doctype html><html><head><style>html,body{{margin:0;background:transparent}}#a{{width:150px;height:150px}}'
+                     f'#a svg{{display:block}}</style></head><body><div id="a">{e_jauge(pct)}</div></body></html>')
+        jobs.append({"html": p.as_uri(), "out": str(g.ASSETS / out), "w": 150, "h": 150, "transparent": True, "sel": "#a"})
+    return jobs
+
+
+def e_vedette():
+    """Voiture phare du parc : la Bugatti Chiron au tarif journalier le plus élevé (celle de la photo)."""
+    chirons = [k for k in g.VOITURES if "Chiron" in g.modele_de(k)[0]]
+    bleues = [k for k in chirons if g.VOITURES[k]["Couleur"] == "Bleu"] or chirons
+    m = max(bleues, key=lambda k: g.VOITURES[k]["CoutParJour"])
+    v = g.VOITURES[m]
+    return m, g.modele_de(m)[0], v, sum(1 for r in g.DONNEES["Reservation"] if r["Voiture"] == m)
+
+
+def e_carte(nom, num, titre, x, y, w, h, interieur="", actions=(), info=None):
+    act = ""
+    if actions:
+        act = '<div class="actions">' + "".join(
+            f'<div class="btn-ico" title="{a}" {acc("Btn_" + a, "Bouton")}>{g.svg(g.ACTIONS[a], OR, 16)}</div>' for a in actions) + "</div>"
+    inf = (f'<div class="info-e" style="right:{20 + 36 * len(actions)}px" {acc("Txt_Info_" + nom.replace("Carte_", ""), "Zone de texte")}>{e(info)}</div>'
+           if info else "")
+    return (f'<div class="carte" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px" {acc(nom, "Rectangle")}>'
+            f'<div class="titre-e" {acc("Lbl_" + nom.replace("Carte_", ""), "Étiquette")}><span class="num">{num}</span>{e(titre)}</div>{inf}{act}'
+            f'<div class="sep-e"></div><div class="trait-e"></div>{interieur}</div>')
+
+
 def e_coquille(actif, corps):
-    items = [(cle, lib, ico, int(len(lib) * 7.9) + 52) for cle, lib, ico in g.MENU]
+    items = [(cle, lib, ico, int(len(lib) * 7.4) + 50) for cle, lib, ico in g.MENU]
     tot = sum(i[3] for i in items) + 6 * (len(items) - 1)
     x = (g.W - tot) // 2 + 10
     nav = ""
@@ -779,76 +831,115 @@ def e_coquille(actif, corps):
                 f'{g.svg(ico, "#FFFFFF" if on else ARGENT, 16)}{e(lib)}</div>')
         x += w + 6
     hh = e_hero_h(actif)
-    titre, sous = TEXTES[actif]
-    sous = sous.replace("{nom}", g.NOM_APPLI)
+    tete = ""
+    if hh:
+        titre, sous = TEXTES[actif]
+        sous = sous.replace("{nom}", g.NOM_APPLI)
+        y0 = E_TETE + 1
+        tete = (img(f"e-bandeau-{actif}.jpg", 0, y0, g.W, hh, "Bandeau")
+                + lbl(32, y0 + 22, E_SURTITRE[actif], f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")
+                + lbl(30, y0 + 38, e(titre), f"{FU}font-size:37.33px;font-weight:600;letter-spacing:.5px;color:#FFFFFF", "Lbl_Titre_Page")
+                + lbl(32, y0 + 88, e(sous), f"font-size:13.33px;color:{ARGENT}", "Lbl_SousTitre")
+                + f'<div class="abs date-e" style="right:32px;top:{y0 + 24}px" {acc("Date_Heure", "Zone de texte")}>{g.svg("calendar-range", OR, 16)}lundi 28 septembre 2026 · 20:06</div>')
     c = f"""
-<div class="abs" style="left:0;top:0;width:{g.W}px;height:{E_TETE}px;background:#05070C" {acc("Entete", "Section En-tête")}></div>
-<div class="abs" style="left:28px;top:21px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:2.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 26, 1.8)}{g.NOM_APPLI}</div>
+<div class="abs" style="left:0;top:0;width:{g.W}px;height:{E_TETE}px;background:#000000" {acc("Entete", "Section En-tête")}></div>
+<div class="abs" style="left:28px;top:19px;display:flex;align-items:center;gap:11px;{FU}font-size:18.67px;font-weight:600;letter-spacing:3.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 26, 1.8)}{g.NOM_APPLI}</div>
 {nav}
-<div class="avatar" style="left:{g.W - 212}px;top:17px;width:34px;height:34px;box-shadow:0 0 0 2px {OR}" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
-<div class="utilisateur" style="left:{g.W - 166}px;top:18px" {acc("Txt_Utilisateur", "Zone de texte")}><b style="color:#FFFFFF">admin</b><span style="color:{ARGENT}">Administrateur</span></div>
-<div class="abs" style="left:{g.W - 50}px;top:24px" {acc("Btn_Quitter", "Bouton")}>{g.svg("power", ARGENT, 20)}</div>
+<div class="avatar" style="left:{g.W - 212}px;top:15px;width:34px;height:34px;box-shadow:0 0 0 2px {OR}" {acc("Btn_Avatar", "Bouton (ellipse)")}>AD</div>
+<div class="utilisateur" style="left:{g.W - 166}px;top:16px" {acc("Txt_Utilisateur", "Zone de texte")}><b style="color:#FFFFFF">admin</b><span style="color:{ARGENT}">Administrateur</span></div>
+<div class="abs" style="left:{g.W - 50}px;top:22px" {acc("Btn_Quitter", "Bouton")}>{g.svg("power", ARGENT, 20)}</div>
 <div class="abs" style="left:0;top:{E_TETE}px;width:{g.W}px;height:1px;background:{OR}" {acc("Trait_Or", "Trait")}></div>
-{img(f"e-bandeau-{actif}.jpg", 0, E_TETE + 1, g.W, hh, "Bandeau")}
-{lbl(32, E_TETE + 1 + (26 if hh > 120 else 18), E_SURTITRE[actif], f"font-size:12px;font-weight:600;letter-spacing:3px;color:{OR}", "Lbl_Surtitre")}
-{lbl(30, E_TETE + 1 + (46 if hh > 120 else 36), e(titre), "font-size:30.67px;font-weight:600;color:#FFFFFF", "Lbl_Titre_Page")}
-{lbl(32, E_TETE + 1 + (94 if hh > 120 else 80), e(sous), f"font-size:13.33px;color:{ARGENT}", "Lbl_SousTitre")}
-<div class="abs date-e" style="right:32px;top:{E_TETE + 24}px" {acc("Date_Heure", "Zone de texte")}>{g.svg("calendar-range", OR, 16)}lundi 28 septembre 2026 · 20:06</div>
+{tete}
 {contenu(0, E_TETE + 1 + hh, g.W, g.H - E_TETE - 1 - hh, corps, fond=False)}"""
     return g.fenetre(g.NOM_APPLI, g.W, g.H, c)
 
 
-def e_kpi(n, x, y, w, h, lib, val, sub, ico, bleu=False, val_or=False, petit=False):
-    fond = ROYAL if bleu else "#0F1420"
-    bord = "" if bleu else "border:1px solid #1E2740;"
-    past = ROYAL_FONCE if bleu else "#151B2B"
-    filet = "" if bleu else f'<div class="abs" style="left:-1px;top:-1px;width:{w}px;height:2px;background:{OR}"></div>'
-    coul = OR_CLAIR if val_or else "#FFFFFF"
-    taille = "21.33px" if petit else "26.67px"
-    return (f'<div class="kpi" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;background:{fond};{bord}" {acc("Carte_" + n, "Rectangle")}>{filet}'
-            + lbl(22, 16, e(lib), f"font-size:11.33px;font-weight:600;letter-spacing:2px;color:{'rgba(255,255,255,.82)' if bleu else ARGENT}")
-            + f'<div class="val" style="left:22px;top:38px;font-size:{taille};color:{coul}" {acc("Txt_" + n, "Zone de texte")}>{val}</div>'
-            + lbl(22, 74, sub, f"font-size:12.67px;color:{'rgba(255,255,255,.78)' if bleu else '#8A93A3'}")
-            + f'<div class="pastille-ronde" style="left:{w - 70}px;top:{(h - 48) // 2}px;background:{past}" {acc("Pastille_" + n, "Bouton (ellipse) + image")}>'
-            f'{g.svg(ico, "#FFFFFF" if bleu else OR, 22)}</div></div>')
+def e_kpi(n, x, y, w, h, lib, val, sub, ico, royal=False, petit=False):
+    fond = f"background:{ROYAL};border:1px solid {ROYAL_BORD};" if royal else f"background:{CARTE};border:1px solid {LIGNE};"
+    trait = "" if royal else f'<div class="abs" style="left:19px;top:-1px;width:40px;height:2px;background:{OR}"></div>'
+    taille = "24px" if petit else "34.67px"
+    return (f'<div class="kpi" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;{fond}" {acc("Carte_" + n, "Rectangle")}>{trait}'
+            + lbl(20, 16, e(lib), f"{FU}font-size:12px;font-weight:600;letter-spacing:2.5px;color:{'#DCE4F5' if royal else ARGENT}")
+            + f'<div class="val" style="left:20px;top:{40 if petit else 34}px;{FU}font-size:{taille};font-weight:{400 if petit else 300};color:#FFFFFF" '
+              f'{acc("Txt_" + n, "Zone de texte")}>{val}</div>'
+            + lbl(20, 84, sub, f"font-size:12.67px;color:{'#C9D5EE' if royal else '#8A96AD'}")
+            + f'<div class="abs" style="left:{w - 40}px;top:16px" {acc("Icone_" + n, "Image")}>{g.svg(ico, OR_CLAIR if royal else OR, 20)}</div></div>')
 
 
 def e_tableau():
     kpis, res, top = donnees_tableau()
     ca = kpis[0][2]
-    kw = (g.W - 48 - 3 * 16) // 4
-    out = e_kpi("CA", 24, 20, kw, 104, "CHIFFRE D'AFFAIRES", f"{ca}<small>FCFA</small>", "sur 25 réservations", "wallet", bleu=True)
-    out += e_kpi("Location", 24 + (kw + 16), 20, kw, 104, "VOITURES EN LOCATION", "8<small>/ 60</small>", "13 % du parc loué aujourd'hui", "car-front")
-    out += e_kpi("Clients", 24 + 2 * (kw + 16), 20, kw, 104, "CLIENTS", "200", "clients enregistrés", "users")
-    out += e_kpi("Meilleur", 24 + 3 * (kw + 16), 20, kw, 104, "MEILLEUR CLIENT", f"{top[0][0]} {top[0][1]}",
-                 f'<span style="color:{OR_CLAIR}">{g.fcfa(top[0][2])} FCFA</span>', "trophy", petit=True)
-    y2 = 140
-    bas = g.H - E_TETE - 1 - E_HERO["tableau"] - 24
+    out = (lbl(26, 18, "TABLEAU DE BORD · RENTAL GABON CAR", f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")
+           + lbl(24, 34, "Bonjour, admin", f"{FU}font-size:37.33px;font-weight:600;color:#FFFFFF", "Lbl_Titre_Page")
+           + f'<div class="abs" style="right:24px;top:22px;text-align:right" {acc("Date_Heure", "Zone de texte")}>'
+             f'<div style="{FU}font-size:34.67px;font-weight:300;line-height:36px;color:#FFFFFF">20:06</div>'
+             f'<div style="font-size:12.67px;color:{ARGENT}">lundi 28 septembre 2026</div></div>')
+    # -- rangée A : voiture vedette | jauge d'occupation | 4 indicateurs
+    ya, ha = 90, 250
+    mat, mod, v, nloc = e_vedette()
+    vw = 600
+    out += (f'<div class="kpi" style="left:24px;top:{ya}px;width:{vw}px;height:{ha}px;background:{CARTE};border:1px solid {LIGNE};overflow:hidden" {acc("Carte_Vedette", "Rectangle")}>'
+            + img("e-vedette.jpg", 200, 0, vw - 202, ha - 2, "Image_Vedette")
+            + f'<div class="abs" style="left:19px;top:-1px;width:40px;height:2px;background:{OR}"></div>'
+            + lbl(20, 18, "VOITURE PHARE DU PARC", f"{FU}font-size:12px;font-weight:600;letter-spacing:2.5px;color:{OR}")
+            + lbl(20, 38, e(mod).replace(" ", "<br>", 1), f"{FU}font-size:26.67px;font-weight:600;line-height:30px;color:#FFFFFF", "Txt_Vedette_Modele")
+            + lbl(20, 104, f"{mat} · {v['Couleur']}", f"font-size:12.67px;color:#8A96AD", "Txt_Vedette_Matricule"))
+    for k, (l, val) in enumerate([("PUISSANCE", f"{g.fcfa(v['Puissance'])} ch"), ("TARIF / JOUR", g.fcfa(v["CoutParJour"])),
+                                  ("ANNÉE", str(v["Annee"]))]):
+        yy = 146 + k * 32
+        out += (lbl(20, yy, l, f"{FU}font-size:11.33px;font-weight:600;letter-spacing:2px;color:#8A96AD")
+                + lbl(112, yy - 4, val, f"{FU}font-size:18.67px;font-weight:400;color:#FFFFFF", "Txt_Vedette_" + l.split()[0].capitalize()))
+    out += "</div>"
+    gx, gw = 24 + vw + 16, 260
+    jauge = (f'<img class="abs" src="{g.ASSET_URL}/jauges/jauge-015.png" style="left:{(gw - 150) // 2}px;top:62px;width:150px;height:150px" '
+             f'{acc("Image_Jauge", "Image (jauges/jauge-015.png)")}>'
+             + f'<div class="abs" style="left:0;top:108px;width:{gw - 2}px;text-align:center;{FU}font-size:37.33px;font-weight:300;line-height:40px;color:#FFFFFF" {acc("Txt_Taux", "Zone de texte")}>13 %</div>'
+             + f'<div class="abs" style="left:0;top:148px;width:{gw - 2}px;text-align:center;font-size:12.67px;color:{ARGENT}">8 / 60 voitures</div>'
+             + f'<div class="abs" style="left:0;top:222px;width:{gw - 2}px;text-align:center;font-size:12.67px;color:#8A96AD">52 voitures disponibles</div>')
+    out += e_carte("Carte_Occupation", "01", "Taux d'occupation", gx, ya, gw, ha, jauge)
+    kx = gx + gw + 16
+    kw = (g.W - 24 - kx - 16) // 2
+    kh = (ha - 16) // 2
+    out += e_kpi("CA", kx, ya, kw, kh, "CHIFFRE D'AFFAIRES", f"{ca}<small>FCFA</small>", "sur 25 réservations", "wallet", royal=True)
+    out += e_kpi("Reservations", kx + kw + 16, ya, kw, kh, "RÉSERVATIONS", "25", "dont 8 en cours aujourd'hui", "calendar-range")
+    out += e_kpi("Clients", kx, ya + kh + 16, kw, kh, "CLIENTS", "200", "clients enregistrés", "users")
+    out += e_kpi("Meilleur", kx + kw + 16, ya + kh + 16, kw, kh, "MEILLEUR CLIENT", f"{top[0][0]} {top[0][1]}",
+                 f'<span style="color:{OR_CLAIR}">{g.fcfa(top[0][2])} FCFA de CA</span>', "trophy", petit=True)
+    # -- rangée B : voitures réservées | top 5 + carburants
+    yb = ya + ha + 16
+    bas = g.H - E_TETE - 1 - 20
     rw = 440
     lw_ = g.W - 48 - 16 - rw
-    l1 = g.liste("Liste_Voitures_Reservees", COLS_RES, res, 20, 64, lw_ - 40, bas - y2 - 84)
-    out += g.carte("Carte_Reservees", "Voitures actuellement réservées", 24, y2, lw_, bas - y2, l1, actions=["Imprimer"],
-                   info="8 en cours", icone="clipboard-list")
+    import datetime as dt
+    auj = dt.date(2026, 9, 28)
+    lignes = []
+    for l in res:
+        d1 = dt.date(*map(int, reversed(l[3].split("/"))))
+        lignes.append(l + [f"{(d1 - auj).days} j"])
+    cols = [("Matricule", 100), ("Modèle", 210), ("Date de début", 100), ("Date de fin", 100), ("Prénom", 100), ("Nom", 110),
+            ("Retour dans", 90, "num")]
+    l1 = g.liste("Liste_Voitures_Reservees", cols, lignes, 20, 58, lw_ - 40, bas - yb - 72)
+    out += e_carte("Carte_Reservees", "02", "Voitures actuellement réservées", 24, yb, lw_, bas - yb, l1, actions=["Imprimer"], info="8 en cours")
     rx = 24 + lw_ + 16
     cols_top = [("N°", 34, "num"), ("Prénom", 110), ("Nom", 110), ("CA (FCFA)", 130, "num")]
-    lignes = [[str(i + 1), a, b, g.fcfa(c)] for i, (a, b, c) in enumerate(top)]
-    h2 = 64 + 123 + 20
-    out += g.carte("Carte_Top5", "5 meilleurs clients", rx, y2, rw, h2, g.liste("Liste_Top5", cols_top, lignes, 20, 64, rw - 40, 123), icone="trophy")
-    y3 = y2 + h2 + 16
+    lt = [[str(i + 1), a, b, g.fcfa(c)] for i, (a, b, c) in enumerate(top)]
+    h2 = 58 + 123 + 14
+    out += e_carte("Carte_Top5", "03", "5 meilleurs clients", rx, yb, rw, h2, g.liste("Liste_Top5", cols_top, lt, 20, 58, rw - 40, 123))
+    y3 = yb + h2 + 16
     barres = ""
-    couleurs = [ROYAL, OR, ARGENT]
+    couleurs = [ARGENT, OR, ROYAL_CLAIR]
     for i, (typ, n, part) in enumerate(g.flotte_carburant()):
-        yy = 70 + i * 34
-        barres += (lbl(20, yy - 3, e(typ), f"font-size:13.33px;color:{ARGENT}")
-                   + f'<div class="abs" style="left:110px;top:{yy + 2}px;width:200px;height:10px;background:#1A2238"></div>'
-                   + f'<div class="abs" style="left:110px;top:{yy + 2}px;width:{max(3, round(200 * n / 60))}px;height:10px;background:{couleurs[i]}" {acc("Barre_" + typ.replace("É", "E"), "Rectangle")}></div>'
-                   + lbl(322, yy - 3, f'<b style="color:#FFFFFF">{n}</b> · {part}', f"font-size:13.33px;color:#8A93A3"))
-    out += g.carte("Carte_Carburants", "Flotte par carburant", rx, y3, rw, bas - y3, barres, icone="fuel", info="60 voitures")
+        yy = 62 + i * 24
+        barres += (lbl(20, yy - 4, e(typ), f"font-size:13.33px;color:{ARGENT}")
+                   + f'<div class="abs" style="left:110px;top:{yy + 3}px;width:200px;height:6px;background:{LIGNE}"></div>'
+                   + f'<div class="abs" style="left:110px;top:{yy + 3}px;width:{max(3, round(200 * n / 60))}px;height:6px;background:{couleurs[i]}" {acc("Barre_" + typ.replace("É", "E"), "Rectangle")}></div>'
+                   + lbl(324, yy - 6, f'<span style="{FU}font-size:16px;color:#FFFFFF">{n}</span> · {part}', "font-size:12.67px;color:#8A96AD"))
+    out += e_carte("Carte_Carburants", "04", "Flotte par carburant", rx, y3, rw, bas - y3, barres, info="60 voitures")
     return e_coquille("tableau", out)
 
 
 def e_recherche(x, y, w):
-    return (f'<div class="champ" style="left:{x}px;top:{y}px;width:{w}px;height:30px;line-height:28px;padding-left:32px;color:#8A93A3" '
+    return (f'<div class="champ" style="left:{x}px;top:{y}px;width:{w}px;height:30px;line-height:28px;padding-left:32px;color:#7D8AA3" '
             f'{acc("Txt_Recherche", "Zone de texte (filtre)")}>Rechercher…</div>'
             f'<div class="abs" style="left:{x + 9}px;top:{y + 7}px">{g.svg("search", ARGENT, 16)}</div>')
 
@@ -856,25 +947,28 @@ def e_recherche(x, y, w):
 def e_fiche(cle, titre_fiche, icone, champs, titre_liste, cols, lignes, total, compteur, info, grande_liste=True):
     hf, hv, dispo = e_dims_fiche(cle)
     lw_ = g.W - 48 - 16 - E_COL_D
-    l = g.liste("Liste_" + cle.capitalize(), cols, lignes, 20, 66, lw_ - 40, dispo - 86, total=total)
-    out = g.carte("Carte_Liste", titre_liste, 24, 20, lw_, dispo, l + e_recherche(lw_ - 20 - 30 - 12 - 260, 10, 260),
-                  actions=["Imprimer"], info=info, icone="list")
+    l = g.liste("Liste_" + cle.capitalize(), cols, lignes, 20, 58, lw_ - 40, dispo - 72, total=total)
+    out = e_carte("Carte_Liste", "01", titre_liste, 24, 20, lw_, dispo, l + e_recherche(lw_ - 20 - 36 - 12 - 260, 8, 260),
+                  actions=["Imprimer"], info=None)
+    out += lbl(24 + 20 + int(len(titre_liste) * 9.6) + 40, 20 + 15, e(info), f"{FU}font-size:13.33px;color:{OR}", "Txt_Info_Liste")
     rx = 24 + lw_ + 16
     cw = E_COL_D
     lw, iw = 130, cw - 40 - 130
     inner = ""
     for i, (n, lib, val, kind, *opt) in enumerate(champs):
-        inner += g.champ(n, lib, val, 20, 70 + i * 44, lw, min(opt[0], iw) if opt else iw, kind)
-    y = 70 + len(champs) * 44
+        inner += g.champ(n, lib, val, 20, 66 + i * 44, lw, min(opt[0], iw) if opt else iw, kind)
+    y = 66 + len(champs) * 44
     inner += f'<div class="sep-h" style="left:0;top:{y + 2}px;width:{cw - 2}px"></div>'
     inner += g.nav_enreg((cw - 242) // 2, y + 16, compteur)
     inner += g.boutons_crud(20, hf - 52, (cw - 50) // 2)
-    out += g.carte("Carte_Fiche", titre_fiche, rx, 20, cw, hf, inner, actions=["Ajouter", "Actualiser"], icone=icone)
+    out += e_carte("Carte_Fiche", "02", titre_fiche, rx, 20, cw, hf, inner, actions=["Ajouter", "Actualiser"])
     if hv:
         gc, gt = CHIFFRES[cle]
-        out += (img(f"e-vignette-{cle}.jpg", rx, 20 + hf + 16, cw, hv, "Image_Vignette")
-                + lbl(rx + 24, 20 + hf + 16 + hv - 84, gc, f"font-size:40px;font-weight:600;color:{OR_CLAIR}", "Lbl_Chiffre")
-                + lbl(rx + 26, 20 + hf + 16 + hv - 34, e(gt), "font-size:13.33px;letter-spacing:.5px;color:#FFFFFF", "Lbl_Chiffre_Texte"))
+        yv = 20 + hf + 16
+        out += (img(f"e-vignette-{cle}.jpg", rx, yv, cw, hv, "Image_Vignette")
+                + f'<div class="abs" style="left:{rx + 23}px;top:{yv + hv - 98}px;width:40px;height:2px;background:{OR}"></div>'
+                + lbl(rx + 22, yv + hv - 92, gc, f"{FU}font-size:48px;font-weight:300;color:#FFFFFF", "Lbl_Chiffre")
+                + lbl(rx + 24, yv + hv - 34, e(gt).upper(), f"{FU}font-size:12px;font-weight:600;letter-spacing:2.5px;color:{OR_CLAIR}", "Lbl_Chiffre_Texte"))
     return e_coquille(cle, out)
 
 
@@ -882,22 +976,26 @@ def e_reservations():
     d = donnees_resa()
     cw = (g.W - 48 - 32) // 3
     lw, iw = 100, cw - 40 - 100
-    cli = (g.champ("Cbo_Client", "Client", "Jean Mboumba", 20, 64, lw, iw, "liste")
-           + g.champ("Txt_Telephone", "Téléphone", "(+241) 62 54 85 85", 20, 100, lw, iw, "lecture")
-           + g.champ("Txt_Email", "Email", "jean.mboumba1@example.com", 20, 136, lw, iw, "lecture"))
-    voi = (g.champ("Cbo_Voiture", "Voiture", d["r"]["Voiture"], 20, 64, lw, iw, "liste")
-           + g.champ("Txt_Modele", "Modèle", d["mod"], 20, 100, lw, iw, "lecture")
-           + g.champ("Txt_Marque", "Marque", d["mar"], 20, 136, lw, iw, "lecture"))
-    out = g.carte("Carte_Client", "Client", 24, 20, cw, 180, cli, icone="user")
-    out += g.carte("Carte_Voiture", "Voiture", 24 + cw + 16, 20, cw, 180, voi, icone="car")
+    cli = (g.champ("Cbo_Client", "Client", "Jean Mboumba", 20, 62, lw, iw, "liste")
+           + g.champ("Txt_Telephone", "Téléphone", "(+241) 62 54 85 85", 20, 98, lw, iw, "lecture")
+           + g.champ("Txt_Email", "Email", "jean.mboumba1@example.com", 20, 134, lw, iw, "lecture"))
+    voi = (g.champ("Cbo_Voiture", "Voiture", d["r"]["Voiture"], 20, 62, lw, iw, "liste")
+           + g.champ("Txt_Modele", "Modèle", d["mod"], 20, 98, lw, iw, "lecture")
+           + g.champ("Txt_Marque", "Marque", d["mar"], 20, 134, lw, iw, "lecture"))
+    out = e_carte("Carte_Client", "01", "Client", 24, 20, cw, 180, cli)
+    out += e_carte("Carte_Voiture", "02", "Voiture", 24 + cw + 16, 20, cw, 180, voi)
     mx = 24 + 2 * (cw + 16)
     cout = g.fcfa(g.VOITURES[d["r"]["Voiture"]]["CoutParJour"])
-    out += (f'<div class="kpi" style="left:{mx}px;top:20px;width:{cw}px;height:180px;background:{ROYAL}" {acc("Carte_Montant", "Rectangle")}>'
-            + lbl(24, 18, "MONTANT DE LA RÉSERVATION", "font-size:11.33px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,.82)")
-            + f'<div class="val" style="left:24px;top:40px;font-size:34.67px;color:{OR_CLAIR}" {acc("Txt_Montant", "Zone de texte")}>{d["montant"]}<small style="color:rgba(255,255,255,.8)">FCFA</small></div>'
-            + f'<div class="abs" style="left:24px;top:96px;width:{cw - 48}px;height:1px;background:rgba(255,255,255,.28)"></div>'
-            + lbl(24, 108, f'Durée : <b {acc("Txt_Duree", "Zone de texte")}>{e(d["duree"])}</b> · du 23/09/2026 au 24/10/2026', "font-size:13.33px;color:#FFFFFF")
-            + lbl(24, 134, f"Coût par jour : {cout} FCFA · {e(d['mod'])}", "font-size:13.33px;color:rgba(255,255,255,.82)")
+    tw = cw - 40
+    fait = round(tw * 5 / 31)
+    out += (f'<div class="kpi" style="left:{mx}px;top:20px;width:{cw}px;height:180px;background:{ROYAL};border:1px solid {ROYAL_BORD}" {acc("Carte_Montant", "Rectangle")}>'
+            + lbl(20, 18, "MONTANT DE LA RÉSERVATION", f"{FU}font-size:12px;font-weight:600;letter-spacing:2.5px;color:#DCE4F5")
+            + f'<div class="val" style="left:20px;top:36px;{FU}font-size:42.67px;font-weight:300;color:{OR_CLAIR}" {acc("Txt_Montant", "Zone de texte")}>{d["montant"]}<small style="color:#C9D5EE">FCFA</small></div>'
+            + lbl(20, 104, "23/09/2026", f"{FU}font-size:13.33px;color:#DCE4F5", "Txt_Debut")
+            + f'<div class="abs" style="right:20px;top:104px;{FU}font-size:13.33px;color:#DCE4F5">24/10/2026</div>'
+            + f'<div class="abs" style="left:20px;top:128px;width:{tw}px;height:4px;background:#2A4573" {acc("Piste_Duree", "Rectangle")}></div>'
+            + f'<div class="abs" style="left:20px;top:128px;width:{fait}px;height:4px;background:{OR}" {acc("Barre_Duree", "Rectangle")}></div>'
+            + lbl(20, 144, f'Jour 5 sur <b {acc("Txt_Duree", "Zone de texte")}>{e(d["duree"])}</b> · {cout} FCFA / jour', "font-size:12.67px;color:#FFFFFF")
             + '</div>')
     fw = g.W - 48
     res = (g.champ("Txt_Code", "Code", "1", 20, 62, 52, 70, droite=True)
@@ -906,34 +1004,37 @@ def e_reservations():
            + f'<div class="btn secondaire" style="left:684px;top:60px;width:64px" {acc("Btn_OK", "Bouton")}>OK</div>'
            + g.nav_enreg(790, 62, "1 sur 25")
            + g.boutons_crud(fw - 20 - 290, 60, 140))
-    out += g.carte("Carte_Reservation", "Réservation", 24, 216, fw, 106, res, actions=["Ajouter", "Rechercher", "Imprimer"], icone="calendar-range")
+    out += e_carte("Carte_Reservation", "03", "Réservation", 24, 216, fw, 106, res, actions=["Ajouter", "Rechercher", "Imprimer"])
     y = 216 + 106 + 16
-    bas = g.H - E_TETE - 1 - 120 - 24
-    out += liste_resa(24, y, fw, bas - y)
+    bas = g.H - E_TETE - 1 - E_HERO - 20
+    l = g.liste("Liste_Reservations", COLS_LISTE_RES, g.lignes_reservations(), 20, 58, fw - 40, bas - y - 72, total=25)
+    out += e_carte("Carte_Liste", "04", "Liste des réservations", 24, y, fw, bas - y, l, actions=["Imprimer"], info="25 réservations")
     return e_coquille("reservations", out)
 
 
 def e_login():
     lw, lh = 1000, 560
-    px = 540
-    fx = px + 60
-    fw = lw - px - 120
+    px = 560
+    fx = px + 56
+    fw = lw - px - 112
+    et = f"{FU}font-size:12px;font-weight:600;letter-spacing:2.5px;color:{ARGENT}"
     c = f"""
-<div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:#07090F" {acc("Login_Fond", "Section Détail")}></div>
+<div class="abs" style="left:0;top:0;width:{lw}px;height:{lh}px;background:#01040B" {acc("Login_Fond", "Section Détail")}></div>
 {img("e-connexion.jpg", 0, 0, px, lh, "Login_Photo")}
-{lbl(40, lh - 128, "LOCATION DE PRESTIGE · LIBREVILLE", f"font-size:11.33px;font-weight:600;letter-spacing:3px;color:{OR}", "Lbl_Surtitre")}
-{lbl(38, lh - 104, "L'excellence automobile,<br>à votre service.", "font-size:26.67px;font-weight:600;line-height:34px;color:#FFFFFF;white-space:normal;width:420px", "Lbl_Slogan")}
+<div class="abs" style="left:41px;top:44px;width:40px;height:2px;background:{OR}"></div>
+{lbl(40, 56, "LOCATION DE PRESTIGE · LIBREVILLE", f"{FU}font-size:12px;font-weight:600;letter-spacing:4px;color:{OR}", "Lbl_Surtitre")}
+{lbl(38, 80, "L'excellence automobile,<br>à votre service.", f"{FU}font-size:34.67px;font-weight:600;line-height:38px;color:#FFFFFF", "Lbl_Slogan")}
 <div class="abs" style="left:{px}px;top:0;width:1px;height:{lh}px;background:{OR}" {acc("Trait_Or", "Trait")}></div>
-<div class="abs" style="left:{fx}px;top:56px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:2.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 28, 1.8)}{g.NOM_APPLI}</div>
-{lbl(fx, 126, "Connexion", "font-size:26.67px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
-<div class="abs" style="left:{fx + 2}px;top:170px;width:40px;height:2px;background:{OR}"></div>
+<div class="abs" style="left:{fx}px;top:54px;display:flex;align-items:center;gap:11px;{FU}font-size:18.67px;font-weight:600;letter-spacing:3.5px;color:#FFFFFF" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", OR, 28, 1.8)}{g.NOM_APPLI}</div>
+{lbl(fx, 118, "Connexion", f"{FU}font-size:40px;font-weight:600;color:#FFFFFF", "Lbl_Titre")}
+<div class="abs" style="left:{fx + 1}px;top:170px;width:40px;height:2px;background:{OR}"></div>
 {lbl(fx, 184, "Accédez à votre espace de gestion.", f"font-size:13.33px;color:{ARGENT}")}
-<div class="etiq" style="left:{fx}px;top:226px">Nom d'utilisateur</div>
-<div class="champ" style="left:{fx}px;top:256px;width:{fw}px;height:36px;line-height:34px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
-<div class="etiq" style="left:{fx}px;top:304px">Mot de passe</div>
-<div class="champ" style="left:{fx}px;top:334px;width:{fw}px;height:36px;line-height:34px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
-<div class="btn primaire" style="left:{fx}px;top:398px;width:{fw}px;height:40px;letter-spacing:1px" {acc("Btn_Connexion", "Bouton")}>Se connecter</div>
-{lbl(fx, 458, "Mot de passe oublié ? Contactez l'administrateur.", "font-size:12px;color:#8A93A3")}
-{lbl(fx, lh - 40, "© 2026 " + g.NOM_APPLI, "font-size:12px;letter-spacing:1px;color:#5E6778", "Login_Copyright")}
+<div class="abs" style="left:{fx}px;top:230px;{et}">NOM D'UTILISATEUR</div>
+<div class="champ" style="left:{fx}px;top:252px;width:{fw}px;height:38px;line-height:36px" {acc("Txt_Utilisateur", "Zone de texte")}>admin</div>
+<div class="abs" style="left:{fx}px;top:308px;{et}">MOT DE PASSE</div>
+<div class="champ" style="left:{fx}px;top:330px;width:{fw}px;height:38px;line-height:36px;letter-spacing:2px" {acc("Txt_MotDePasse", "Zone de texte")}>********</div>
+<div class="btn primaire" style="left:{fx}px;top:396px;width:{fw}px;height:42px;{FU}font-size:14.67px;letter-spacing:3px" {acc("Btn_Connexion", "Bouton")}>SE CONNECTER</div>
+{lbl(fx, 458, "Mot de passe oublié ? Contactez l'administrateur.", "font-size:12px;color:#8A96AD")}
+{lbl(fx, lh - 40, "© 2026 " + g.NOM_APPLI, f"{FU}font-size:12px;letter-spacing:2px;color:#5B6A86", "Login_Copyright")}
 """
     return g.fenetre(g.NOM_APPLI + " - Connexion", lw, lh, c, boutons=("fermer",))

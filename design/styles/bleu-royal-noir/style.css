@@ -1,50 +1,52 @@
 /* Style : Bleu royal et noir */
 :root {
-  --surface: #0F1420;
-  --champ: #121828;
-  --entete: #05070C;
+  --surface: #06112A;
+  --champ: #0A1838;
+  --entete: #000000;
   --logo: #FFFFFF;
   --texte: #F2F4F8;
   --texte2: #DCE1EA;
-  --etiq: #A9B1BE;
-  --gris: #8A93A3;
-  --champ-bordure: #2A3550;
-  --lecture: #0B101C;
-  --lecture-bordure: #1E2740;
+  --etiq: #A9B4C8;
+  --gris: #8A96AD;
+  --champ-bordure: #1F3A70;
+  --lecture: #040C20;
+  --lecture-bordure: #13284F;
   --lecture-txt: #C4CAD3;
-  --liste-trait: #1C2438;
-  --sep: #1A2236;
+  --liste-trait: #102246;
+  --sep: #0E1F40;
   --accent-txt: #FFFFFF;
   --danger: #F87171;
   --danger-bordure: #6B2C2C;
-  --defil: #121828;
-  --defil-trait: #1E2740;
-  --pouce: #3A4766;
+  --defil: #0A1838;
+  --defil-trait: #13284F;
+  --pouce: #2A4573;
   --kpi-lib: rgba(255,255,255,.82);
   --kpi-val: #FFFFFF;
   --bandeau-sous: rgba(255,255,255,.85);
-  --barre-fond: #05070C;
+  --barre-fond: #000000;
   --barre-trait: #1A1D24;
   --barre-txt: #FFFFFF;
-  --nav-actif-fond: #1F4FD8;
-  --fond: #07090F;
-  --menu: #05070C;
+  --nav-actif-fond: #002366;
+  --fond: #01040B;
+  --menu: #000000;
   --nav-txt: #C4CAD3;
   --nav-actif-txt: #FFFFFF;
-  --rubrique: #7D8696;
+  --rubrique: #7D8AA3;
   --entete-trait: #C9A24B;
   --titre: #FFFFFF;
-  --carte-bordure: #1E2740;
-  --bande: #0F1420;
-  --btn-bordure: #26314D;
-  --montant: #1F4FD8;
-  --montant-bordure: #1F4FD8;
-  --montant-txt: #FFFFFF;
-  --accent: #1F4FD8;
-  --liste-bordure: #26314D;
+  --carte-bordure: #13284F;
+  --bande: #06112A;
+  --btn-bordure: #1C3566;
+  --montant: #002366;
+  --montant-bordure: #2A55B8;
+  --montant-txt: #E3C77A;
+  --accent: #002366;
+  --liste-bordure: #1C3566;
   --or: #C9A24B;
   --or-clair: #E3C77A;
   --argent: #C4CAD3;
+  --royal-bordure: #2A55B8;
+  --royal-clair: #3D6FE0;
 }
 
 /* RENTAL GABON CAR : feuille de style commune aux 5 styles (les couleurs sont dans :root, générées par outils/generer.py)
@@ -219,17 +221,27 @@ body { margin: 0; background: #FFFFFF; }
 .d-d .kpi .val small { color: rgba(0,0,0,.6); }
 .d-d .btn { border-radius: 17px; }
 
-/* --- Design E : Prestige (bleu royal & noir, or, argent) --- */
-.d-e .pill { position: absolute; top: 16px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.33px; color: #C4CAD3; white-space: nowrap; }
-.d-e .pill.actif { background: var(--nav-actif-fond); color: var(--nav-actif-txt); font-weight: 600; }
-.d-e .date-e { display: flex; align-items: center; gap: 8px; font-size: 13.33px; color: #C4CAD3; white-space: nowrap; }
-.d-e .carte .bande { background: var(--surface); }
-.d-e .carte .titre-c { top: 17px; font-size: 12.67px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #FFFFFF; }
-.d-e .carte .trait { left: 20px; right: auto; width: 40px; height: 2px; top: 49px; background: #C9A24B; }
-.d-e .carte .info { color: #C9A24B; }
+/* --- Design E : Prestige futuriste (bleu royal #002366 & noir, or, argent) --- */
+@font-face { font-family: "Futur"; font-weight: 300; src: local("Bahnschrift Light"), url(../../maquettes/fonts/barlow-semi-condensed-latin-300-normal.woff2); }
+@font-face { font-family: "Futur"; font-weight: 400; src: local("Bahnschrift"), url(../../maquettes/fonts/barlow-semi-condensed-latin-400-normal.woff2); }
+@font-face { font-family: "Futur"; font-weight: 600; src: local("Bahnschrift SemiBold"), url(../../maquettes/fonts/barlow-semi-condensed-latin-600-normal.woff2); }
+.d-e .pill { position: absolute; top: 14px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: "Futur", Bahnschrift, sans-serif; font-size: 14.67px; letter-spacing: .6px; color: #C4CAD3; white-space: nowrap; border: 1px solid transparent; }
+.d-e .pill.actif { background: #002366; border-color: #2A55B8; color: #FFFFFF; font-weight: 600; }
+.d-e .date-e { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; background: #01040B; border: 1px solid #13284F; font-size: 13.33px; color: #C4CAD3; white-space: nowrap; }
+.d-e .carte { background: #06112A; border: 1px solid #13284F; }
+.d-e .carte .titre-e { position: absolute; left: 20px; top: 14px; font-family: "Futur", Bahnschrift, sans-serif; font-size: 14.67px; font-weight: 600;
+  letter-spacing: 2.2px; text-transform: uppercase; color: #FFFFFF; white-space: nowrap; }
+.d-e .carte .titre-e .num { color: #C9A24B; font-weight: 300; margin-right: 12px; letter-spacing: 1px; }
+.d-e .carte .info-e { position: absolute; top: 15px; font-family: "Futur", Bahnschrift, sans-serif; font-size: 13.33px; color: #C9A24B; white-space: nowrap; }
+.d-e .carte .sep-e { position: absolute; left: 0; right: 0; top: 46px; height: 1px; background: #13284F; }
+.d-e .carte .trait-e { position: absolute; left: 20px; top: 45px; width: 40px; height: 2px; background: #C9A24B; }
+.d-e .carte .actions { top: 8px; }
+.d-e .btn-ico { background: #0A1838; border-color: #1C3566; border-radius: 15px; }
+.d-e .btn-nav { background: #0A1838; border-color: #1C3566; border-radius: 14px; }
 .d-e .kpi { border: none; }
-.d-e .kpi .val small { color: rgba(255,255,255,.7); }
+.d-e .kpi .val small { color: rgba(255,255,255,.7); font-family: "UI", "Segoe UI", sans-serif; font-size: 14.67px; }
 .d-e .btn { border-radius: 17px; }
-.d-e .avatar { background: #1F4FD8; color: #FFFFFF; }
+.d-e .btn.primaire { border: 1px solid #2A55B8; }
+.d-e .avatar { background: #002366; color: #FFFFFF; }
 .d-e .utilisateur b, .d-e .utilisateur span { display: block; }
-

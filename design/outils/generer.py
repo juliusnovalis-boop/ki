@@ -532,6 +532,8 @@ def assets_jobs(tmp, icones=None):
 
     if T["design"] != "bleu":
         D.photos_jobs(photo, H, W)
+        if T["design"] == "e":
+            jobs += D.e_jauges_jobs(tmp)
         return jobs
     voile_b = f"linear-gradient(90deg, {rgba(.97)} 0%, {rgba(.92)} 30%, {rgba(.55)} 58%, {rgba(.18)} 100%)"
     for cle, (src, pos, h) in BANDEAUX.items():

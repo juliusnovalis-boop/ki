@@ -1,8 +1,8 @@
 # RENTAL GABON CAR · maquettes Access
 
-Design **5. Prestige** · couleurs **bleu royal et noir** · application de location de voitures de prestige à Libreville.
+Design **5. Prestige futuriste** · couleurs **bleu royal et noir** · application de location de voitures de prestige à Libreville.
 
-Maquette spéciale bleu royal et noir, rehaussée d'or, d'argent et de blanc. Barre noire en haut avec onglets en pastilles centrés (comme argenté-noir), filet doré, bandeau photo sur chaque page, 4 indicateurs, graphique de la flotte, recherche dans les listes, fiches en colonne à droite. Connexion en deux panneaux (photo | formulaire).
+Maquette spéciale **bleu royal `#002366` et noir**, rehaussée d'or, d'argent et de blanc, inspirée des écrans de bord des voitures de luxe : police **Bahnschrift**, grands chiffres fins, cartes numérotées (01, 02…), jauge d'occupation, voiture phare en photo sur le tableau de bord, barre de progression de la location, onglets en pastilles centrés (comme argenté-noir). Connexion en deux panneaux (photo | formulaire).
 
 ## Logos (une seule image à insérer)
 
@@ -10,8 +10,8 @@ Le logo complet de l'entreprise (icône **et** nom, bonne police, bonnes couleur
 
 | Fichier | Formulaire | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `assets/logo-connexion.png` | Connexion | 15,88 | 1,48 | 5,98 | 0,74 |
-| `assets/logo-menu.png` | Menu | 0,74 | 0,56 | 5,93 | 0,69 |
+| `assets/logo-connexion.png` | Connexion | 16,30 | 1,43 | 6,43 | 0,74 |
+| `assets/logo-menu.png` | Menu | 0,74 | 0,50 | 6,38 | 0,69 |
 
 Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaillée : `ICONES.md`.
 
@@ -24,23 +24,25 @@ Aperçu des logos et de toutes les icônes : `apercu-icones.png`. Liste détaill
 | `COTES.md` | Position et taille de chaque contrôle, en centimètres |
 | `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |
 | `apercu-icones.png` | Aperçu de toutes les icônes (les icônes blanches sont montrées sur fond foncé) |
-| `assets/` | Les icônes en PNG transparent, à la taille exacte (logo de la connexion et du menu compris) |
+| `assets/` | Les icônes en PNG transparent, à la taille exacte (logo de la connexion et du menu compris), et `jauges/` : les 21 images de la jauge |
 | `assets/photos/` | Les 8 photos de voitures de ce projet, déjà recadrées à la taille exacte |
 
 > Les icônes **blanches** paraissent vides dans l'explorateur Windows (blanc sur blanc) : elles sont bien là, voir `apercu-icones.png`.
 
 ## Réaliser ce design dans Access
 
-* Formulaire de navigation **« Onglets horizontaux »**. Barre : Rectangle noir `#05070C` de 41,49 × 1,80 cm, puis un **trait doré** `#C9A24B` de 1 pt sur toute la largeur juste dessous.
-* Logo à gauche : `assets/logo-menu.png`. À droite : avatar (bouton `Forme` **Ovale** bleu royal, bordure dorée 2 pt), nom de l'utilisateur blanc, rôle argenté, bouton Quitter argenté.
-* Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), `Style fond` Transparent, texte et icône argentés `#C4CAD3` ; onglet actif : fond **bleu royal** `#1F4FD8`, texte et icône blancs, gras.
-* Bandeau : contrôle Image `assets/photos/e-bandeau-<page>.jpg` collé sous le trait doré, 41,49 × 3,97 cm sur le tableau de bord, 41,49 × 3,18 cm sur les autres pages. Par-dessus : sur-titre doré en majuscules espacées, titre blanc 23 pt, sous-titre argenté, date à droite.
-* Cartes : Rectangle `#0F1420`, bordure `#1E2740`, titre blanc en majuscules espacées, petit **trait doré** de 1,06 × 0,05 cm sous le titre ; icônes des cartes et des boutons d'outils dorées.
-* Indicateurs : le chiffre d'affaires sur fond **bleu royal plein** ; les 3 autres sur fond carte avec un filet doré de 0,05 cm en haut et une pastille ronde (bouton Ovale `#151B2B`) avec l'icône dorée. Le meilleur client affiche son CA en doré.
-* Flotte par carburant : un contrôle **Graphique** (barres horizontales) ou 3 paires de rectangles (piste `#1A2238` + barre de couleur dont la largeur se calcule en VBA : `Me.Barre_Essence.Width = 200 * 15 * n / 60`).
-* Fiches : liste à gauche avec une zone de texte **Rechercher…** (filtre) dans la bande de titre ; fiche à droite sur 12,70 cm de large, étiquettes à gauche, champs empilés tous les 1,16 cm. Sur Marques, Carburants et Modèles, la photo `e-vignette-<page>.jpg` remplit le bas de la colonne.
-* Réservations : trois cartes en haut (Client, Voiture, et le **montant sur fond bleu royal en doré**), la réservation sur une ligne, la liste dessous.
-* Connexion : formulaire de 26,46 × 14,82 cm. À gauche, contrôle Image `assets/photos/e-connexion.jpg` (14,29 × 14,82 cm) avec le slogan blanc ; trait doré vertical ; à droite sur fond `#07090F` : logo `assets/logo-connexion.png`, titre, champs et bouton bleu royal.
+* Formulaire de navigation **« Onglets horizontaux »**. Barre : Rectangle noir `#000000` de 41,49 × 1,69 cm, puis un **trait doré** `#C9A24B` de 1 pt sur toute la largeur juste dessous. Logo à gauche : `assets/logo-menu.png`.
+* Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), police **Bahnschrift 11 pt**, `Style fond` Transparent, texte et icône argentés `#C4CAD3` ; onglet actif : fond **bleu royal `#002366`**, bordure `#2A55B8`, texte et icône blancs, gras.
+* Cartes : Rectangle `#06112A`, bordure `#13284F`. Titre en **Bahnschrift SemiBold 11 pt majuscules**, précédé du **numéro doré** (01, 02…, Bahnschrift Light). Sous le titre : un trait `#13284F` sur toute la largeur et un petit trait doré de 1,06 cm × 2 pt à gauche.
+* Tableau de bord : pas de bandeau, mais un en-tête *Bonjour, admin* (Bahnschrift SemiBold 28 pt) et l'heure en grand à droite (Bahnschrift Light 26 pt, `=Format(Maintenant();"hh:nn")`).
+* Voiture phare : contrôle Image `assets/photos/e-vedette.jpg` (10,53 × 6,56 cm) dans la carte, à droite ; les caractéristiques à gauche viennent de la table Voiture (Puissance, CoutParJour, Annee).
+* Jauge d'occupation : contrôle Image `assets/jauges/jauge-015.png` (3,97 × 3,97 cm) et une zone de texte transparente au centre pour le taux. Les 21 images `jauge-000.png` à `jauge-100.png` (pas de 5 %) permettent d'animer la jauge en VBA dans `Form_Load` : `Me.Image_Jauge.Picture = CurrentProject.Path & "\assets\jauges\jauge-" & Format(Round(taux / 5) * 5, "000") & ".png"`.
+* Indicateurs : le chiffre d'affaires sur fond **bleu royal `#002366`** (bordure `#2A55B8`) ; les autres sur fond carte avec un petit trait doré en haut. Chiffres en Bahnschrift Light 26 pt blancs, icône dorée en haut à droite.
+* Flotte par carburant et durée de la location : rectangles fins (piste + barre). Largeur de la barre en VBA, par exemple `Me.Barre_Essence.Width = Me.Piste_Essence.Width * n / 60`.
+* Pages : bandeau `assets/photos/e-bandeau-<page>.jpg` (41,49 × 3,28 cm) sous le trait doré, sur-titre doré espacé, titre Bahnschrift SemiBold 28 pt, date dans un petit cadre noir à droite.
+* Fiches : liste à gauche avec la zone **Rechercher…** (filtre) dans la bande de titre ; fiche à droite (12,70 cm), champs tous les 1,16 cm. Sur Marques, Carburants et Modèles, la photo `e-vignette-<page>.jpg` complète la colonne avec un grand chiffre.
+* Réservations : cartes 01 Client et 02 Voiture, carte du **montant en doré sur bleu royal** avec la barre de progression de la location, puis 03 Réservation sur une ligne et 04 Liste.
+* Connexion : formulaire de 26,46 × 14,82 cm. À gauche, `assets/photos/e-connexion.jpg` (14,82 × 14,82 cm) avec le slogan en haut ; trait doré vertical ; à droite sur fond `#01040B` : `assets/logo-connexion.png`, titre Bahnschrift, libellés en majuscules, bouton bleu royal **SE CONNECTER**.
 * La barre de titre sombre correspond au mode sombre de Windows : elle ne se règle pas dans Access.
 
 Règles communes : police **Segoe UI**, zones de texte avec bordure fine sur tout le tour, étiquettes sans bordure, `Effet spécial` **Plat** partout.

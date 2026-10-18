@@ -19,9 +19,9 @@ gamme) et le mode d'emploi général (`../README.md`) restent communs.
 
 | | Entreprise | Design | Couleurs | Dossier | Télécharger |
 |---|---|---|---|---|---|
-| ★ | **RENTAL GABON CAR** | Prestige | Bleu royal et noir, or, argent, blanc | [`bleu-royal-noir/`](bleu-royal-noir/) | [RENTAL-GABON-CAR-bleu-royal-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/RENTAL-GABON-CAR-bleu-royal-noir.zip) |
+| ★ | **RENTAL GABON CAR** | Prestige futuriste | Bleu royal #002366 et noir, or, argent, blanc | [`bleu-royal-noir/`](bleu-royal-noir/) | [RENTAL-GABON-CAR-bleu-royal-noir.zip](https://github.com/juliusnovalis-boop/ki/raw/arena/01a0e965-ki/projets/RENTAL-GABON-CAR-bleu-royal-noir.zip) |
 
-Barre noire avec onglets en pastilles centrés (comme argenté-noir), filet doré, bandeau photo sur chaque page, 4 indicateurs, graphique de la flotte, recherche dans les listes, fiches en colonne à droite, connexion en deux panneaux. Mode d'emploi : [`bleu-royal-noir/LISEZMOI.md`](bleu-royal-noir/LISEZMOI.md).
+Style écran de bord de voiture de luxe : police Bahnschrift, cartes numérotées, jauge d'occupation, voiture phare, barre de progression de la location, onglets en pastilles centrés (comme argenté-noir), filet doré, connexion en deux panneaux. Mode d'emploi : [`bleu-royal-noir/LISEZMOI.md`](bleu-royal-noir/LISEZMOI.md).
 
 Chaque projet a **son zip** (dossier `projets/` à la racine du dépôt) qui contient : `LISEZMOI.md` (mode d'emploi du design),
 `couleur.md` (toutes les couleurs à saisir dans Access), `COTES.md` (positions et tailles en cm), `png/` (les 8 écrans),
