@@ -550,7 +550,7 @@ def d_coquille(actif, corps):
                 f'{g.svg(ico, T("nav_ico_actif") if on else "#B8BCC2", 16)}{e(lib)}</div>')
         x += w + 6
     c = f"""
-{img(f"d-fond-{actif}.jpg", 0, 0, g.W, g.H, "Image_Fond")}
+{img(f"d-tete-{actif}.jpg", 0, 0, g.W, D_TETE, f"Img_Fond_{actif}")}
 <div class="abs" style="left:32px;top:22px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:2px;color:#E8EAED" {acc("Logo", "Image + étiquette")}>{g.svg("car-front", "#E8EAED", 26, 1.8)}{g.NOM_APPLI}</div>
 {nav}
 {avatar(g.W - 104, 20, 32)}
@@ -742,7 +742,8 @@ def photos_jobs(photo, H, W):
     elif d == "d":
         for cle, (src, pos, _) in PHOTOS.items():
             voile_d = "linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.62) 12%, rgba(0,0,0,.72) 40%, rgba(0,0,0,.86) 100%)"
-            photo(f"photos/d-fond-{cle}.jpg", W, H, *source(cle, src, pos), voile_d, filtre)
+            # bandeau (haut de la photo) : contrôle Image du Menu, derrière les onglets, affiché par macro
+            photo(f"photos/d-tete-{cle}.jpg", W, H, *source(cle, src, pos), voile_d, filtre, coupe=(0, D_TETE))
             # même photo, coupée sous la barre de navigation : fond du sous-formulaire, raccord parfait
             photo(f"photos/d-corps-{cle}.jpg", W, H, *source(cle, src, pos), voile_d, filtre, coupe=(D_TETE, H - D_TETE))
         photo("photos/d-connexion.jpg", 880, 520, *source("connexion", "login-route-cotiere.jpg", "70% center"),

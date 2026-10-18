@@ -25,7 +25,7 @@ Maquette : `png/00-connexion.png`
 
 | Contrôle | Type | Gauche | Haut | Largeur | Hauteur |
 |---|---|---:|---:|---:|---:|
-| `Image_Fond` | Image (d-fond-tableau.jpg) | 0,00 | 0,00 | 41,49 | 20,74 |
+| `Img_Fond_tableau` | Image (d-tete-tableau.jpg) | 0,00 | 0,00 | 41,49 | 1,91 |
 | `Logo` | Image + étiquette | 0,85 | 0,58 | 4,97 | 0,69 |
 | `BoutonNavigation_tableau` | Bouton de navigation | 9,10 | 0,48 | 4,50 | 0,95 |
 | `BoutonNavigation_reservations` | Bouton de navigation | 13,76 | 0,48 | 3,86 | 0,95 |

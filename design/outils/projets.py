@@ -71,12 +71,12 @@ DESIGNS = {
                   "indicateurs argentés empilés. Connexion : carte centrée sur une photo sombre.",
         "polices": "Segoe UI partout ; titres de cartes en majuscules 9,5 pt espacées.",
         "guide": [
-            "Formulaire de navigation **« Onglets horizontaux »**. **Photo de fond sur le menu ET le sous-formulaire** : Access ne rend pas un "
-            "sous-formulaire transparent, la photo est donc coupée en deux morceaux alignés. Formulaire Menu : `Image` = `assets/photos/d-fond-<page>.jpg` "
-            "(photo complète, 41,49 × 20,74 cm), **changée par le clic de chaque bouton de navigation** ; chaque page : `Image` **fixe** = "
-            "`assets/photos/d-corps-<page>.jpg` (bas de la photo, 41,49 × 18,84 cm, aucun code : elle change toute seule avec la page) ; "
-            "les deux en **Étirer**, sous-formulaire au **Haut 1,905 cm**, sans bordure. Pas à pas, code VBA et schéma : **`FOND-NAVIGATION.md`** "
-            "et `schema-fond-navigation.png`.",
+            "Formulaire de navigation **« Onglets horizontaux »**. **Photo de fond sur le menu ET le sous-formulaire, sans VBA** : Access ne rend pas "
+            "un sous-formulaire transparent, chaque photo est donc coupée en deux. Menu : **7 contrôles Image** `Img_Fond_<page>` "
+            "(`assets/photos/d-tete-<page>.jpg`, 41,49 × 1,905 cm) empilés derrière les onglets, un seul visible ; la **macro incorporée** *Sur clic* "
+            "de chaque bouton de navigation (actions **DéfinirPropriété** › Visible -1 / 0) affiche le bon. Pages : `Image` **fixe** = "
+            "`assets/photos/d-corps-<page>.jpg` (41,49 × 18,84 cm). Sous-formulaire au **Haut 1,905 cm**, sans bordure. "
+            "Pas à pas et tableau des macros : **`FOND-NAVIGATION.md`** et `schema-fond-navigation.png`.",
             "Boutons de navigation : `Forme` **Rectangle arrondi** (pastille), `Style fond` Transparent, texte couleur *Texte du menu* ; "
             "onglet actif : fond couleur *Onglet actif (fond)*, texte noir.",
             "Cartes : Rectangle couleur *Cartes (fond)*, bordure couleur *Bordure des cartes*, titres en majuscules 9,5 pt, "
@@ -241,7 +241,7 @@ def lisezmoi(t, num):
          "| Fichier | Rôle |", "|---|---|",
          "| `png/` | Les 8 écrans à reproduire : connexion, tableau de bord, réservations, clients, voitures, marques, carburants, modèles |",
          "| `couleur.md` | **Toutes les couleurs** (codes à saisir dans Access) |",
-         ] + (["| `FOND-NAVIGATION.md` et `schema-fond-navigation.png` | **Photo de fond derrière le menu et le sous-formulaire** : pas à pas et code VBA |"]
+         ] + (["| `FOND-NAVIGATION.md` et `schema-fond-navigation.png` | **Photo de fond derrière le menu et le sous-formulaire** : pas à pas avec des macros (sans VBA) |"]
               if (DESIGN / t["dossier"] / "FOND-NAVIGATION.md").exists() else []) + (["| `etats/png/` et `ETATS.md` | Les **états** (impressions) ouverts par les boutons Imprimer, avec leurs cotes |"] if fe.exists() else []) + [
          "| `COTES.md` | Position et taille de chaque contrôle, en centimètres |",
          "| `ICONES.md` | **Liste de toutes les icônes** : fichier, taille, couleur, contrôle et écran où la mettre |",
